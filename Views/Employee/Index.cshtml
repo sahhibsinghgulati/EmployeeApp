@@ -1,0 +1,115 @@
+﻿@model IEnumerable<EmployeeAppMVC.Models.Employee>
+
+@{ ViewBag.Title = "Employee List"; }
+
+<div class="container mt-4">
+    <h2>Employee List</h2>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary w-50" })
+        </div>
+    </div>
+
+    <form id="printForm" action="@Url.Action("Print", "Employee")" method="GET" target="_blank">
+
+        <input type="hidden" id="targetEmpId" name="id" value="0" />
+
+        <div class="row mb-3 align-items-end">
+            <div class="col-md-3">
+                <label class="form-label">Company Name</label>
+                <input type="text" name="companyName" class="form-control" placeholder="Enter Name" />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Address</label>
+                <input type="text" name="companyAddr" class="form-control" placeholder="Enter Address" />
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label">Mobile</label>
+                <input type="text" name="companyMobile" class="form-control" placeholder="Enter Mobile" />
+            </div>
+
+            <div class="col-md-3">
+                <button type="button" onclick="printEmployee(0)" class="btn btn-dark w-100">Print All</button>
+            </div>
+        </div>
+    </form>
+
+
+
+
+    <table class="table table-bordered table-hover align-middle text-center">
+        <thead class="thead-light">
+            <tr>
+                <th>Sr. No.</th>
+                <th>Name</th>
+                <th>Father's Name</th>
+                <th>Gender</th>
+                <th>DOB</th>
+                <th>Address</th>
+                <th>Dept</th>
+                <th>Mobile</th>
+                <th>Email</th>
+                <th>Aadhaar</th>
+                <th>Joining Date</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int Serial = 1;
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr class="text-center">
+                    <td>@Serial</td>
+                    <td>@Html.DisplayFor(m => item.Name)</td>
+                    <td>@Html.DisplayFor(m => item.fatherName)</td>
+                    <td>@Html.DisplayFor(m => item.Gender)</td>
+                    <td style="white-space: nowrap;">@Html.DisplayFor(m => item.DOB)</td>
+                    <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Address">
+                        @Html.DisplayFor(m => item.Address)
+                    </td>
+                    <td>@Html.DisplayFor(m => item.Department)</td>
+                    <td>@Html.DisplayFor(m => item.Mobile)</td>
+                    <td>@Html.DisplayFor(m => item.Email)</td>
+                    <td>@Html.DisplayFor(m => item.Aadhaar)</td>
+                    <td style="white-space: nowrap;">@Html.DisplayFor(m => item.JoiningDate)</td>
+                    <td class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.EmpID }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.EmpID }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this employee?');" })
+                        <button type="button" class="btn btn-info" onclick="printEmployee(@item.EmpID)">Print</button>
+                    </td>
+                </tr>
+
+                {
+                    Serial++;
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function printEmployee(empId) {
+        // 1. Find the hidden input by ID and set it to the specific Employee ID
+        var hiddenInput = document.getElementById('targetEmpId');
+        if (hiddenInput) {
+            hiddenInput.value = empId;
+        } else {
+            alert("Error: Could not find hidden input 'targetEmpId'");
+            return;
+        }
+
+        // 2. Submit the form (This sends the ID + Company Details you typed)
+        var form = document.getElementById('printForm');
+        if (form) {
+            form.submit();
+        } else {
+            alert("Error: Could not find form 'printForm'");
+        }
+    }
+</script>
