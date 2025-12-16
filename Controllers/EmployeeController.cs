@@ -10,6 +10,7 @@ using Microsoft.Reporting.WebForms; // Required for RDLC
 
 namespace EmployeeAppMVC.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         string connStr = ConfigurationManager.ConnectionStrings["EmpDBConnection"].ConnectionString;

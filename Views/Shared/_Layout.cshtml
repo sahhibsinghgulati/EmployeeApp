@@ -27,6 +27,23 @@
                         @Html.ActionLink("Add Employee", "Create", "Employee", new { area = "" }, new { @class = "nav-link" })
                     </li>
                 </ul>
+                <ul class="navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-light text-capitalize">Hello, <b>@User.Identity.Name</b></a>
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "btn btn-danger text-white ms-2" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                </ul>
             </div>
         </div>
     </nav>
