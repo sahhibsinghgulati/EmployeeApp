@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Data.SqlClient;
+using System.Linq; // Required for EF queries (FirstOrDefault, Any)
 using System.Web.Mvc;
 using System.Web.Security;
-using EmployeeAppMVC.Models;
-using System.Drawing; // Import this at the top!
+using EmployeeApp.Models; // Make sure this matches your Model namespace
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
@@ -12,9 +12,11 @@ namespace EmployeeAppMVC.Controllers
 {
     public class AccountController : Controller
     {
-        string connStr = System.Configuration.ConfigurationManager.ConnectionStrings["EmpDBConnection"].ConnectionString;
+        // 1. Create the Database Connection
+        EmployeeEntities db = new EmployeeEntities();
 
         // GET: Login Page
+        
         public ActionResult Login()
         {
             return View();
@@ -25,6 +27,12 @@ namespace EmployeeAppMVC.Controllers
         public ActionResult Login(User u, string captchaInput)
         {
             // 1. Validate Captcha FIRST
+            if (Session["CaptchaAnswer"] == null)
+            {
+                ViewBag.Message = "Session expired. Please refresh the page.";
+                return View(u);
+            }
+
             int correctAnswer = Convert.ToInt32(Session["CaptchaAnswer"]);
             int userAnswer = 0;
             int.TryParse(captchaInput, out userAnswer);
@@ -33,49 +41,36 @@ namespace EmployeeAppMVC.Controllers
             if (userAnswer != correctAnswer)
             {
                 ViewBag.Message = "Wrong Captcha sum! Please try again.";
-
-                // REGENERATE CAPTCHA (Critical Step!)
-                
-
                 return View(u);
             }
 
-            // --- 2. INPUT VALIDATION (e.g. Empty Password) ---
+            // 2. INPUT VALIDATION
             if (!ModelState.IsValid)
             {
-                // REGENERATE CAPTCHA (Critical Step!)
-                
-
                 return View(u);
             }
-            using (SqlConnection conn = new SqlConnection(connStr))
+
+            // 3. DATABASE CHECK (Entity Framework)
+            // Strategy: Find username first (DB), then check password case-sensitively (Memory)
+            var user = db.Users.FirstOrDefault(x => x.Username == u.Username);
+
+            if (user != null)
             {
-                // Check if user exists in DB
-                string sql = @"SELECT COUNT(*) FROM Users 
-                       WHERE CAST(Username AS VARBINARY(MAX)) = CAST(@u AS VARBINARY(MAX)) 
-                       AND CAST(Password AS VARBINARY(MAX)) = CAST(@p AS VARBINARY(MAX))";
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                cmd.Parameters.AddWithValue("@u", u.Username);
-                cmd.Parameters.AddWithValue("@p", (object)u.Password ?? ""); // Note: For real apps, use Hashing!
-
-                conn.Open();
-                int count = (int)cmd.ExecuteScalar();
-
-                if (count > 0)
+                // Strict Case-Sensitive Password Check
+                if (string.Equals(user.Password, u.Password, StringComparison.Ordinal))
                 {
                     // Success! Create the Cookie
                     FormsAuthentication.SetAuthCookie(u.Username, false);
                     return RedirectToAction("Index", "Employee");
                 }
-                else
-                {
-                    ViewBag.Message = "Invalid Username or Password";
-                    
-                    return View();
-                }
             }
+
+            // If we reach here, either user was null OR password was wrong
+            ViewBag.Message = "Invalid Username or Password";
+            return View(u);
         }
-       
+
+        // GET: Register
         public ActionResult Register()
         {
             return View();
@@ -87,30 +82,18 @@ namespace EmployeeAppMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (SqlConnection conn = new SqlConnection(connStr))
+                // 1. Check if Username already exists
+                bool exists = db.Users.Any(x => x.Username == u.Username);
+
+                if (exists)
                 {
-                    conn.Open();
-
-                    // 1. Check if Username already exists
-                    string checkSql = "SELECT COUNT(*) FROM Users WHERE Username = @u";
-                    SqlCommand checkCmd = new SqlCommand(checkSql, conn);
-                    checkCmd.Parameters.AddWithValue("@u", u.Username);
-                    int exists = (int)checkCmd.ExecuteScalar();
-
-                    if (exists > 0)
-                    {
-                        ViewBag.Message = "Username already taken!";
-                        return View(u);
-                    }
-
-                    // 2. Insert new user
-                    string sql = "INSERT INTO Users (Username, Password) VALUES (@u, @p)";
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@u", u.Username);
-                    cmd.Parameters.AddWithValue("@p", u.Password); // Consider hashing in real apps!
-
-                    cmd.ExecuteNonQuery();
+                    ViewBag.Message = "Username already taken!";
+                    return View(u);
                 }
+
+                // 2. Insert new user (EF Way)
+                db.Users.Add(u);
+                db.SaveChanges(); // Commits the INSERT command
 
                 // Success! Redirect to Login
                 return RedirectToAction("Login");
@@ -119,24 +102,20 @@ namespace EmployeeAppMVC.Controllers
             return View(u);
         }
 
+        // --- CAPTCHA IMAGE GENERATOR (Kept exactly the same) ---
         public ActionResult CaptchaImage()
         {
-            // 1. Generate Numbers
             Random rand = new Random();
             int num1 = rand.Next(1, 10);
             int num2 = rand.Next(1, 10);
 
-            // 2. Save Answer to Session
             Session["CaptchaAnswer"] = num1 + num2;
 
-            // 3. Create the Image
-            using (Bitmap bmp = new Bitmap(150, 50)) // Width: 150, Height: 50
+            using (Bitmap bmp = new Bitmap(150, 50))
             using (Graphics g = Graphics.FromImage(bmp))
             {
+                g.Clear(Color.Gray);
 
-                g.Clear(Color.Gray); // Background color
-
-                // Add some "Noise" (dots) to confuse bots
                 for (int i = 0; i < 200; i++)
                 {
                     int x = rand.Next(0, 150);
@@ -144,12 +123,10 @@ namespace EmployeeAppMVC.Controllers
                     bmp.SetPixel(x, y, Color.LightGray);
                 }
 
-                // Draw the text (The Math Problem)
                 string text = $"{num1} + {num2} = ?";
                 Font font = new Font("Arial", 20, FontStyle.Bold);
                 g.DrawString(text, font, Brushes.DarkBlue, 10, 10);
 
-                // 4. Save to Memory Stream
                 using (MemoryStream ms = new MemoryStream())
                 {
                     bmp.Save(ms, ImageFormat.Png);
@@ -157,12 +134,12 @@ namespace EmployeeAppMVC.Controllers
                 }
             }
         }
+
         // GET: Logout
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
-
     }
 }

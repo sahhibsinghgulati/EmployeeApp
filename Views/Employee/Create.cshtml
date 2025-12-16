@@ -1,8 +1,8 @@
-﻿@model EmployeeAppMVC.Models.Employee
+﻿@model EmployeeApp.Models.Employee
 
 @{
     // Determine Mode
-    bool isEdit = Model != null && Model.EmpID > 0;
+    bool isEdit = Model != null && Model.EmpId > 0;
     ViewBag.Title = isEdit ? "Edit Employee" : "Register Employee";
 }
 
@@ -62,7 +62,7 @@
     {
         @Html.AntiForgeryToken()
 
-        @Html.HiddenFor(m => m.EmpID)
+        @Html.HiddenFor(m => m.EmpId)
         @Html.HiddenFor(m => m.ImagePath)
 
         <div class="row">

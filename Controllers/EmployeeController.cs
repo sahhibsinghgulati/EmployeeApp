@@ -1,59 +1,26 @@
-﻿using EmployeeAppMVC.Models;
+﻿using EmployeeApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Data; // Needed for DataTable (RDLC)
 using System.IO;
-using System.Web.Mvc; // Regex namespace removed
-using Microsoft.Reporting.WebForms; // Required for RDLC
+using System.Linq; // Needed for EF queries
+using System.Web;
+using System.Web.Mvc;
+using Microsoft.Reporting.WebForms;
 
 namespace EmployeeAppMVC.Controllers
 {
     [Authorize]
     public class EmployeeController : Controller
     {
-        string connStr = ConfigurationManager.ConnectionStrings["EmpDBConnection"].ConnectionString;
+        EmployeeEntities db = new EmployeeEntities();
 
         // GET: Employee List
         public ActionResult Index()
         {
-            List<Employee> employeeList = new List<Employee>();
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                // 1. I added 'Address' explicitly to this query
-                string sql = "SELECT EmpID, Name, fatherName, Gender, DOB, Address, Department, Mobile, Email, Aadhaar, JoiningDate, ImagePath FROM Employees";
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    conn.Open();
-                    SqlDataReader rdr = cmd.ExecuteReader();
-                    while (rdr.Read())
-                    {
-                        var emp = new Employee();
-                        emp.EmpID = Convert.ToInt32(rdr["EmpID"]);
-
-                        emp.Name = rdr["Name"] != DBNull.Value ? rdr["Name"].ToString() : "";
-                        emp.fatherName = rdr["fatherName"] != DBNull.Value ? rdr["fatherName"].ToString() : "";
-                        emp.Gender = rdr["Gender"] != DBNull.Value ? rdr["Gender"].ToString() : "";
-
-                        // 2. This line was likely missing or failing before:
-                        emp.Address = rdr["Address"] != DBNull.Value ? rdr["Address"].ToString() : "";
-
-                        emp.Department = rdr["Department"] != DBNull.Value ? rdr["Department"].ToString() : "";
-                        emp.Mobile = rdr["Mobile"] != DBNull.Value ? rdr["Mobile"].ToString() : "";
-                        emp.Email = rdr["Email"] != DBNull.Value ? rdr["Email"].ToString() : "";
-                        emp.Aadhaar = rdr["Aadhaar"] != DBNull.Value ? rdr["Aadhaar"].ToString() : "";
-                        emp.ImagePath = rdr["ImagePath"] != DBNull.Value ? rdr["ImagePath"].ToString() : "";
-
-                        if (rdr["DOB"] != DBNull.Value) emp.DOB = Convert.ToDateTime(rdr["DOB"]);
-                        if (rdr["JoiningDate"] != DBNull.Value) emp.JoiningDate = Convert.ToDateTime(rdr["JoiningDate"]);
-
-                        employeeList.Add(emp);
-                    }
-                }
-            }
-            return View(employeeList);
+            // Simple 1-line fetch
+            var list = db.Employees.ToList();
+            return View(list);
         }
 
         // GET: Create
@@ -64,145 +31,74 @@ namespace EmployeeAppMVC.Controllers
 
         // POST
         [HttpPost]
-        public ActionResult Create(Employee emp)
+        public ActionResult Create(Employee emp, HttpPostedFileBase ImageUpload)
         {
-            // 1. UNIQUE AADHAAR CHECK
-            // We check the DB before doing anything else
+            // 1. Check if Aadhaar is Unique
             if (!string.IsNullOrEmpty(emp.Aadhaar))
             {
-                using (SqlConnection conn = new SqlConnection(connStr))
+                // EF way to check existence
+                bool exists = db.Employees.Any(x => x.Aadhaar == emp.Aadhaar);
+                if (exists)
                 {
-                    string checkSql = "SELECT COUNT(*) FROM Employees WHERE Aadhaar = @Aadhaar";
-                    using (SqlCommand cmd = new SqlCommand(checkSql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@Aadhaar", emp.Aadhaar);
-                        conn.Open();
-                        int count = (int)cmd.ExecuteScalar();
-
-                        if (count > 0)
-                        {
-                            // Aadhaar exists: Trigger the Error Alert
-                            ViewBag.AlertMessage = "Error: This Aadhaar Number is already registered!";
-                            return View(emp); // Return view with existing data so user doesn't lose input
-                        }
-                    }
+                    ViewBag.AlertMessage = "Error: This Aadhaar Number is already registered!";
+                    return View(emp);
                 }
             }
 
-            // 2. SAVE LOGIC (If Aadhaar is unique)
-            int newEmpId = 0;
-            using (SqlConnection conn = new SqlConnection(connStr))
+            // 2. Save Basic Details first (to generate the EmpID)
+            // Note: We handle nulls in the object automatically
+            db.Employees.Add(emp);
+            db.SaveChanges(); // This generates the EmpID in the database
+
+            // 3. Handle Image Upload (Now that we have an EmpID)
+            if (ImageUpload != null && ImageUpload.ContentLength > 0)
             {
-                string sqlInsert = @"INSERT INTO Employees 
-            (Name, fatherName, Gender, DOB, Address, Department, Mobile, Email, Aadhaar, JoiningDate) 
-            VALUES 
-            (@Name, @fatherName, @Gender, @DOB, @Address, @Department, @Mobile, @Email, @Aadhaar, @JoiningDate);
-            SELECT CAST(SCOPE_IDENTITY() AS INT);";
-
-                using (SqlCommand cmd = new SqlCommand(sqlInsert, conn))
+                try
                 {
-                    cmd.Parameters.AddWithValue("@Name", emp.Name);
-                    cmd.Parameters.AddWithValue("@fatherName", emp.fatherName ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Gender", emp.Gender ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@DOB", emp.DOB ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Address", emp.Address ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Department", emp.Department ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Mobile", emp.Mobile ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Email", emp.Email ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Aadhaar", emp.Aadhaar ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@JoiningDate", emp.JoiningDate ?? (object)DBNull.Value);
+                    string fileExtension = Path.GetExtension(ImageUpload.FileName);
+                    string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                    string fileName = $"{emp.EmpId}_{timeStamp}{fileExtension}";
 
-                    conn.Open();
-                    newEmpId = (int)cmd.ExecuteScalar();
+                    string folderPath = Server.MapPath("~/EmployeeImages/");
+                    if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
+
+                    string savePath = Path.Combine(folderPath, fileName);
+                    ImageUpload.SaveAs(savePath);
+
+                    // Update the record with the path
+                    emp.ImagePath = "~/EmployeeImages/" + fileName;
+                    db.SaveChanges(); // Save the update
                 }
-
-                // Handle Image Upload
-                if (emp.ImageUpload != null && emp.ImageUpload.ContentLength > 0 && newEmpId > 0)
+                catch (Exception ex)
                 {
-                    try
-                    {
-                        string fileExtension = Path.GetExtension(emp.ImageUpload.FileName);
-                        string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                        string fileName = $"{newEmpId}_{timeStamp}{fileExtension}";
-
-                        // FIX: Ensure folder exists
-                        string folderPath = Server.MapPath("~/EmployeeImages/");
-                        if (!Directory.Exists(folderPath))
-                        {
-                            Directory.CreateDirectory(folderPath);
-                        }
-
-                        string savePath = Path.Combine(folderPath, fileName);
-                        emp.ImageUpload.SaveAs(savePath);
-
-                        // Update DB with the relative path
-                        string sqlUpdate = "UPDATE Employees SET ImagePath = @Path WHERE EmpID = @ID";
-                        using (SqlCommand cmdUpdate = new SqlCommand(sqlUpdate, conn))
-                        {
-                            // Ensure connection is open (it might have closed if we exited the previous using block)
-                            if (conn.State == System.Data.ConnectionState.Closed) conn.Open();
-
-                            cmdUpdate.Parameters.AddWithValue("@Path", "~/EmployeeImages/" + fileName);
-                            cmdUpdate.Parameters.AddWithValue("@ID", newEmpId);
-                            cmdUpdate.ExecuteNonQuery();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // If image save fails, we can log it, but the employee is already created
-                        ViewBag.AlertMessage = "Employee saved, but Image failed: " + ex.Message;
-                    }
+                    ViewBag.AlertMessage = "Employee saved, but Image failed: " + ex.Message;
                 }
             }
 
-            // 3. SUCCESS: Show Modal and Clear Form
             ModelState.Clear();
             ViewBag.SuccessMessage = "Employee registered successfully!";
-            return View(new Employee()); // Return a fresh empty form
+            return View(new Employee());
         }
 
         // GET: Delete Employee
         public ActionResult Delete(int id)
         {
-            if (id > 0)
+            var emp = db.Employees.Find(id);
+            if (emp != null)
             {
-                using (SqlConnection conn = new SqlConnection(connStr))
+                // 1. Delete Physical File
+                if (!string.IsNullOrEmpty(emp.ImagePath))
                 {
-                    // 1. (Optional) Delete the image file if it exists
-                    string getFileSql = "SELECT ImagePath FROM Employees WHERE EmpID = @EmpID";
-                    string filePath = "";
-
-                    using (SqlCommand cmdFile = new SqlCommand(getFileSql, conn))
+                    string absolutePath = Server.MapPath(emp.ImagePath);
+                    if (System.IO.File.Exists(absolutePath))
                     {
-                        cmdFile.Parameters.AddWithValue("@EmpID", id);
-                        conn.Open();
-                        object result = cmdFile.ExecuteScalar();
-                        if (result != null && result != DBNull.Value)
-                        {
-                            filePath = result.ToString();
-                        }
-                        conn.Close();
-                    }
-
-                    // Delete physical file
-                    if (!string.IsNullOrEmpty(filePath))
-                    {
-                        string absolutePath = Server.MapPath(filePath);
-                        if (System.IO.File.Exists(absolutePath))
-                        {
-                            System.IO.File.Delete(absolutePath);
-                        }
-                    }
-
-                    // 2. Delete the Record from Database
-                    string sql = "DELETE FROM Employees WHERE EmpID = @EmpID";
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@EmpID", id);
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
+                        System.IO.File.Delete(absolutePath);
                     }
                 }
+
+                // 2. Delete from DB
+                db.Employees.Remove(emp);
+                db.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -210,104 +106,78 @@ namespace EmployeeAppMVC.Controllers
         // GET: Edit Employee
         public ActionResult Edit(int id)
         {
-            Employee emp = new Employee();
-            using (SqlConnection conn = new SqlConnection(connStr))
-            {
-                string sql = "SELECT * FROM Employees WHERE EmpID = @EmpID";
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@EmpID", id);
-                    conn.Open();
-                    SqlDataReader rdr = cmd.ExecuteReader();
-                    if (rdr.Read())
-                    {
-                        emp.EmpID = Convert.ToInt32(rdr["EmpID"]);
-                        emp.Name = rdr["Name"] != DBNull.Value ? rdr["Name"].ToString() : "";
-                        emp.fatherName = rdr["fatherName"] != DBNull.Value ? rdr["fatherName"].ToString() : "";
-                        emp.Gender = rdr["Gender"] != DBNull.Value ? rdr["Gender"].ToString() : "";
-                        emp.Address = rdr["Address"] != DBNull.Value ? rdr["Address"].ToString() : "";
-                        emp.Department = rdr["Department"] != DBNull.Value ? rdr["Department"].ToString() : "";
-                        emp.Mobile = rdr["Mobile"] != DBNull.Value ? rdr["Mobile"].ToString() : "";
-                        emp.Email = rdr["Email"] != DBNull.Value ? rdr["Email"].ToString() : "";
-                        emp.Aadhaar = rdr["Aadhaar"] != DBNull.Value ? rdr["Aadhaar"].ToString() : "";
-                        emp.ImagePath = rdr["ImagePath"] != DBNull.Value ? rdr["ImagePath"].ToString() : "";
+            // Find employee by ID
+            var emp = db.Employees.Find(id);
+            if (emp == null) return HttpNotFound();
 
-                        if (rdr["DOB"] != DBNull.Value) emp.DOB = Convert.ToDateTime(rdr["DOB"]);
-                        if (rdr["JoiningDate"] != DBNull.Value) emp.JoiningDate = Convert.ToDateTime(rdr["JoiningDate"]);
-                    }
-                }
-            }
-            // IMPORTANT: This tells MVC to use the "Create.cshtml" file, but pass the filled 'emp' data
             return View("Create", emp);
         }
 
         // POST: Update Employee
         [HttpPost]
-        public ActionResult Edit(Employee emp)
+        public ActionResult Edit(Employee formEmp, HttpPostedFileBase ImageUpload)
         {
-            using (SqlConnection conn = new SqlConnection(connStr))
+            // 1. Fetch the EXISTING record from DB
+            var dbEmp = db.Employees.Find(formEmp.EmpId);
+
+            if (dbEmp != null)
             {
-                // 1. Handle Image Logic
-                // If a new file is uploaded, use it. Otherwise, keep the old ImagePath (from hidden field)
-                if (emp.ImageUpload != null && emp.ImageUpload.ContentLength > 0)
+                // 2. Update properties manually
+                dbEmp.Name = formEmp.Name;
+                dbEmp.fatherName = formEmp.fatherName;
+                dbEmp.Gender = formEmp.Gender;
+                dbEmp.DOB = formEmp.DOB;
+                dbEmp.Address = formEmp.Address;
+                dbEmp.Department = formEmp.Department;
+                dbEmp.Mobile = formEmp.Mobile;
+                dbEmp.Email = formEmp.Email;
+                dbEmp.Aadhaar = formEmp.Aadhaar;
+                dbEmp.JoiningDate = formEmp.JoiningDate;
+
+                // 3. Handle Image Update
+                if (ImageUpload != null && ImageUpload.ContentLength > 0)
                 {
-                    string fileExtension = Path.GetExtension(emp.ImageUpload.FileName);
+                    string fileExtension = Path.GetExtension(ImageUpload.FileName);
                     string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                    string fileName = $"{emp.EmpID}_{timeStamp}{fileExtension}";
+                    string fileName = $"{formEmp.EmpId}_{timeStamp}{fileExtension}";
 
                     string folderPath = Server.MapPath("~/EmployeeImages/");
                     if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
 
                     string savePath = Path.Combine(folderPath, fileName);
-                    emp.ImageUpload.SaveAs(savePath);
+                    ImageUpload.SaveAs(savePath);
 
-                    emp.ImagePath = "~/EmployeeImages/" + fileName;
+                    // Update Path
+                    dbEmp.ImagePath = "~/EmployeeImages/" + fileName;
                 }
 
-                // 2. Update Database
-                string sqlUpdate = @"UPDATE Employees SET 
-            Name = @Name, 
-            fatherName = @fatherName, 
-            Gender = @Gender, 
-            DOB = @DOB, 
-            Address = @Address, 
-            Department = @Department, 
-            Mobile = @Mobile, 
-            Email = @Email, 
-            Aadhaar = @Aadhaar, 
-            JoiningDate = @JoiningDate,
-            ImagePath = @ImagePath
-            WHERE EmpID = @EmpID";
-
-                using (SqlCommand cmd = new SqlCommand(sqlUpdate, conn))
-                {
-                    cmd.Parameters.AddWithValue("@EmpID", emp.EmpID);
-                    cmd.Parameters.AddWithValue("@Name", emp.Name);
-                    cmd.Parameters.AddWithValue("@fatherName", emp.fatherName ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Gender", emp.Gender ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@DOB", emp.DOB ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Address", emp.Address ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Department", emp.Department ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Mobile", emp.Mobile ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Email", emp.Email ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@Aadhaar", emp.Aadhaar ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@JoiningDate", emp.JoiningDate ?? (object)DBNull.Value);
-                    // Use existing path if no new file
-                    cmd.Parameters.AddWithValue("@ImagePath", emp.ImagePath ?? (object)DBNull.Value);
-
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                }
+                // 4. Save Changes
+                db.SaveChanges();
+                ViewBag.SuccessMessage = "Employee details updated successfully!";
+                return View("Create", dbEmp);
             }
 
-            ViewBag.SuccessMessage = "Employee details updated successfully!";
-            return View("Create", emp);
+            return HttpNotFound();
         }
 
         // "int id = 0" makes the parameter optional. Default is 0.
         public ActionResult Print(int id = 0, string companyName = "", string companyAddr = "", string companyMobile = "")
         {
-            // 1. Setup DataTable
+            // 1. Get Data using EF
+            List<Employee> dataList;
+
+            if (id > 0)
+            {
+                // Fetch Single
+                dataList = db.Employees.Where(x => x.EmpId == id).ToList();
+            }
+            else
+            {
+                // Fetch All
+                dataList = db.Employees.OrderBy(x => x.Name).ToList();
+            }
+
+            // 2. Convert List to DataTable (Required for RDLC)
             DataTable dt = new DataTable();
             dt.Columns.Add("EmpID");
             dt.Columns.Add("Name");
@@ -322,86 +192,51 @@ namespace EmployeeAppMVC.Controllers
             dt.Columns.Add("JoiningDate");
             dt.Columns.Add("ImagePath");
 
-            using (SqlConnection conn = new SqlConnection(connStr))
+            foreach (var item in dataList)
             {
-                string sql;
-                // SMART LOGIC: Choose Query based on ID
-                if (id > 0)
+                DataRow row = dt.NewRow();
+                row["EmpID"] = item.EmpId;
+                row["Name"] = item.Name;
+                row["FatherName"] = item.fatherName;
+                row["Gender"] = item.Gender;
+                row["DOB"] = item.DOB.HasValue ? item.DOB.Value.ToString("dd/MM/yyyy") : "";
+                row["Mobile"] = item.Mobile;
+                row["Email"] = item.Email;
+
+                // Address Logic (New lines to Commas)
+                string rawAddress = item.Address ?? "";
+                row["Address"] = rawAddress.Replace("\r\n", ", ").Replace("\n", ", ");
+
+                row["Department"] = item.Department;
+                row["Aadhaar"] = item.Aadhaar;
+                row["JoiningDate"] = item.JoiningDate.HasValue ? item.JoiningDate.Value.ToString("dd/MM/yyyy") : "";
+
+                // Image Logic
+                string dbPath = item.ImagePath ?? "";
+                if (!string.IsNullOrEmpty(dbPath) && dbPath.StartsWith("~"))
                 {
-                    // Fetch Single Employee
-                    sql = "SELECT * FROM Employees WHERE EmpID = @EmpID";
+                    row["ImagePath"] = new Uri(Server.MapPath(dbPath)).AbsoluteUri;
                 }
                 else
                 {
-                    // Fetch ALL Employees (Ordered by Name)
-                    sql = "SELECT * FROM Employees ORDER BY Name ASC";
+                    string defPath = Server.MapPath("~/EmployeeImages/no-image.png");
+                    row["ImagePath"] = System.IO.File.Exists(defPath) ? new Uri(defPath).AbsoluteUri : "";
                 }
 
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    // Only add parameter if we are filtering by ID
-                    if (id > 0)
-                    {
-                        cmd.Parameters.AddWithValue("@EmpID", id);
-                    }
-
-                    conn.Open();
-                    SqlDataReader rdr = cmd.ExecuteReader();
-
-                    // Loop handles both 1 record or 100 records automatically
-                    while (rdr.Read())
-                    {
-                        DataRow row = dt.NewRow();
-                        row["EmpID"] = rdr["EmpID"].ToString();
-                        row["Name"] = rdr["Name"].ToString();
-                        row["FatherName"] = rdr["fatherName"].ToString();
-                        row["Gender"] = rdr["Gender"].ToString();
-                        row["DOB"] = rdr["DOB"] != DBNull.Value ? Convert.ToDateTime(rdr["DOB"]).ToString("dd/MM/yyyy") : "";
-                        row["Mobile"] = rdr["Mobile"].ToString();
-                        row["Email"] = rdr["Email"].ToString();
-                        string rawAddress = rdr["Address"] != DBNull.Value ? rdr["Address"].ToString() : "";
-                        row["Address"] = rawAddress.Replace("\r\n", ", ").Replace("\n", ", ");
-                        row["Department"] = rdr["Department"].ToString();
-                        row["Aadhaar"] = rdr["Aadhaar"].ToString();
-                        row["JoiningDate"] = rdr["JoiningDate"] != DBNull.Value ? Convert.ToDateTime(rdr["JoiningDate"]).ToString("dd/MM/yyyy") : "";
-
-                        // Image Path Logic
-                        string dbPath = rdr["ImagePath"] != DBNull.Value ? rdr["ImagePath"].ToString() : "";
-                        if (!string.IsNullOrEmpty(dbPath) && dbPath.StartsWith("~"))
-                        {
-                            row["ImagePath"] = new Uri(Server.MapPath(dbPath)).AbsoluteUri;
-                        }
-                        else
-                        {
-                            string defPath = Server.MapPath("~/EmployeeImages/no-image.png");
-                            if (System.IO.File.Exists(defPath))
-                                row["ImagePath"] = new Uri(defPath).AbsoluteUri;
-                            else
-                                row["ImagePath"] = "";
-                        }
-
-                        dt.Rows.Add(row);
-                    }
-                }
+                dt.Rows.Add(row);
             }
 
-            // 2. Render Report
+            // 3. Render Report (Same as before)
             LocalReport report = new LocalReport();
             report.ReportPath = Server.MapPath("~/Report.rdlc");
-            report.EnableExternalImages = true; 
+            report.EnableExternalImages = true;
 
-            // 1. Get Absolute Path for the Logo
             string logoPath = new Uri(Server.MapPath("~/Assets/logo.jpg")).AbsoluteUri;
-
-            // 2. Create Parameter
             ReportParameter paramLogo = new ReportParameter("LogoPath", logoPath);
-
-            // 3. Pass Parameter to Report
             ReportParameter p1 = new ReportParameter("CompanyName", string.IsNullOrEmpty(companyName) ? "Default Company" : companyName);
             ReportParameter p2 = new ReportParameter("CompanyAddress", companyAddr);
             ReportParameter p3 = new ReportParameter("MobileNumber", companyMobile);
 
-            // 3. Pass ALL parameters to the report
             report.SetParameters(new ReportParameter[] { paramLogo, p1, p2, p3 });
 
             ReportDataSource rds = new ReportDataSource("EmployeeDataSet", dt);
@@ -415,11 +250,7 @@ namespace EmployeeAppMVC.Controllers
             string[] streams;
             byte[] renderedBytes;
 
-            renderedBytes = report.Render(
-                reportType, null, out mimeType, out encoding,
-                out fileNameExtension, out streams, out warnings
-            );
-
+            renderedBytes = report.Render(reportType, null, out mimeType, out encoding, out fileNameExtension, out streams, out warnings);
             return File(renderedBytes, mimeType);
         }
     }
