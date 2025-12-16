@@ -1,0 +1,263 @@
+﻿@model EmployeeAppMVC.Models.Employee
+
+@{
+    // Determine Mode
+    bool isEdit = Model != null && Model.EmpID > 0;
+    ViewBag.Title = isEdit ? "Edit Employee" : "Register Employee";
+}
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+<style>
+    .photo-card {
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        padding: 10px;
+        background-color: #fff;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .photo-header {
+        text-align: center;
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .photo-placeholder {
+        background-color: #e9ecef;
+        width: 100%;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        overflow: hidden;
+        border-radius: 3px;
+    }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .form-control {
+        border-radius: 4px;
+        border: 1px solid #ced4da;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="mb-4">@(isEdit ? "Edit Employee" : "Register Employee")</h2>
+
+    @using (Html.BeginForm(isEdit ? "Edit" : "Create", "Employee", FormMethod.Post, new { enctype = "multipart/form-data", id = "empForm", onsubmit = "return validateForm()" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.EmpID)
+        @Html.HiddenFor(m => m.ImagePath)
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Employee Name</label>
+                        @Html.EditorFor(m => m.Name, new { htmlAttributes = new { @class = "form-control", id = "txtName" } })
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Gender</label>
+                        <div class="pt-2">
+                            <div class="form-check form-check-inline">
+                                @Html.RadioButtonFor(m => m.Gender, "Male", new { @class = "form-check-input", id = "genderMale", @checked = "checked" })
+                                <label class="form-check-label" for="genderMale">Male</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                @Html.RadioButtonFor(m => m.Gender, "Female", new { @class = "form-check-input", id = "genderFemale" })
+                                <label class="form-check-label" for="genderFemale">Female</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Date of Birth</label>
+                        @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", id = "txtDOB", autocomplete = "off", placeholder = "dd-mm-yyyy" })
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Father's Name</label>
+                        @Html.EditorFor(m => m.fatherName, new { htmlAttributes = new { @class = "form-control", id = "txtFather" } })
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Mobile Number</label>
+                        @Html.EditorFor(m => m.Mobile, new { htmlAttributes = new { @class = "form-control", id = "txtMobile" } })
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Email ID</label>
+                        @Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form-control", id = "txtEmail" } })
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Address</label>
+                        @Html.TextAreaFor(m => m.Address, new { @class = "form-control", rows = 2, id = "txtAddress" })
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Joining Date</label>
+                        @Html.TextBoxFor(m => m.JoiningDate, "{0:yyyy-MM-dd}", new { @class = "form-control", id = "txtJoin", autocomplete = "off", placeholder = "dd-mm-yyyy" })
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Department</label>
+                        @Html.DropDownListFor(m => m.Department, new List<SelectListItem>
+                        {
+                            new SelectListItem { Text="-- Select Department --", Value="" },
+                            new SelectListItem { Text="IT", Value="IT" },
+                            new SelectListItem { Text="HR", Value="HR" },
+                            new SelectListItem { Text="Sales", Value="Sales" }
+                        }, new { @class = "form-control", id = "ddlDept" })
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Aadhaar Number</label>
+                        @Html.EditorFor(m => m.Aadhaar, new { htmlAttributes = new { @class = "form-control", id = "txtAadhaar" } })
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <input type="submit" value="@(isEdit ? "Update" : "Save")" class="btn @(isEdit ? "btn-warning" : "btn-primary") px-5" />
+
+                    @if (isEdit)
+                    {
+                        @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-secondary ms-2" })
+                    }
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="photo-card">
+                    <div class="photo-header">Employee Photo</div>
+                    <div class="photo-placeholder">
+                        <img id="imgPreview"
+                             src="@Url.Content(!string.IsNullOrEmpty(Model.ImagePath) ? Model.ImagePath : "~/EmployeeImages/no-image.png")"
+                             alt="Employee Photo"
+                             style="width: 100%; height: 100%; object-fit: contain;" />
+                    </div>
+                    <div class="input-group mb-2">
+                        <input type="file" name="ImageUpload" class="form-control" id="customFile" onchange="readURL(this);">
+                    </div>
+                    @if (isEdit)
+                    {<small class="text-muted text-center d-block">Leave empty to keep current photo</small>}
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title">Success</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" onclick="$('#successModal').modal('hide')">&times;</button>
+            </div>
+            <div class="modal-body text-center">
+                <p class="lead mt-3">@(isEdit ? "Employee updated successfully!" : "Employee registered successfully!")</p>
+                <div style="font-size: 50px; color: green;">&#10004;</div>
+            </div>
+            <div class="modal-footer">
+                @Html.ActionLink("Go to List", "Index", null, new { @class = "btn btn-primary" })
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // 1. Init Datepickers
+            $("#txtDOB").datepicker({ dateFormat: "dd-mm-yy", changeMonth: true, changeYear: true });
+            $("#txtJoin").datepicker({ dateFormat: "dd-mm-yy", changeMonth: true, changeYear: true });
+
+            // 2. CHECK FOR SERVER MESSAGES
+
+            // A. Error Popup (Aadhaar Duplicate)
+            var alertMsg = '@Html.Raw(ViewBag.AlertMessage)';
+            if (alertMsg && alertMsg.length > 0) {
+                alert(alertMsg);
+            }
+
+            // B. Success Modal (Saved Successfully)
+            var successMsg = '@Html.Raw(ViewBag.SuccessMessage)';
+            if (successMsg && successMsg.length > 0) {
+                $('#successModal').modal('show');
+            }
+        });
+
+        // 3. Image Preview
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var output = document.getElementById('imgPreview');
+                output.src = URL.createObjectURL(input.files[0]);
+            }
+        }
+
+        // 4. Validation
+        function validateForm() {
+            var name = document.getElementById('txtName');
+            if (name.value.trim() === '') { alert("Please enter Employee Name"); name.focus(); return false; }
+            if (!/^[A-Za-z ]{2,50}$/.test(name.value.trim())) { alert("Please enter a valid Employee Name (Alphabets only)"); name.focus(); return false; }
+
+            var gender = document.querySelector("input[name='Gender']:checked");
+            if (!gender) { alert("Please select Gender"); document.getElementById('genderMale').focus(); return false; }
+
+            var dob = document.getElementById('txtDOB');
+            if (dob.value === '') { alert("Please enter Date of Birth"); dob.focus(); return false; }
+
+            var father = document.getElementById('txtFather');
+            if (father.value.trim() === '') { alert("Please enter Father's Name"); father.focus(); return false; }
+            if (!/^[A-Za-z ]{2,50}$/.test(father.value.trim())) { alert("Please enter a valid Father's Name"); father.focus(); return false; }
+
+            var mobile = document.getElementById('txtMobile');
+            if (mobile.value.trim() === '') { alert("Please enter a Mobile Number"); mobile.focus(); return false; }
+            if (!/^\d{10}$/.test(mobile.value.trim())) { alert("Please enter a valid 10 digit Mobile Number"); mobile.focus(); return false; }
+
+            var email = document.getElementById('txtEmail');
+            if (email.value.trim() === '') { alert("Please enter Email ID"); email.focus(); return false; }
+            if (!/^[a-zA-Z0-9._%+-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value.trim())) { alert("Please enter a valid Email ID"); email.focus(); return false; }
+
+            var address = document.getElementById('txtAddress');
+            if (address.value.trim() === '') { alert("Please enter Address"); address.focus(); return false; }
+            if (!/^[a-zA-Z0-9 .,/]{5,36}$/.test(address.value.trim())) { alert("Please enter a valid Address under 35 characters"); address.focus(); return false; }
+
+            var joinDate = document.getElementById('txtJoin');
+            if (joinDate.value === '') { alert("Please enter Joining Date"); joinDate.focus(); return false; }
+
+            var dept = document.getElementById('ddlDept');
+            if (dept.value === '') { alert("Please select Department"); dept.focus(); return false; }
+
+            var aadhaar = document.getElementById('txtAadhaar');
+            if (aadhaar.value.trim() !== '') {
+                if (!/^\d{12}$/.test(aadhaar.value.trim())) { alert("Please enter valid 12-digit Aadhaar Number"); aadhaar.focus(); return false; }
+            }
+
+            return true;
+        }
+    </script>
+}
