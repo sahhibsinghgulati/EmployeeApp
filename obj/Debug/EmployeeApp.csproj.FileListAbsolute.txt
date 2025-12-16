@@ -55,6 +55,8 @@ C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\roslyn\vbc.rsp
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\roslyn\VBCSCompiler.exe
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\Antlr3.Runtime.dll
+C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\EntityFramework.dll
+C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\EntityFramework.SqlServer.dll
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\Microsoft.ReportViewer.Common.dll
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\Microsoft.ReportViewer.DataVisualization.dll
@@ -76,6 +78,8 @@ C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\WebGrease.dll
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\EnvDTE.dll
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\Microsoft.ReportViewer.WinForms.dll
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\stdole.dll
+C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\EntityFramework.xml
+C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\EntityFramework.SqlServer.xml
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\System.Web.Helpers.xml
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\System.Web.Mvc.xml
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\System.Web.Optimization.xml
