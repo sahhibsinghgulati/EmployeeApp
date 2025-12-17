@@ -27,6 +27,13 @@
     <Property Name="ImagePath" Type="nvarchar" MaxLength="300" />
     <Property Name="DeptID" Type="int" />
   </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+    </Key>
+    <Property Name="UserRoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="Users">
     <Key>
       <PropertyRef Name="UserID" />
@@ -34,6 +41,7 @@
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Username" Type="nvarchar" MaxLength="50" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserRoleID" Type="int" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -49,7 +57,6 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a pr
     <Property Name="Gender" Type="nvarchar" MaxLength="20" />
     <Property Name="DOB" Type="date" />
     <Property Name="Address" Type="nvarchar" MaxLength="250" />
-    <Property Name="Department" Type="nvarchar" MaxLength="100" />
     <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
     <Property Name="Email" Type="nvarchar" MaxLength="150" />
     <Property Name="Aadhaar" Type="nvarchar" MaxLength="20" Nullable="false" />
@@ -60,6 +67,20 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a pr
     <Property Name="DisplayOrder" Type="int" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_UserRole">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserRoleID" />
+      <PropertyRef Name="RoleName" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserRoleID" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="FK_Employees_DeptMaster">
     <End Role="DeptMaster" Type="Self.DeptMaster" Multiplicity="0..1" />
@@ -73,9 +94,34 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a pr
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Users_UserRole">
+    <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="UserRoleID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserRoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Users1" Type="Self.Users" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Users1">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="EmployeeAppDBModelStoreContainer">
     <EntitySet Name="DeptMaster" EntityType="Self.DeptMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="vw_Employees" EntityType="Self.vw_Employees" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -85,7 +131,6 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a pr
     [vw_Employees].[Gender] AS [Gender], 
     [vw_Employees].[DOB] AS [DOB], 
     [vw_Employees].[Address] AS [Address], 
-    [vw_Employees].[Department] AS [Department], 
     [vw_Employees].[Mobile] AS [Mobile], 
     [vw_Employees].[Email] AS [Email], 
     [vw_Employees].[Aadhaar] AS [Aadhaar], 
@@ -98,9 +143,26 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a pr
     [vw_Employees].[CreatedOn] AS [CreatedOn]
     FROM [dbo].[vw_Employees] AS [vw_Employees]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="vw_UserRole" EntityType="Self.vw_UserRole" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_UserRole].[UserID] AS [UserID], 
+    [vw_UserRole].[Username] AS [Username], 
+    [vw_UserRole].[Password] AS [Password], 
+    [vw_UserRole].[UserRoleID] AS [UserRoleID], 
+    [vw_UserRole].[RoleName] AS [RoleName]
+    FROM [dbo].[vw_UserRole] AS [vw_UserRole]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_Employees_DeptMaster" Association="Self.FK_Employees_DeptMaster">
       <End Role="DeptMaster" EntitySet="DeptMaster" />
       <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserRole" Association="Self.FK_Users_UserRole">
+      <End Role="UserRole" EntitySet="UserRole" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users" Association="Self.FK_Users_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Users1" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

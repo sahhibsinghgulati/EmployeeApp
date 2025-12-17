@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<EmployeeApp.Models.Employee>
 
 @{ ViewBag.Title = "Employee List"; }
+@{
+    bool isAdmin = Session["Role"] != null && Session["Role"].ToString() == "Admin";
+}
 
 <div class="container mt-4">
     <h2>Employee List</h2>
-
-    <div class="row mb-3">
-        <div class="col-md-4">
-            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary w-50" })
+    @if (isAdmin) { 
+        <div class="row mb-3">
+            <div class="col-md-4">
+                @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary w-50" })
+            </div>
         </div>
-    </div>
-
+    }
     <form id="printForm" action="@Url.Action("Print", "Employee")" method="GET" target="_blank">
 
         <input type="hidden" id="targetEmpId" name="id" value="0" />
@@ -55,7 +58,7 @@
                 <th style="white-space: nowrap;">Aadhaar</th>
                 <th style="white-space: nowrap;">Joining Date</th>
                 <th style="white-space: nowrap;"></th>
-            </tr>
+                </tr>
         </thead>
         <tbody>
             @{
@@ -70,7 +73,7 @@
                     <td>@Html.DisplayFor(m => item.fatherName)</td>
                     <td>@Html.DisplayFor(m => item.Gender)</td>
                     <td style="white-space: nowrap;">
-                    @(item.DOB.HasValue ? item.DOB.Value.ToString("dd-MM-yyyy") : "")
+                        @(item.DOB.HasValue ? item.DOB.Value.ToString("dd-MM-yyyy") : "")
                     </td>
                     <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Address">
                         @Html.DisplayFor(m => item.Address)
@@ -83,11 +86,14 @@
                         @(item.JoiningDate.HasValue ? item.JoiningDate.Value.ToString("dd-MM-yyyy") : "")
                     </td>
                     <td class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-warning" })
-                        @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this employee?');" })
-                        <button type="button" class="btn btn-info" onclick="printEmployee(@item.EmpId)">Print</button>
-                    </td>
-                </tr>
+                        @if (isAdmin)
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.EmpId }, new { @class = "btn btn-warning" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.EmpId }, new { @class = "btn btn-danger", onclick = "return confirm('Are you sure you want to delete this employee?');" })
+                        }
+                         <button type="button" class="btn btn-info" onclick="printEmployee(@item.EmpId)">Print</button>
+                        </td>
+                    </tr>
 
                 {
                     Serial++;

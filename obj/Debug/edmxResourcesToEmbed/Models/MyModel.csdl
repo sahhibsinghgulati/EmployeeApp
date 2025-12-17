@@ -3,11 +3,21 @@
   <EntityContainer Name="EmployeeEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="DeptMasters" EntityType="EmployeeAppDBModel.DeptMaster" />
     <EntitySet Name="Employees" EntityType="EmployeeAppDBModel.Employee" />
+    <EntitySet Name="UserRoles" EntityType="EmployeeAppDBModel.UserRole" />
     <EntitySet Name="Users" EntityType="EmployeeAppDBModel.User" />
     <EntitySet Name="vw_Employees" EntityType="EmployeeAppDBModel.vw_Employees" />
+    <EntitySet Name="vw_UserRole" EntityType="EmployeeAppDBModel.vw_UserRole" />
     <AssociationSet Name="FK_Employees_DeptMaster" Association="EmployeeAppDBModel.FK_Employees_DeptMaster">
       <End Role="DeptMaster" EntitySet="DeptMasters" />
       <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserRole" Association="EmployeeAppDBModel.FK_Users_UserRole">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Users" Association="EmployeeAppDBModel.FK_Users_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="User1" EntitySet="Users" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="DeptMaster">
@@ -39,6 +49,14 @@
     <Property Name="DeptID" Type="Int32" />
     <NavigationProperty Name="DeptMaster" Relationship="EmployeeAppDBModel.FK_Employees_DeptMaster" FromRole="Employee" ToRole="DeptMaster" />
   </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="UserRoleID" />
+    </Key>
+    <Property Name="UserRoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="EmployeeAppDBModel.FK_Users_UserRole" FromRole="UserRole" ToRole="User" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserID" />
@@ -46,6 +64,10 @@
     <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserRoleID" Type="Int32" />
+    <NavigationProperty Name="UserRole" Relationship="EmployeeAppDBModel.FK_Users_UserRole" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="Users1" Relationship="EmployeeAppDBModel.FK_Users_Users" FromRole="User" ToRole="User1" />
+    <NavigationProperty Name="User1" Relationship="EmployeeAppDBModel.FK_Users_Users" FromRole="User1" ToRole="User" />
   </EntityType>
   <EntityType Name="vw_Employees">
     <Key>
@@ -59,7 +81,6 @@
     <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="DOB" Type="DateTime" Precision="0" />
     <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="Aadhaar" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
@@ -71,6 +92,18 @@
     <Property Name="CreatedBy" Type="Int32" />
     <Property Name="CreatedOn" Type="DateTime" Precision="3" />
   </EntityType>
+  <EntityType Name="vw_UserRole">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="UserRoleID" />
+      <PropertyRef Name="RoleName" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserRoleID" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
   <Association Name="FK_Employees_DeptMaster">
     <End Type="EmployeeAppDBModel.DeptMaster" Role="DeptMaster" Multiplicity="0..1" />
     <End Type="EmployeeAppDBModel.Employee" Role="Employee" Multiplicity="*" />
@@ -80,6 +113,30 @@
       </Principal>
       <Dependent Role="Employee">
         <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserRole">
+    <End Type="EmployeeAppDBModel.UserRole" Role="UserRole" Multiplicity="0..1" />
+    <End Type="EmployeeAppDBModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="UserRoleID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="UserRoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Users">
+    <End Type="EmployeeAppDBModel.User" Role="User" Multiplicity="1" />
+    <End Type="EmployeeAppDBModel.User" Role="User1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="User1">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

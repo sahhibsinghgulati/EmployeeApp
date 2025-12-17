@@ -13,6 +13,10 @@ namespace EmployeeAppMVC.Controllers
         // GET: Index (Handles both "New Page" and "Edit Mode")
         public ActionResult Index(int? id)
         {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index", "Employee");
+            }
             // 1. Get the list for the Right Side Table
             ViewBag.DeptList = db.DeptMasters.OrderBy(x => x.DisplayOrder).ToList();
 

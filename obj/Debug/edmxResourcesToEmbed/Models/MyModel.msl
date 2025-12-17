@@ -30,9 +30,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="EmployeeAppDBModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRole">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="EmployeeAppDBModel.User">
         <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -52,13 +61,23 @@
           <ScalarProperty Name="Aadhaar" ColumnName="Aadhaar" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-          <ScalarProperty Name="Department" ColumnName="Department" />
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="DOB" ColumnName="DOB" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="fatherName" ColumnName="fatherName" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_UserRole">
+      <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_UserRole">
+        <MappingFragment StoreEntitySet="vw_UserRole">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

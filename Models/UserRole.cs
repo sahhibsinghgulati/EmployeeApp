@@ -12,15 +12,18 @@ namespace EmployeeApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class UserRole
     {
-        public int UserID { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public Nullable<int> UserRoleID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public UserRole()
+        {
+            this.Users = new HashSet<User>();
+        }
     
-        public virtual UserRole UserRole { get; set; }
-        public virtual User Users1 { get; set; }
-        public virtual User User1 { get; set; }
+        public int UserRoleID { get; set; }
+        public string RoleName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }
