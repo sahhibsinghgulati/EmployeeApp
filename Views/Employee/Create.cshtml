@@ -123,13 +123,8 @@
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <label class="form-label">Department</label>
-                        @Html.DropDownListFor(m => m.Department, new List<SelectListItem>
-                        {
-                            new SelectListItem { Text="-- Select Department --", Value="" },
-                            new SelectListItem { Text="IT", Value="IT" },
-                            new SelectListItem { Text="HR", Value="HR" },
-                            new SelectListItem { Text="Sales", Value="Sales" }
-                        }, new { @class = "form-control", id = "ddlDept" })
+                        @Html.DropDownListFor(m => m.DeptID, ViewBag.DeptList as SelectList, "-- Select Department --", new { @class = "form-control", id = "ddlDept" })
+                        @Html.ValidationMessageFor(m => m.DeptID, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Aadhaar Number</label>

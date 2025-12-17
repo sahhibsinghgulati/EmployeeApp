@@ -19,12 +19,12 @@
 
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>
-                        @Html.ActionLink("Employee List", "Index", "Employee", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-
+                    
                     <li>
                         @Html.ActionLink("Add Employee", "Create", "Employee", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Manage Dept", "Index", "Department", new { area = "" }, new { @class = "nav-link" })
                     </li>
                 </ul>
                 <ul class="navbar-nav">

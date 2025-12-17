@@ -75,7 +75,7 @@
                     <td style="max-width: 150px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="@item.Address">
                         @Html.DisplayFor(m => item.Address)
                     </td>
-                    <td>@Html.DisplayFor(m => item.Department)</td>
+                    <td>@(item.DeptMaster != null ? item.DeptMaster.DeptName : "-")</td>
                     <td>@Html.DisplayFor(m => item.Mobile)</td>
                     <td>@Html.DisplayFor(m => item.Email)</td>
                     <td>@Html.DisplayFor(m => item.Aadhaar)</td>
