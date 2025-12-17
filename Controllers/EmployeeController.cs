@@ -16,11 +16,40 @@ namespace EmployeeAppMVC.Controllers
         EmployeeEntities db = new EmployeeEntities();
 
         // GET: Employee List
-        public ActionResult Index()
+        // GET: Employee List
+        public ActionResult Index(string searchName, string searchDept, string searchMobile)
         {
-            // Simple 1-line fetch
-            var list = db.Employees.Include("DeptMaster").ToList();
-            return View(list);
+            // 1. Populate Department Dropdown for the Search Bar
+            // We use "DeptID" as the value, but we will accept the string ID in the parameter
+            ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName");
+
+            // 2. Start with the base query (Include DeptMaster for names)
+            var query = db.Employees.Include("DeptMaster").AsQueryable();
+
+            // 3. Apply Filters if provided
+
+            // Filter A: Name OR Father's Name
+            if (!string.IsNullOrEmpty(searchName))
+            {
+                query = query.Where(x => x.Name.Contains(searchName) || x.fatherName.Contains(searchName));
+            }
+
+            // Filter B: Department (searchDept comes as a string ID from the dropdown)
+            if (!string.IsNullOrEmpty(searchDept))
+            {
+                int deptId = int.Parse(searchDept);
+                query = query.Where(x => x.DeptID == deptId);
+            }
+
+            // Filter C: Mobile Number
+            if (!string.IsNullOrEmpty(searchMobile))
+            {
+                query = query.Where(x => x.Mobile.Contains(searchMobile));
+            }
+
+            // 4. Execute Query and return list
+            // Note: ToList() executes the SQL query constructed above
+            return View(query.ToList());
         }
 
         // GET: Create
