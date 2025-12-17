@@ -12,7 +12,7 @@ namespace EmployeeApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Employee
+    public partial class vw_Employees
     {
         public int EmpId { get; set; }
         public string Name { get; set; }
@@ -20,13 +20,16 @@ namespace EmployeeApp.Models
         public string Gender { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string Address { get; set; }
+        public string Department { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
         public string Aadhaar { get; set; }
         public Nullable<System.DateTime> JoiningDate { get; set; }
         public string ImagePath { get; set; }
         public Nullable<int> DeptID { get; set; }
-    
-        public virtual DeptMaster DeptMaster { get; set; }
+        public string DeptName { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
+        public Nullable<int> CreatedBy { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
     }
 }

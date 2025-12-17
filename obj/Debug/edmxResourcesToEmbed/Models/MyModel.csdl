@@ -1,11 +1,60 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EmployeeAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="EmployeeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DeptMasters" EntityType="EmployeeAppDBModel.DeptMaster" />
+    <EntitySet Name="Employees" EntityType="EmployeeAppDBModel.Employee" />
+    <EntitySet Name="Users" EntityType="EmployeeAppDBModel.User" />
+    <EntitySet Name="vw_Employees" EntityType="EmployeeAppDBModel.vw_Employees" />
+    <AssociationSet Name="FK_Employees_DeptMaster" Association="EmployeeAppDBModel.FK_Employees_DeptMaster">
+      <End Role="DeptMaster" EntitySet="DeptMasters" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DeptMaster">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Employees" Relationship="EmployeeAppDBModel.FK_Employees_DeptMaster" FromRole="DeptMaster" ToRole="Employee" />
+  </EntityType>
   <EntityType Name="Employee">
     <Key>
       <PropertyRef Name="EmpId" />
     </Key>
     <Property Name="EmpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="fatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="0" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Aadhaar" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="JoiningDate" Type="DateTime" Precision="0" />
+    <Property Name="ImagePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="DeptID" Type="Int32" />
+    <NavigationProperty Name="DeptMaster" Relationship="EmployeeAppDBModel.FK_Employees_DeptMaster" FromRole="Employee" ToRole="DeptMaster" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_Employees">
+    <Key>
+      <PropertyRef Name="EmpId" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Aadhaar" />
+    </Key>
+    <Property Name="EmpId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="fatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="DOB" Type="DateTime" Precision="0" />
@@ -13,20 +62,25 @@
     <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Aadhaar" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Aadhaar" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="JoiningDate" Type="DateTime" Precision="0" />
     <Property Name="ImagePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
   </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="UserID" />
-    </Key>
-    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
-  <EntityContainer Name="EmployeeEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Employees" EntityType="Self.Employee" />
-    <EntitySet Name="Users" EntityType="Self.User" />
-  </EntityContainer>
+  <Association Name="FK_Employees_DeptMaster">
+    <End Type="EmployeeAppDBModel.DeptMaster" Role="DeptMaster" Multiplicity="0..1" />
+    <End Type="EmployeeAppDBModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeptMaster">
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

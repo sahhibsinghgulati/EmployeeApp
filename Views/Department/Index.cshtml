@@ -1,0 +1,104 @@
+﻿@model EmployeeApp.Models.DeptMaster
+@{
+    ViewBag.Title = "Manage Departments";
+    // Cast ViewBag list back to a usable type
+    var listData = ViewBag.DeptList as List<EmployeeApp.Models.DeptMaster>;
+    bool isEditMode = Model != null && Model.DeptID > 0;
+    int sno = 0;
+}
+
+<div class="container-fluid mt-4">
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm border-@(isEditMode ? "warning" : "primary")">
+                <div class="card-header @(isEditMode ? "bg-warning text-dark" : "bg-primary text-white")">
+                    <h5 class="mb-0">
+                        @(isEditMode ? "Edit Department" : "Create New Department")
+                    </h5>
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("Save", "Department", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(m => m.DeptID)
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Department Name</label>
+                            @Html.EditorFor(m => m.DeptName, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g. Human Resources", required = "required" } })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Display Order</label>
+                            @Html.EditorFor(m => m.DisplayOrder, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g. 1, 2, 3...", required = "required" } })
+                            <small class="text-muted">Lower numbers appear first.</small>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn @(isEditMode ? "btn-warning" : "btn-success")">
+                                @(isEditMode ? "Update Department" : "+ Add Department")
+                            </button>
+
+                            @if (isEditMode)
+                            {
+                                <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel Edit</a>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Existing Departments</h5>
+                    <span class="badge bg-secondary">Total: @(listData != null ? listData.Count : 0)</span>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-center" style="width: 50px;">Sr.No.</th>
+                                <th class="text-center" style="width: 100px;">Order</th>
+                                <th class="text-center" style="width: 40%;">Department Name</th>
+                                <th class="text-center">Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (listData == null || listData.Count == 0)
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted py-3">
+                                        No departments found. Add one on the left!
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in listData)
+                                {
+                                    sno++;
+                                    <tr class="@(Model.DeptID == item.DeptID ? "table-warning" : "")">
+                                        <td class="text-center align-middle fw-bold text-muted">@sno</td>
+                                        <td class="text-center fw-bold align-middle">
+                                            <span class="text-dark">@item.DisplayOrder</span>
+                                        </td>
+
+                                        <td class="align-middle text-center">@item.DeptName</td>
+
+                                        <td class="text-center align-middle">
+                                            @Html.ActionLink("Edit", "Index", new { id = item.DeptID }, new { @class = "btn btn-sm btn-primary" })
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

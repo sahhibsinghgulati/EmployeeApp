@@ -1,10 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="EmployeeAppDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DeptMaster">
+    <Key>
+      <PropertyRef Name="DeptID" />
+    </Key>
+    <Property Name="DeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayOrder" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
   <EntityType Name="Employees">
     <Key>
       <PropertyRef Name="EmpId" />
     </Key>
     <Property Name="EmpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="fatherName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="20" />
+    <Property Name="DOB" Type="date" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Aadhaar" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="JoiningDate" Type="date" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="300" />
+    <Property Name="DeptID" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_Employees">
+    <Key>
+      <PropertyRef Name="EmpId" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Aadhaar" />
+    </Key>
+    <Property Name="EmpId" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="fatherName" Type="nvarchar" MaxLength="100" />
     <Property Name="Gender" Type="nvarchar" MaxLength="20" />
@@ -16,17 +55,52 @@
     <Property Name="Aadhaar" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="JoiningDate" Type="date" />
     <Property Name="ImagePath" Type="nvarchar" MaxLength="300" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayOrder" Type="int" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
   </EntityType>
-  <EntityType Name="Users">
-    <Key>
-      <PropertyRef Name="UserID" />
-    </Key>
-    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
-    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
+  <Association Name="FK_Employees_DeptMaster">
+    <End Role="DeptMaster" Type="Self.DeptMaster" Multiplicity="0..1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DeptMaster">
+        <PropertyRef Name="DeptID" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="EmployeeAppDBModelStoreContainer">
+    <EntitySet Name="DeptMaster" EntityType="Self.DeptMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_Employees" EntityType="Self.vw_Employees" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_Employees].[EmpId] AS [EmpId], 
+    [vw_Employees].[Name] AS [Name], 
+    [vw_Employees].[fatherName] AS [fatherName], 
+    [vw_Employees].[Gender] AS [Gender], 
+    [vw_Employees].[DOB] AS [DOB], 
+    [vw_Employees].[Address] AS [Address], 
+    [vw_Employees].[Department] AS [Department], 
+    [vw_Employees].[Mobile] AS [Mobile], 
+    [vw_Employees].[Email] AS [Email], 
+    [vw_Employees].[Aadhaar] AS [Aadhaar], 
+    [vw_Employees].[JoiningDate] AS [JoiningDate], 
+    [vw_Employees].[ImagePath] AS [ImagePath], 
+    [vw_Employees].[DeptID] AS [DeptID], 
+    [vw_Employees].[DeptName] AS [DeptName], 
+    [vw_Employees].[DisplayOrder] AS [DisplayOrder], 
+    [vw_Employees].[CreatedBy] AS [CreatedBy], 
+    [vw_Employees].[CreatedOn] AS [CreatedOn]
+    FROM [dbo].[vw_Employees] AS [vw_Employees]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Employees_DeptMaster" Association="Self.FK_Employees_DeptMaster">
+      <End Role="DeptMaster" EntitySet="DeptMaster" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

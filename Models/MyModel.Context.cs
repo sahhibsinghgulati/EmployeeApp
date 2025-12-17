@@ -25,7 +25,9 @@ namespace EmployeeApp.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<DeptMaster> DeptMasters { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<vw_Employees> vw_Employees { get; set; }
     }
 }

@@ -19,13 +19,14 @@ namespace EmployeeAppMVC.Controllers
         public ActionResult Index()
         {
             // Simple 1-line fetch
-            var list = db.Employees.ToList();
+            var list = db.Employees.Include("DeptMaster").ToList();
             return View(list);
         }
 
         // GET: Create
         public ActionResult Create()
         {
+            ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName");
             return View(new Employee());
         }
 
@@ -41,6 +42,7 @@ namespace EmployeeAppMVC.Controllers
                 if (exists)
                 {
                     ViewBag.AlertMessage = "Error: This Aadhaar Number is already registered!";
+                    ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName");
                     return View(emp);
                 }
             }
@@ -76,6 +78,7 @@ namespace EmployeeAppMVC.Controllers
             }
 
             ModelState.Clear();
+            ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName");
             ViewBag.SuccessMessage = "Employee registered successfully!";
             return View(new Employee());
         }
@@ -106,10 +109,11 @@ namespace EmployeeAppMVC.Controllers
         // GET: Edit Employee
         public ActionResult Edit(int id)
         {
+            
             // Find employee by ID
             var emp = db.Employees.Find(id);
             if (emp == null) return HttpNotFound();
-
+            ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName", emp.DeptID);
             return View("Create", emp);
         }
 
@@ -128,7 +132,7 @@ namespace EmployeeAppMVC.Controllers
                 dbEmp.Gender = formEmp.Gender;
                 dbEmp.DOB = formEmp.DOB;
                 dbEmp.Address = formEmp.Address;
-                dbEmp.Department = formEmp.Department;
+                dbEmp.DeptID = formEmp.DeptID;
                 dbEmp.Mobile = formEmp.Mobile;
                 dbEmp.Email = formEmp.Email;
                 dbEmp.Aadhaar = formEmp.Aadhaar;
@@ -153,6 +157,7 @@ namespace EmployeeAppMVC.Controllers
 
                 // 4. Save Changes
                 db.SaveChanges();
+                ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName", dbEmp.DeptID);
                 ViewBag.SuccessMessage = "Employee details updated successfully!";
                 return View("Create", dbEmp);
             }
@@ -169,12 +174,12 @@ namespace EmployeeAppMVC.Controllers
             if (id > 0)
             {
                 // Fetch Single
-                dataList = db.Employees.Where(x => x.EmpId == id).ToList();
+                dataList = db.Employees.Include("DeptMaster").Where(x => x.EmpId == id).ToList();
             }
             else
             {
                 // Fetch All
-                dataList = db.Employees.OrderBy(x => x.Name).ToList();
+                dataList = db.Employees.Include("DeptMaster").OrderBy(x => x.Name).ToList();
             }
 
             // 2. Convert List to DataTable (Required for RDLC)
@@ -207,7 +212,7 @@ namespace EmployeeAppMVC.Controllers
                 string rawAddress = item.Address ?? "";
                 row["Address"] = rawAddress.Replace("\r\n", ", ").Replace("\n", ", ");
 
-                row["Department"] = item.Department;
+                row["Department"] = item.DeptMaster != null ? item.DeptMaster.DeptName : "";
                 row["Aadhaar"] = item.Aadhaar;
                 row["JoiningDate"] = item.JoiningDate.HasValue ? item.JoiningDate.Value.ToString("dd/MM/yyyy") : "";
 
