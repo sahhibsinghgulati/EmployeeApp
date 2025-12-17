@@ -1,6 +1,110 @@
-﻿<!DOCTYPE html>
+﻿@{
+    bool isAdmin = Session["Role"] != null && Session["Role"].ToString() == "Admin";
+}
+<!DOCTYPE html>
 <html>
 <head>
+    <style>
+        /* Default variables */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #212529;
+            --card-bg: #ffffff;
+            --border-color: #dee2e6;
+        }
+
+        /* DARK MODE OVERRIDES */
+        body.dark-mode {
+            background-color: #121212 !important;
+            color: #e0e0e0 !important;
+        }
+
+            /* Cards */
+            body.dark-mode .card {
+                background-color: #1e1e1e;
+                border-color: #333;
+                color: #e0e0e0;
+            }
+
+            body.dark-mode .card-header {
+                background-color: #2d2d2d !important;
+                color: #fff !important;
+                border-bottom: 1px solid #333;
+            }
+
+            /* Inputs & Forms */
+            body.dark-mode .form-control,
+            body.dark-mode .form-select {
+                background-color: #2d2d2d;
+                border-color: #444;
+                color: #e0e0e0;
+            }
+
+                body.dark-mode .form-control:focus {
+                    background-color: #333;
+                    color: #fff;
+                }
+
+            /* Tables */
+            body.dark-mode .table {
+                color: #e0e0e0;
+                border-color: #333;
+            }
+
+            body.dark-mode .table-striped > tbody > tr:nth-of-type(odd) > * {
+                background-color: #2c2c2c;
+                color: #e0e0e0;
+            }
+
+            body.dark-mode .table-hover > tbody > tr:hover > * {
+                background-color: #3a3a3a;
+                color: #fff;
+            }
+            /* Fix Table Header in Dark Mode */
+            body.dark-mode .table-light {
+                background-color: #2d2d2d;
+                color: #fff;
+            }
+
+                body.dark-mode .table-light th {
+                    background-color: #2d2d2d;
+                    color: #fff;
+                    border-color: #444;
+                }
+
+            /* Modals */
+            body.dark-mode .modal-content {
+                background-color: #1e1e1e;
+                color: #e0e0e0;
+                border: 1px solid #444;
+            }
+
+            body.dark-mode .modal-header,
+            body.dark-mode .modal-footer {
+                border-color: #333;
+            }
+
+            body.dark-mode .close {
+                color: #fff;
+            }
+
+            /* Utility Overrides */
+            body.dark-mode .bg-light {
+                background-color: #121212 !important;
+            }
+
+            body.dark-mode .bg-white {
+                background-color: #1e1e1e !important;
+            }
+
+            body.dark-mode .text-dark {
+                color: #e0e0e0 !important;
+            }
+
+            body.dark-mode .text-muted {
+                color: #a0a0a0 !important;
+            }
+    </style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Employee Management App</title>
@@ -19,14 +123,16 @@
 
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    
-                    <li>
-                        @Html.ActionLink("Add Employee", "Create", "Employee", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Manage Dept", "Index", "Department", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                </ul>
+                    @if (isAdmin)
+                    {
+                        <li>
+                            @Html.ActionLink("Add Employee", "Create", "Employee", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Manage Dept", "Index", "Department", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
+                    </ul>
                 <ul class="navbar-nav">
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -43,6 +149,11 @@
                             @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
                         </li>
                     }
+                    <li class="nav-item">
+                        <button id="darkModeToggle" class="btn btn-link nav-link" style="text-decoration: none;">
+                            🌙 Dark Mode
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -59,5 +170,32 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toggleBtn = document.getElementById("darkModeToggle");
+            const body = document.body;
+
+            // 1. Check LocalStorage on Load
+            if (localStorage.getItem("theme") === "dark") {
+                body.classList.add("dark-mode");
+                toggleBtn.innerHTML = "☀️ Light Mode";
+            }
+
+            // 2. Handle Button Click
+            toggleBtn.addEventListener("click", function (e) {
+                e.preventDefault(); // Prevent jump to top
+
+                body.classList.toggle("dark-mode");
+
+                if (body.classList.contains("dark-mode")) {
+                    localStorage.setItem("theme", "dark");
+                    toggleBtn.innerHTML = "☀️ Light Mode";
+                } else {
+                    localStorage.setItem("theme", "light");
+                    toggleBtn.innerHTML = "🌙 Dark Mode";
+                }
+            });
+        });
+    </script>
 </body>
 </html>

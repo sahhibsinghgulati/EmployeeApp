@@ -52,21 +52,30 @@ namespace EmployeeAppMVC.Controllers
 
             // 3. DATABASE CHECK (Entity Framework)
             // Strategy: Find username first (DB), then check password case-sensitively (Memory)
-            var user = db.Users.FirstOrDefault(x => x.Username == u.Username);
-
-            if (user != null)
+            if (ModelState.IsValid)
             {
-                // Strict Case-Sensitive Password Check
-                if (string.Equals(user.Password, u.Password, StringComparison.Ordinal))
-                {
-                    // Success! Create the Cookie
-                    FormsAuthentication.SetAuthCookie(u.Username, false);
-                    return RedirectToAction("Index", "Employee");
-                }
-            }
+                // CHANGED: Use .Include("UserRole") to fetch the Role Name immediately
+                var user = db.Users.Include("UserRole").FirstOrDefault(x => x.Username == u.Username);
 
-            // If we reach here, either user was null OR password was wrong
-            ViewBag.Message = "Invalid Username or Password";
+                if (user != null)
+                {
+                    if (string.Equals(user.Password, u.Password, StringComparison.Ordinal))
+                    {
+                        // 1. Set Auth Cookie
+                        FormsAuthentication.SetAuthCookie(u.Username, false);
+
+                        // 2. SAVE ROLE IN SESSION (Critical Step)
+                        // If UserRole is null, default to "User"
+                        Session["Role"] = user.UserRole != null ? user.UserRole.RoleName : "User";
+                        Session["UserID"] = user.UserID; // Useful for tracking who created what
+
+                        return RedirectToAction("Index", "Employee");
+                    }
+                }
+
+                ViewBag.Message = "Invalid Username or Password";
+                return View(u);
+            }
             return View(u);
         }
 

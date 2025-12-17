@@ -12,15 +12,12 @@ namespace EmployeeApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class vw_UserRole
     {
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public Nullable<int> UserRoleID { get; set; }
-    
-        public virtual UserRole UserRole { get; set; }
-        public virtual User Users1 { get; set; }
-        public virtual User User1 { get; set; }
+        public int UserRoleID { get; set; }
+        public string RoleName { get; set; }
     }
 }

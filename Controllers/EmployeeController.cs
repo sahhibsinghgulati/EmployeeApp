@@ -86,6 +86,10 @@ namespace EmployeeAppMVC.Controllers
         // GET: Delete Employee
         public ActionResult Delete(int id)
         {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index"); // Kick them back to list
+            }
             var emp = db.Employees.Find(id);
             if (emp != null)
             {
