@@ -155,3 +155,5 @@ C:\Users\user\Desktop\EmployeeApp\EmployeeApp\obj\Debug\EmployeeApp.csproj.CoreC
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\obj\Debug\Employee.2905E044.Up2Date
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\obj\Debug\EmployeeApp.dll
 C:\Users\user\Desktop\EmployeeApp\EmployeeApp\obj\Debug\EmployeeApp.pdb
+C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\RazorKit.ChartJs.dll
+C:\Users\user\Desktop\EmployeeApp\EmployeeApp\bin\RazorKit.ChartJs.xml

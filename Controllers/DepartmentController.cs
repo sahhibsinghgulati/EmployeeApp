@@ -70,5 +70,36 @@ namespace EmployeeAppMVC.Controllers
             ViewBag.DeptList = db.DeptMasters.OrderBy(x => x.DisplayOrder).ToList();
             return View("Index", formDept);
         }
+        // GET: Delete
+        public ActionResult Delete(int id)
+        {
+            // 1. Security Check (Match your existing Admin logic)
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index", "Employee");
+            }
+
+            // 2. Find the department
+            var dept = db.DeptMasters.Find(id);
+
+            if (dept != null)
+            {
+                try
+                {
+                    // 3. Remove and Save
+                    db.DeptMasters.Remove(dept);
+                    db.SaveChanges();
+                    TempData["AlertMessage"] = "Department deleted successfully.";
+                }
+                catch (Exception) // Catch SQL errors (like Foreign Key constraints)
+                {
+                    // This happens if Employees are currently assigned to this DeptID
+                    TempData["AlertMessage"] = "Cannot delete this Department because Employees are currently assigned to it. Please reassign them first.";
+                }
+            }
+
+            // 4. Return to the list
+            return RedirectToAction("Index");
+        }
     }
 }

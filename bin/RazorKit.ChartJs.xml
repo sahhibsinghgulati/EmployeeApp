@@ -1,0 +1,3636 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>RazorKit.ChartJs</name>
+    </assembly>
+    <members>
+        <member name="T:RazorKit.ChartJs.Builders.BorderRadiusBuilder">
+            <summary>
+            BorderRadius Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BorderRadiusBuilder.TopLeft(System.Int32)">
+            <summary>
+            TopLeft
+            </summary>
+            <param name="topLeft"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BorderRadiusBuilder.TopRight(System.Int32)">
+            <summary>
+            TopRight
+            </summary>
+            <param name="topRight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BorderRadiusBuilder.BottomLeft(System.Int32)">
+            <summary>
+            BottomLeft
+            </summary>
+            <param name="bottomLeft"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BorderRadiusBuilder.BottomRight(System.Int32)">
+            <summary>
+            BottomRight
+            </summary>
+            <param name="bottomRight"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.BorderWidthBuilder">
+            <summary>
+            BorderWidth Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BorderWidthBuilder.Left(System.Int32)">
+            <summary>
+            Left
+            </summary>
+            <param name="left"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BorderWidthBuilder.Right(System.Int32)">
+            <summary>
+            Right
+            </summary>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BorderWidthBuilder.Top(System.Int32)">
+            <summary>
+            Top
+            </summary>
+            <param name="top"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BorderWidthBuilder.Bottom(System.Int32)">
+            <summary>
+            Bottom
+            </summary>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ChartBuilder">
+            <summary>
+            Chart Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ChartBuilder.Data(System.Action{RazorKit.ChartJs.Builders.DataBuilder})">
+            <summary>
+            Configure data.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ChartBuilder.Options(System.Action{RazorKit.ChartJs.Builders.OptionsBuilder})">
+            <summary>
+            Configure options.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ClipBuilder">
+            <summary>
+            Clip Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ClipBuilder.Left(System.Int32)">
+            <summary>
+            Left
+            </summary>
+            <param name="left"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ClipBuilder.Left(System.Boolean)">
+            <summary>
+            Left
+            </summary>
+            <param name="left"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ClipBuilder.Right(System.Int32)">
+            <summary>
+            Right
+            </summary>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ClipBuilder.Right(System.Boolean)">
+            <summary>
+            Right
+            </summary>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ClipBuilder.Top(System.Int32)">
+            <summary>
+            Top
+            </summary>
+            <param name="top"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ClipBuilder.Top(System.Boolean)">
+            <summary>
+            Top
+            </summary>
+            <param name="top"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ClipBuilder.Bottom(System.Int32)">
+            <summary>
+            Bottom
+            </summary>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ClipBuilder.Bottom(System.Boolean)">
+            <summary>
+            Bottom
+            </summary>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.DataBuilder">
+            <summary>
+            Data Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DataBuilder.Labels(System.String[])">
+            <summary>
+            Assigns labels to represent data.
+            </summary>
+            <param name="labels">An array of labels to assign.</param>
+            <returns>Returns the LineDataBuilder object with assigned labels.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DataBuilder.Datasets(System.Action{RazorKit.ChartJs.Builders.DatasetsBuilder})">
+            <summary>
+            Configure datasets.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1">
+            <summary>
+            Arc Dataset Configuration.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1.BorderAlign(RazorKit.BorderAlign)">
+            <summary>
+            Default 'center'
+            </summary>
+            <param name="borderAlign"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1.BorderDash(System.Int32[])">
+            <summary>
+            arc border length and spacing of dashes.
+            </summary>
+            <param name="dashes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1.BorderDashOffset(System.Double)">
+            <summary>
+            arc border offset for line dashes.
+            </summary>
+            <param name="dashOffset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1.BorderJoinStyle(RazorKit.JoinStyle)">
+            <summary>
+            arc border join style.
+            </summary>
+            <param name="joinStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1.Data(System.Int32[])">
+            <summary>
+            Set Data for arc chart.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1.HoverBorderDash(System.Int32[])">
+            <summary>
+            arc border length and spacing of dashes when hovered.
+            </summary>
+            <param name="dashes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1.HoverBorderDashOffset(System.Double)">
+            <summary>
+            arc border offset for line dashes when hovered.
+            </summary>
+            <param name="dashOffset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcDatasetBuilder`1.HoverBorderJoinStyle(RazorKit.JoinStyle)">
+            <summary>
+            arc border join style when hovered.
+            </summary>
+            <param name="joinStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.BarDatasetBuilder">
+            <summary>
+            Bar Dataset Configuration
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.Data(System.Object)">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.Data(System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.Data(System.Double[])">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.Data(System.String[])">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.Base(System.Int32)">
+            <summary>
+            Base value for the bar in data units along the value axis. If not set, defaults to the value axis base value.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BarPercentage(System.Double)">
+            <summary>
+            Percent (0-1) of the available width each bar should be within the category width.
+            1.0 will take the whole category width and put the bars right next to each other.
+            Default 0.9
+            </summary>
+            <param name="percentage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BarThickness(System.Int32)">
+            <summary>
+            If this value is a number, it is applied to the width of each bar, in pixels. 
+            When this is enforced, barPercentage and categoryPercentage are ignored.
+            </summary>
+            <param name="thickness"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BarThickness(System.String)">
+            <summary>
+            If set to 'flex', the base sample widths are calculated automatically based on the previous and following samples
+            so that they take the full available widths without overlap. Then, bars are sized using barPercentage and categoryPercentage.
+            There is no gap when the percentage options are 1. 
+            This mode generates bars with different widths when data are not evenly spaced.
+            </summary>
+            <param name="thickness"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BorderSkipped(RazorKit.Skipped)">
+            <summary>
+            This setting is used to avoid drawing the bar stroke at the base of the fill, or disable the border radius. 
+            In general, this does not need to be changed except when creating chart types that derive from a bar chart.
+            </summary>
+            <param name="skipped"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BorderSkipped(System.Boolean)">
+            <summary>
+            Skip all borders (true), or don't skip any borders (false).
+            </summary>
+            <param name="skipped"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BorderWidth(System.Int32)">
+            <summary>
+            If this value is a number, it is applied to all sides of the rectangle (left, top, right, bottom), except borderSkipped.
+            Default 0
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BorderWidth(System.Action{RazorKit.ChartJs.Builders.BorderWidthBuilder})">
+            <summary>
+            If this value is an object, the left property defines the left border width. 
+            Similarly, the right, top, and bottom properties can also be specified. Omitted borders and borderSkipped are skipped.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BorderRadius(System.Int32)">
+            <summary>
+            If this value is a number, it is applied to all corners of the rectangle (topLeft, topRight, bottomLeft, bottomRight),
+            except corners touching the borderSkipped. Default 0
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.BorderRadius(System.Action{RazorKit.ChartJs.Builders.BorderRadiusBuilder})">
+            <summary>
+            If this value is an object, the topLeft property defines the top-left corners border radius.
+            Similarly, the topRight, bottomLeft, and bottomRight.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.CategoryPercentage(System.Double)">
+            <summary>
+            Percent (0-1) of the available width each category should be within the sample width.
+            </summary>
+            <param name="percentage"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.Grouped(System.Boolean)">
+            <summary>
+            Should the bars be grouped on index axis. When true, all the datasets at same index value will be placed next to each other centering on that index value. 
+            When false, each bar is placed on its actual index-axis value. Default true
+            </summary>
+            <param name="grouped"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.HoverBorderRadius(System.Int32)">
+            <summary>
+            The bar border radius when hovered (in pixels). Default 0
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.IndexAxis(RazorKit.IndexAxis)">
+            <summary>
+            The base axis of the dataset. 'x' for vertical bars and 'y' for horizontal bars.
+            </summary>
+            <param name="axis"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.Order(System.Int32)">
+            <summary>
+            The drawing order of dataset. Also affects order for stacking, tooltip and legend.
+            Default 0
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.PointStyle(System.Boolean)">
+            <summary>
+            Is style of the point enabled?
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.PointStyle(RazorKit.PointStyle)">
+            <summary>
+            Style of the point. Default 'circle'
+            </summary>
+            <param name="pointStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.SkipNull(System.Boolean)">
+            <summary>
+            If true, null or undefined values will not be used for spacing calculations when determining bar size.
+            </summary>
+            <param name="skipNull"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.Stack(System.String)">
+            <summary>
+            The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack).
+            Default 'bar'
+            </summary>
+            <param name="stack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.XAxisID(System.String)">
+            <summary>
+            The ID of the x-axis to plot this dataset on.
+            </summary>
+            <param name="axisID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarDatasetBuilder.YAxisID(System.String)">
+            <summary>
+            The ID of the y-axis to plot this dataset on.
+            </summary>
+            <param name="axisID"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1">
+            <summary>
+            Base Dateset configurations
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.Label(System.String)">
+            <summary>
+            The label for the dataset which appears in the legend and tooltips.
+            </summary>
+            <param name="label"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.BackgroundColor(System.String)">
+            <summary>
+            The line fill color.
+            </summary>
+            <param name="color"></param>
+            <returns>The T instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.BackgroundColors(System.String[])">
+            <summary>
+            The line fill colors.
+            </summary>
+            <param name="colors"></param>
+            <returns>The T instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.BorderColor(System.String)">
+            <summary>
+            The line color.
+            </summary>
+            <param name="color"></param>
+            <returns>The T instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.BorderColors(System.String[])">
+            <summary>
+            The line colors.
+            </summary>
+            <param name="colors"></param>
+            <returns>The T instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.BorderWidth(System.Int32)">
+            <summary>
+            The line width (in pixels). Default 3
+            </summary>
+            <param name="width"></param>
+            <returns>The T instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.Clip(System.Int32)">
+            <summary>
+            How to clip relative to chartArea. Positive value allows overflow, negative value clips that many pixels inside chartArea.
+            0 = clip at chartArea.
+            </summary>
+            <param name="clip"></param>
+            <returns>The T instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.Clip(System.Action{RazorKit.ChartJs.Builders.ClipBuilder})">
+            <summary>
+            How to clip relative to chartArea. Positive value allows overflow, negative value clips that many pixels inside chartArea.
+            Clipping can also be configured per side: clip: {left: 5, top: false, right: -2, bottom: 0}
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.Clip(System.Boolean)">
+            <summary>
+            Is clip enabled?
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.HoverBackgroundColor(System.String)">
+            <summary>
+            Background color when hovered.
+            </summary>
+            <param name="color"></param>
+            <returns>The T instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.HoverBackgroundColors(System.String[])">
+            <summary>
+            Background colors when hovered.
+            </summary>
+            <param name="colors"></param>
+            <returns>The T instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.HoverBorderColor(System.String)">
+            <summary>
+            Border color when hovered.
+            </summary>
+            <param name="color"></param>
+            <returns>The T instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.HoverBorderColors(System.String[])">
+            <summary>
+            Border colors when hovered.
+            </summary>
+            <param name="colors"></param>
+            <returns>The T instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.HoverBorderWidth(System.Int32)">
+            <summary>
+            The line width (in pixels) when hovered.
+            </summary>
+            <param name="width"></param>
+            <returns>The T instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.Parsing(System.Boolean)">
+            <summary>
+            How to parse the dataset. The parsing can be disabled by specifying parsing: false at chart options or dataset. 
+            If parsing is disabled, data must be sorted and in the formats the associated chart type and scales use internally.
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.Parsing(System.String)">
+            <summary>
+            Parsing with key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.Parsing(System.String,System.String)">
+            <summary>
+            Parsing with x and y axis keys.
+            </summary>
+            <param name="xAxisKey"></param>
+            <param name="yAxisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseDatasetBuilder`1.Hidden(System.Boolean)">
+            <summary>
+            Configure the visibility of the dataset. Using hidden: true will hide the dataset from being rendered in the Chart.
+            </summary>
+            <param name="hidden"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.BubbleDatasetBuilder">
+            <summary>
+            Bubble Dataset Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.Data(System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.DrawActiveElementsOnTop(System.Boolean)">
+            <summary>
+            Draw the active bubbles of a dataset over the other bubbles of the dataset. Default true
+            </summary>
+            <param name="drawActiveElementsOnTop"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.HoverRadius(System.Int32)">
+            <summary>
+            bubble additional radius when hovered (in pixels). Default 4
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.HitRadius(System.Int32)">
+            <summary>
+            bubble additional radius for hit detection (in pixels). Default 1
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.Order(System.Int32)">
+            <summary>
+            The drawing order of dataset. Also affects order for tooltip and legend. Default 0
+            </summary>
+            <param name="order"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.PointStyle(RazorKit.PointStyle)">
+            <summary>
+            Set point style. Default 'circle'
+            </summary>
+            <param name="style"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.PointStyle(System.Boolean)">
+            <summary>
+            Is point style enabled?
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.Rotation(System.Int32)">
+            <summary>
+            bubble rotation (in degrees). Default 0
+            </summary>
+            <param name="rotation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BubbleDatasetBuilder.Radius(System.Int32)">
+            <summary>
+            bubble radius (in pixels). Default 3
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.DatasetsBuilder">
+            <summary>
+            Datasets Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DatasetsBuilder.Line">
+            <summary>
+            Add a Line Chart.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DatasetsBuilder.Radar">
+            <summary>
+            Add a Radar Chart.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DatasetsBuilder.Bar">
+            <summary>
+            Add a Bar Chart.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DatasetsBuilder.Bubble">
+            <summary>
+            Add a Bubble Chart.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DatasetsBuilder.Doughnut">
+            <summary>
+            Add a Doughnut Chart.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DatasetsBuilder.Pie">
+            <summary>
+            Add a Pie Chart.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DatasetsBuilder.PolarArea">
+            <summary>
+            Add a Polar Area Chart.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DatasetsBuilder.Scatter">
+            <summary>
+            Add a Scatter Chart.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.DoughnutPieDatasetBuilder">
+            <summary>
+            Doughnut or Pie Datasets Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DoughnutPieDatasetBuilder.Circumference(System.Int32)">
+            <summary>
+            Per-dataset override for the sweep that the arcs cover.
+            </summary>
+            <param name="circumference"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DoughnutPieDatasetBuilder.HoverOffset(System.Int32)">
+            <summary>
+            arc offset when hovered (in pixels).
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DoughnutPieDatasetBuilder.Offset(System.Int32)">
+            <summary>
+            arc offset (in pixels).
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DoughnutPieDatasetBuilder.Offset(System.Int32[])">
+            <summary>
+            arc offset (in pixels).
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DoughnutPieDatasetBuilder.Rotation(System.Int32)">
+            <summary>
+            Per-dataset override for the starting angle to draw arcs from.
+            </summary>
+            <param name="rotation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DoughnutPieDatasetBuilder.Spacing(System.Int32)">
+            <summary>
+            Fixed arc offset (in pixels). Similar to offset but applies to all arcs. Default 0
+            </summary>
+            <param name="spacing"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DoughnutPieDatasetBuilder.Weight(System.Int32)">
+            <summary>
+            The relative thickness of the dataset. Providing a value for weight will cause the pie or doughnut dataset to be drawn with
+            a thickness relative to the sum of all the dataset weight values. Default 1
+            </summary>
+            <param name="weight"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.LineDatasetBuilder">
+            <summary>
+            LineDataset Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.Data(System.Object)">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.Data(System.Collections.Generic.IList{System.Object})">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.Data(System.Double[])">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.Data(System.String[])">
+            <summary>
+            Sets the data for the Dataset.
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.CubicInterpolationMode(RazorKit.InterpolationMode)">
+            <summary>
+            The following interpolation modes are supported, 'default' and 'monotone'.
+            </summary>
+            <param name="cubicInterpolationMode"></param>
+            <returns>The LineDatasetBuilder instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.DrawActiveElementsOnTop(System.Boolean)">
+            <summary>
+            Draw the active points of a dataset over the other points of the dataset.
+            </summary>
+            <param name="drawActiveElementsOnTop"></param>
+            <returns>The LineDatasetBuilder instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.IndexAxis(RazorKit.IndexAxis)">
+            <summary>
+            The base axis of the dataset. 'x' for horizontal lines and 'y' for vertical lines.
+            </summary>
+            <param name="indexAxis"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.Segment(System.String)">
+            <summary>
+            Line segment styles can be overridden by scriptable options in the segment object.
+            To get the segment object from a function, set a funtion name.
+            </summary>
+            <param name="segment"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.ShowLine(System.Boolean)">
+            <summary>
+            If false, the line is not drawn for this dataset.
+            </summary>
+            <param name="showLine"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.Stack(System.String)">
+            <summary>
+            The ID of the group to which this dataset belongs to (when stacked, each group will be a separate stack).
+            </summary>
+            <param name="stack"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.Stepped(System.Boolean)">
+            <summary>
+            If the stepped value is set to anything other than false, 'tension' will be ignored.
+            </summary>
+            <param name="stepped"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.Stepped(System.String)">
+            <summary>
+            If the stepped value is set to anything other than false, 'tension' will be ignored.
+            </summary>
+            <param name="stepped"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.XAxisID(System.String)">
+            <summary>
+            The ID of the x-axis to plot this dataset on.
+            </summary>
+            <param name="xAxisID"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineDatasetBuilder.YAxisID(System.String)">
+            <summary>
+            The ID of the y-axis to plot this dataset on.
+            </summary>
+            <param name="yAxisID"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.PointDatasetBuilder`1">
+            <summary>
+            PointDataset Configuration
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.BorderCapStyle(RazorKit.CapStyle)">
+            <summary>
+            Cap style of the line.
+            </summary>
+            <param name="capStyle"></param>
+            <returns>The LineDatasetBuilder instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.BorderDash(System.Int32[])">
+            <summary>
+            Length and spacing of dashes.
+            </summary>
+            <param name="borderDash"></param>
+            <returns>The LineDatasetBuilder instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.BorderDashOffset(System.Double)">
+            <summary>
+            Offset for line dashes. Default 0.0
+            </summary>
+            <param name="borderDashOffset"></param>
+            <returns>The LineDatasetBuilder instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.BorderJoinStyle(RazorKit.JoinStyle)">
+            <summary>
+            Line joint style.
+            </summary>
+            <param name="borderJoinStyle"></param>
+            <returns>The LineDatasetBuilder instance.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.HoverBorderCapStyle(RazorKit.CapStyle)">
+            <summary>
+            Border cap style when hovered.
+            </summary>
+            <param name="capStyle"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.HoverBorderDash(System.Int32[])">
+            <summary>
+            Length and spacing of dashes when hovered.
+            </summary>
+            <param name="hoverBorderDash"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.HoverBorderDashOffset(System.Double)">
+            <summary>
+            Offset for line dashes when hovered.
+            </summary>
+            <param name="hoverBorderDashOffset"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.HoverBorderJoinStyle(RazorKit.JoinStyle)">
+            <summary>
+            Line joint style when hovered.
+            </summary>
+            <param name="hoverBorderJoinStyle"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.Fill(System.Boolean)">
+            <summary>
+            How to fill the area under the line. Default false
+            </summary>
+            <param name="fill"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.Fill(System.String)">
+            <summary>
+            How to fill the area under the line.
+            </summary>
+            <param name="fill"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.Fill(System.Action{RazorKit.ChartJs.Builders.FillBuilder})">
+            <summary>
+            Fill Confgiuration for Area Charts.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.Order(System.Int32)">
+            <summary>
+            The drawing order of dataset. Also affects order for stacking, tooltip and legend.
+            </summary>
+            <param name="order"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointBackgroundColor(System.String)">
+            <summary>
+            The fill color for points.
+            </summary>
+            <param name="color"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointBorderColor(System.String)">
+            <summary>
+            The border color for points.
+            </summary>
+            <param name="color"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointBorderWidth(System.Int32)">
+            <summary>
+            The width of the point border in pixels. Default 1
+            </summary>
+            <param name="width"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointHitRadius(System.Int32)">
+            <summary>
+            The pixel size of the non-displayed point that reacts to mouse events. Default 1
+            </summary>
+            <param name="radius"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointHoverBackgroundColor(System.String)">
+            <summary>
+            Point background color when hovered.
+            </summary>
+            <param name="color"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointHoverBorderColor(System.String)">
+            <summary>
+            Point border color when hovered.
+            </summary>
+            <param name="color"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointHoverBorderWidth(System.Int32)">
+            <summary>
+            Border width of point when hovered. Default 1
+            </summary>
+            <param name="width"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointHoverRadius(System.Int32)">
+            <summary>
+            The radius of the point when hovered. Default 4
+            </summary>
+            <param name="radius"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointRadius(System.Int32)">
+            <summary>
+            The radius of the point shape. If set to 0, the point is not rendered. Default 3
+            </summary>
+            <param name="radius"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointRotation(System.Int32)">
+            <summary>
+            The rotation of the point in degrees. Default 0
+            </summary>
+            <param name="rotation"></param>
+            <returns>The PointDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointStyle(System.Boolean)">
+            <summary>
+            Is style of the point enabled?
+            </summary>
+            <param name="enabled"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.PointStyle(RazorKit.PointStyle)">
+            <summary>
+            Style of the point.
+            </summary>
+            <param name="pointStyle"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.SpanGaps(System.Boolean)">
+            <summary>
+            If true, lines will be drawn between points with no or null data. If false, points with null data will create a break in the line.
+            Can also be a number specifying the maximum gap length to span. The unit of the value depends on the scale used.
+            </summary>
+            <param name="spanGaps"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointDatasetBuilder`1.Tension(System.Double)">
+            <summary>
+            Bezier curve tension of the line. Set to 0 to draw straightlines. This option is ignored if monotone cubic interpolation is used.
+            </summary>
+            <param name="tension"></param>
+            <returns>The LineDatasetBuilder instance with the set data.</returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.PolarAreaDatasetBuilder">
+            <summary>
+            Polar Area Dataset Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PolarAreaDatasetBuilder.Circular(System.Boolean)">
+            <summary>
+            By default the Arc is curved. If circular: false the Arc will be flat.
+            </summary>
+            <param name="circular"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.RadarDatasetBuilder">
+            <summary>
+            Radar Dataset Configuration
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.RadarDatasetBuilder.Data(System.Double[])">
+            <summary>
+            Sets the data for the Radar Dataset.
+            </summary>
+            <param name="data">An array of doubles representing the data to be set.</param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.FillBuilder">
+            <summary>
+            Fill Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillBuilder.Value(System.Int32)">
+            <summary>
+            Axis value.
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillBuilder.Target(System.Int32)">
+            <summary>
+            The accepted values are the same as the filling mode values, so you may use absolute and relative dataset indexes and/or boundaries.
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillBuilder.Target(System.String)">
+            <summary>
+            The accepted values are the same as the filling mode values, so you may use absolute and relative dataset indexes and/or boundaries.
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillBuilder.Target(System.Boolean)">
+            <summary>
+            The accepted values are the same as the filling mode values, so you may use absolute and relative dataset indexes and/or boundaries.
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillBuilder.Target(System.Object)">
+            <summary>
+            The accepted values are the same as the filling mode values, so you may use absolute and relative dataset indexes and/or boundaries.
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillBuilder.Above(System.String)">
+            <summary>
+            If no color is set, the default color will be the background color of the chart.
+            </summary>
+            <param name="above"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillBuilder.Below(System.String)">
+            <summary>
+            If no color is set, the default color will be the background color of the chart.
+            </summary>
+            <param name="below"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.AnimationBuilder">
+            <summary>
+            Animation Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.Animation(System.String)">
+            <summary>
+            Namespace: options.animations[animation] for example: "x", "y", "borderWidth", "radius", "tension"
+            </summary>
+            <param name="animation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.Duration(System.Int32)">
+            <summary>
+            The number of milliseconds an animation takes. Default 1000
+            </summary>
+            <param name="duration"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.Easing(RazorKit.AnimationEasing)">
+            <summary>
+            Easing function to use. Default 'easeOutQuart'
+            </summary>
+            <param name="easing"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.Delay(System.Int32)">
+            <summary>
+            Delay before starting the animations.
+            </summary>
+            <param name="delay"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.Loop(System.Boolean)">
+            <summary>
+            If set to true, the animations loop endlessly.
+            </summary>
+            <param name="loop"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.OnProgress(System.String)">
+            <summary>
+            Callback called on each step of an animation.
+            </summary>
+            <param name="onProgress"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.OnComplete(System.String)">
+            <summary>
+            Callback called when all animations are completed.
+            </summary>
+            <param name="onComplete"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.From(System.Boolean)">
+            <summary>
+            Start value for the animation. Current value is used when undefined.
+            </summary>
+            <param name="from"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.From(System.Int32)">
+            <summary>
+            Start value for the animation. Current value is used when undefined.
+            </summary>
+            <param name="from"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.From(System.String)">
+            <summary>
+            Start value for the animation. Current value is used when undefined.
+            </summary>
+            <param name="from"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.To(System.Boolean)">
+            <summary>
+            End value for the animation. Updated value is used when undefined
+            </summary>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.To(System.Int32)">
+            <summary>
+            End value for the animation. Updated value is used when undefined
+            </summary>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.AnimationBuilder.To(System.String)">
+            <summary>
+            End value for the animation. Updated value is used when undefined
+            </summary>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ArcElementBuilder">
+            <summary>
+            Arc Element Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcElementBuilder.Angle(System.Int32)">
+            <summary>
+            Arc angle to cover (for polar only). Default "circumference / (arc count)"
+            </summary>
+            <param name="angle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcElementBuilder.BorderAlign(RazorKit.BorderAlign)">
+            <summary>
+            Arc stroke alignment.
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcElementBuilder.BorderDash(System.Int32[])">
+            <summary>
+            Arc line dash.
+            </summary>
+            <param name="borderDash"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcElementBuilder.BorderDashOffset(System.Double)">
+            <summary>
+            Arc line dash offset. Default 0.0
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcElementBuilder.BorderJoinStyle(RazorKit.JoinStyle)">
+            <summary>
+            Line join style. The default is 'round' when borderAlign is 'inner'
+            </summary>
+            <param name="joinStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ArcElementBuilder.Circular(System.Boolean)">
+            <summary>
+            By default the Arc is curved. If circular: false the Arc will be flat. Default true
+            </summary>
+            <param name="circular"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.BarElementBuilder">
+            <summary>
+            Bar Element Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarElementBuilder.BorderSkipped(System.Boolean)">
+            <summary>
+            Skipped (excluded) border.
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarElementBuilder.BorderSkipped(RazorKit.Skipped)">
+            <summary>
+            Skipped (excluded) border.
+            </summary>
+            <param name="skipped"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarElementBuilder.BorderRadius(System.Int32)">
+            <summary>
+            The bar border radius (in pixels). Default 0
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarElementBuilder.BorderRadius(System.Action{RazorKit.ChartJs.Builders.BorderRadiusBuilder})">
+            <summary>
+            The bar border radius (in pixels). { topLeft, topRight, bottomLeft, bottomRight }
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarElementBuilder.InflateAmount">
+            <summary>
+            The amount of pixels to inflate the bar rectangle(s) when drawing is 'auto'.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarElementBuilder.InflateAmount(System.Int32)">
+            <summary>
+            The amount of pixels to inflate the bar rectangle(s) when drawing.
+            </summary>
+            <param name="amount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BarElementBuilder.PointStyle(RazorKit.PointStyle)">
+            <summary>
+            Style of the point for legend. Default is 'circle'.
+            </summary>
+            <param name="style"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.BaseElementBuilder`1">
+            <summary>
+            Element Configuration.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseElementBuilder`1.BackgroundColor(System.String)">
+            <summary>
+            Fill color.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseElementBuilder`1.BackgroundColors(System.String[])">
+            <summary>
+            Fill colors.
+            </summary>
+            <param name="colors"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseElementBuilder`1.BorderWidth(System.Int32)">
+            <summary>
+            Stroke width.
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseElementBuilder`1.BorderColor(System.String)">
+            <summary>
+            Stroke color.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.BaseElementBuilder`1.BorderColors(System.String[])">
+            <summary>
+            Stroke colors.
+            </summary>
+            <param name="colors"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ElementsBuilder">
+            <summary>
+            Elements Configuration
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ElementsBuilder.Point">
+            <summary>
+            Point Element Configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ElementsBuilder.Line">
+            <summary>
+            Line Element Configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ElementsBuilder.Bar">
+            <summary>
+            Bar Element Configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ElementsBuilder.Arc">
+            <summary>
+            Arc Element Configuration.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.LineElementBuilder">
+            <summary>
+            Line Element Configuration
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.Tension(System.Double)">
+            <summary>
+            Bézier curve tension (0 for no Bézier curves).
+            </summary>
+            <param name="tension"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.BorderCapStyle(RazorKit.CapStyle)">
+            <summary>
+            Line cap style. Default 'butt'
+            </summary>
+            <param name="capStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.BorderDash(System.Int32[])">
+            <summary>
+            Line dash.
+            </summary>
+            <param name="dash"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.BorderDashOffset(System.Double)">
+            <summary>
+            Line dash offset. Default 0.0
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.BorderJoinStyle(RazorKit.JoinStyle)">
+            <summary>
+            Line join style. Default 'miter'
+            </summary>
+            <param name="joinStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.CapBezierPoints(System.Boolean)">
+            <summary>
+            true to keep Bézier control inside the chart, false for no restriction. Default true
+            </summary>
+            <param name="capBezierPoints"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.CubicInterpolationMode(System.String)">
+            <summary>
+            Interpolation mode to apply. Default 'default'
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.Fill(System.Boolean)">
+            <summary>
+            How to fill the area under the line. Default false
+            </summary>
+            <param name="fill"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.Fill(System.String)">
+            <summary>
+            How to fill the area under the line.
+            </summary>
+            <param name="fill"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LineElementBuilder.Stepped(System.Boolean)">
+            <summary>
+            true to show the line as a stepped line (tension will be ignored). Default false
+            </summary>
+            <param name="stepped"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.PointElementBuilder">
+            <summary>
+            Point Element Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointElementBuilder.Radius(System.Int32)">
+            <summary>
+            Point radius.
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointElementBuilder.PointStyle(System.Boolean)">
+            <summary>
+            Is point style enabled.
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointElementBuilder.PointStyle(RazorKit.PointStyle)">
+            <summary>
+            Point style.
+            </summary>
+            <param name="style"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointElementBuilder.Rotation(System.Int32)">
+            <summary>
+            Point rotation (in degrees). Default 0
+            </summary>
+            <param name="rotation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointElementBuilder.HitRadius(System.Int32)">
+            <summary>
+            Extra radius added to point radius for hit detection. Default 1
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointElementBuilder.HoverRadius(System.Int32)">
+            <summary>
+            Point radius when hovered.. Default 4
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PointElementBuilder.HoverBorderWidth(System.Int32)">
+            <summary>
+            Stroke width when hovered. Default 1
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.FontBuilder">
+            <summary>
+            Font Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FontBuilder.Family(System.String)">
+            <summary>
+            Default font family for all text, follows CSS font-family options.
+            </summary>
+            <param name="family"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FontBuilder.Size(System.Double)">
+            <summary>
+            Default font size (in px) for text. Does not apply to radialLinear scale point labels.
+            </summary>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FontBuilder.Style(System.String)">
+            <summary>
+            Default font style. Does not apply to tooltip title or footer.
+            Does not apply to chart title. Follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit).
+            </summary>
+            <param name="style"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FontBuilder.Weight(RazorKit.FontWeight)">
+            <summary>
+            Default font weight (boldness).
+            </summary>
+            <param name="weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FontBuilder.Weight(System.Int32)">
+            <summary>
+            Default font weight (boldness).
+            </summary>
+            <param name="weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FontBuilder.LineHeight(System.String)">
+            <summary>
+            Height of an individual line of text.
+            </summary>
+            <param name="lineHeight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FontBuilder.LineHeight(System.Double)">
+            <summary>
+            Height of an individual line of text.
+            </summary>
+            <param name="lineHeight"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.InteractionBuilder">
+            <summary>
+            Interaction Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.InteractionBuilder.Mode(RazorKit.InteractionMode)">
+            <summary>
+            Sets which elements appear in the interaction. Default 'nearest'
+            </summary>
+            <param name="mode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.InteractionBuilder.Intersect(System.Boolean)">
+            <summary>
+            if true, the interaction mode only applies when the mouse position intersects an item on the chart.
+            Default true
+            </summary>
+            <param name="intersect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.InteractionBuilder.Axis(RazorKit.Axis)">
+            <summary>
+            Can be set to 'x', 'y', 'xy' or 'r' to define which directions are used in calculating distances.
+            Defaults to 'x' for 'index' mode and 'xy' in dataset and 'nearest' modes.
+            </summary>
+            <param name="axis"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.InteractionBuilder.IncludeInvisible(System.Boolean)">
+            <summary>
+            if true, the invisible points that are outside of the chart area will also be included when evaluating interactions.
+            Default false
+            </summary>
+            <param name="includeInvisible"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.LayoutBuilder">
+            <summary>
+            Layout Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LayoutBuilder.AutoPadding(System.Boolean)">
+            <summary>
+            Apply automatic padding so visible elements are completely drawn.
+            default true, scriptable no
+            </summary>
+            <param name="autoPadding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LayoutBuilder.Padding(System.Int32)">
+            <summary>
+            The padding to add inside the chart.
+            default 0, scriptable yes
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LayoutBuilder.Padding(System.Action{RazorKit.ChartJs.Builders.PaddingBuilder})">
+            <summary>
+            Padding Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.OptionsBuilder">
+            <summary>
+            Options Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Responsive(System.Boolean)">
+            <summary>
+            Resizes the chart canvas when its container does. Default true
+            </summary>
+            <param name="responsive"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.MaintainAspectRatio(System.Boolean)">
+            <summary>
+            Maintain the original canvas aspect ratio (width / height) when resizing. Default true
+            </summary>
+            <param name="maintainAspectRatio"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.AspectRatio(System.Int32)">
+            <summary>
+            Canvas aspect ratio (i.e. width / height, a value of 1 representing a square canvas).
+            Note that this option is ignored if the height is explicitly defined either as attribute or via the style.
+            The default value varies by chart type; Radial charts (doughnut, pie, polarArea, radar) default to 1 and others default to 2.
+            </summary>
+            <param name="aspectRatio"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.OnResize(System.String)">
+            <summary>
+            Called when a resize occurs. Gets passed two arguments: the chart instance and the new size.
+            </summary>
+            <param name="onResize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.OnHover(System.String)">
+            <summary>
+            Called when any of the events fire over chartArea. 
+            Passed the event, an array of active elements (bars, points, etc), and the chart.
+            </summary>
+            <param name="onHover"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Events(RazorKit.ChartEvent[])">
+            <summary>
+            The events option defines the browser events that the chart should listen to for. 
+            Each of these events trigger hover and are passed to plugins. 
+            </summary>
+            <param name="events"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.OnClick(System.String)">
+            <summary>
+            Called if the event is of type 'mouseup', 'click' or 'contextmenu' over chartArea. 
+            Passed the event, an array of active elements, and the chart.
+            </summary>
+            <param name="onClick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.ResizeDelay(System.Int32)">
+            <summary>
+            Delay the resize update by the given amount of milliseconds.
+            This can ease the resize process by debouncing the update of the elements.
+            Default 0
+            </summary>
+            <param name="delay"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Locale(System.String)">
+            <summary>
+            Set a language code.
+            </summary>
+            <param name="locale"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Plugins(System.Action{RazorKit.ChartJs.Builders.PluginsBuilder})">
+            <summary>
+            Configure plugins.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Layout(System.Action{RazorKit.ChartJs.Builders.LayoutBuilder})">
+            <summary>
+            Configure layout.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Animation(System.Action{RazorKit.ChartJs.Builders.AnimationBuilder})">
+            <summary>
+            Configure animation.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Interaction(System.Action{RazorKit.ChartJs.Builders.InteractionBuilder})">
+            <summary>
+            Configure Interaction.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Scales(System.Action{RazorKit.ChartJs.Builders.ScaleBuilder})">
+            <summary>
+            Configure Scales.
+            </summary>
+            <param name="id"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Animations(System.Action{RazorKit.ChartJs.Builders.AnimationBuilder})">
+            <summary>
+            Animations options configures which element properties are animated and how.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Elements(System.Action{RazorKit.ChartJs.Builders.ElementsBuilder})">
+            <summary>
+            Elements Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Parsing(System.Boolean)">
+            <summary>
+            How to parse the dataset. The parsing can be disabled by specifying parsing: false at chart options or dataset. 
+            If parsing is disabled, data must be sorted and in the formats the associated chart type and scales use internally.
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Parsing(System.String)">
+            <summary>
+            Parsing with key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.OptionsBuilder.Parsing(System.String,System.String)">
+            <summary>
+            Parsing with x and y axis keys.
+            </summary>
+            <param name="xAxisKey"></param>
+            <param name="yAxisKey"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.PaddingBuilder">
+            <summary>
+            Padding Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PaddingBuilder.Left(System.Int32)">
+            <summary>
+            Left
+            </summary>
+            <param name="left"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PaddingBuilder.Right(System.Int32)">
+            <summary>
+            Right
+            </summary>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PaddingBuilder.Top(System.Int32)">
+            <summary>
+            Top
+            </summary>
+            <param name="top"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PaddingBuilder.Bottom(System.Int32)">
+            <summary>
+            Bottom
+            </summary>
+            <param name="bottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PaddingBuilder.X(System.Int32)">
+            <summary>
+            This is a shorthand for defining left and right to the same values
+            </summary>
+            <param name="x"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PaddingBuilder.Y(System.Int32)">
+            <summary>
+            This is a shorthand for defining top and bottom to the same values
+            </summary>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ColorsBuilder">
+            <summary>
+            Colors Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ColorsBuilder.Enabled(System.Boolean)">
+            <summary>
+            If you don't have any preference for colors, you can use the built-in Colors plugin.
+            It will cycle through a palette of seven Chart.js brand colors. Default true
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ColorsBuilder.ForceOverride(System.Boolean)">
+            <summary>
+            By default, the colors plugin only works when you initialize the chart without any colors for the border or background specified.
+            If you want to force the colors plugin to always color your datasets, for example,
+            when using dynamic datasets at runtime you will need to set the forceOverride option to true.
+            </summary>
+            <param name="forceOverride"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.DecimationBuilder">
+            <summary>
+            Decimal Configuration
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DecimationBuilder.Enabled(System.Boolean)">
+            <summary>
+            Is decimation enabled?
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DecimationBuilder.Algorithm(RazorKit.Algorithm)">
+            <summary>
+            Decimation algorithm to use.
+            </summary>
+            <param name="algorithm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DecimationBuilder.Samples(System.Int32)">
+            <summary>
+            If the 'lttb' algorithm is used, this is the number of samples in the output dataset. 
+            Defaults to the canvas width to pick 1 sample per pixel.
+            </summary>
+            <param name="samples"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.DecimationBuilder.Threshold(System.Int32)">
+            <summary>
+            If the number of samples in the current axis range is above this value, the decimation will be triggered. 
+            Defaults to 4 times the canvas width.
+            The number of point after decimation can be higher than the threshold value.
+            </summary>
+            <param name="threshold"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.FillerBuilder">
+            <summary>
+            Filler Configuration.
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillerBuilder.Propagate(System.Boolean)">
+            <summary>
+            Fill propagation when target is hidden.
+            </summary>
+            <param name="propagate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.FillerBuilder.DrawTime(RazorKit.DrawTime)">
+            <summary>
+            
+            </summary>
+            <param name="drawTime"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.LabelsBuilder">
+            <summary>
+            Labels Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.BoxWidth(System.Int32)">
+            <summary>
+            Width of coloured box. default 40
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.BoxHeight(System.Int32)">
+            <summary>
+            Height of the coloured box.
+            </summary>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.Color(System.String)">
+            <summary>
+            Color of label and the strikethrough.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.Font(System.Action{RazorKit.ChartJs.Builders.FontBuilder})">
+            <summary>
+            Font Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.Padding(System.Int32)">
+            <summary>
+            Padding between rows of colored boxes. Default 10
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.GenerateLabels(System.String)">
+            <summary>
+            Generates legend items for each thing in the legend.
+            Default implementation returns the text + styling for the color box. 
+            </summary>
+            <param name="function"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.Filter(System.String)">
+            <summary>
+            Filters legend items out of the legend. Receives 2 parameters, a Legend Item and the chart data.
+            </summary>
+            <param name="function"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.Sort(System.String)">
+            <summary>
+            Sorts legend items. Type is : sort(a: LegendItem, b: LegendItem, data: ChartData): number;.
+            Receives 3 parameters, two Legend Items and the chart data. 
+            The return value of the function is a number that indicates the order of the two legend item parameters. 
+            The ordering matches the return value of Array.prototype.sort()
+            </summary>
+            <param name="function"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.PointStyle(RazorKit.PointStyle)">
+            <summary>
+            If specified, this style of point is used for the legend. Only used if usePointStyle is true. default 'circle'
+            </summary>
+            <param name="pointStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.TextAlign(RazorKit.TextAlign)">
+            <summary>
+            Horizontal alignment of the label text. Options are: 'left', 'right' or 'center'. default 'center'
+            </summary>
+            <param name="textAlign"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.UsePointStyle(System.Boolean)">
+            <summary>
+            Label style will match corresponding point style (size is based on pointStyleWidth or the minimum value between boxWidth and font.size).
+            default false
+            </summary>
+            <param name="usePointStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.PointStyleWidth(System.Int32)">
+            <summary>
+            If usePointStyle is true, the width of the point style used for the legend.
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.UseBorderRadius(System.Boolean)">
+            <summary>
+            Label borderRadius will match corresponding borderRadius. default false
+            </summary>
+            <param name="useBorderRadius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LabelsBuilder.BorderRadius(System.Double)">
+            <summary>
+            Override the borderRadius to use.
+            </summary>
+            <param name="borderRadius"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.LegendBuilder">
+            <summary>
+            Legend Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.Display(System.Boolean)">
+            <summary>
+            Is the legend shown? default true.
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.Position(RazorKit.LegendPosition)">
+            <summary>
+            Position of the legend.
+            </summary>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.Align(RazorKit.LegendAlign)">
+            <summary>
+            Alignment of the legend.
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.MaxHeight(System.Int32)">
+            <summary>
+            Maximum height of the legend, in pixels.
+            </summary>
+            <param name="maxHeight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.MaxWidth(System.Int32)">
+            <summary>
+            Maximum width of the legend, in pixels.
+            </summary>
+            <param name="maxWidth"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.FullSize(System.Boolean)">
+            <summary>
+            Marks that this box should take the full width/height of the canvas (moving other boxes). 
+            This is unlikely to need to be changed in day-to-day use. default true.
+            </summary>
+            <param name="fullSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.OnClick(System.String)">
+            <summary>
+            A callback that is called when a click event is registered on a label item.
+            Arguments: [event, legendItem, legend].
+            </summary>
+            <param name="onClick"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.OnHover(System.String)">
+            <summary>
+            A callback that is called when a 'mousemove' event is registered on top of a label item.
+            Arguments: [event, legendItem, legend].
+            </summary>
+            <param name="onHover"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.OnLeave(System.String)">
+            <summary>
+            A callback that is called when a 'mousemove' event is registered outside of a previously hovered label item. 
+            Arguments: [event, legendItem, legend].
+            </summary>
+            <param name="onLeave"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.Reverse(System.Boolean)">
+            <summary>
+            Legend will show datasets in reverse order. default false.
+            </summary>
+            <param name="reverse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.Labels(System.Action{RazorKit.ChartJs.Builders.LabelsBuilder})">
+            <summary>
+            Configure legend label.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.Rtl(System.Boolean)">
+            <summary>
+            'true' for rendering the legends from right to left.
+            </summary>
+            <param name="rtl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.TextDirection(System.String)">
+            <summary>
+            This will force the text direction 'rtl' or 'ltr' on the canvas for rendering the legend,
+            regardless of the css specified on the canvas.
+            </summary>
+            <param name="textDirection"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendBuilder.Title(System.Action{RazorKit.ChartJs.Builders.LegendTitleBuilder})">
+            <summary>
+            Configure legend title.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.LegendTitleBuilder">
+            <summary>
+            LegendTitle Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendTitleBuilder.Color(System.String)">
+            <summary>
+            Color of text.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendTitleBuilder.Display(System.Boolean)">
+            <summary>
+            Is the legend title displayed.
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendTitleBuilder.Font(System.Action{RazorKit.ChartJs.Builders.FontBuilder})">
+            <summary>
+            Font Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendTitleBuilder.Padding(System.Int32)">
+            <summary>
+            Padding around the title.
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendTitleBuilder.Padding(System.Action{RazorKit.ChartJs.Builders.PaddingBuilder})">
+            <summary>
+            Padding Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.LegendTitleBuilder.Text(System.String)">
+            <summary>
+            The string title.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.PluginsBuilder">
+            <summary>
+            Plugins Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PluginsBuilder.Title(System.Action{RazorKit.ChartJs.Builders.TitleBuilder})">
+            <summary>
+            The chart title defines text to draw at the top of the chart.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PluginsBuilder.Subtitle(System.Action{RazorKit.ChartJs.Builders.TitleBuilder})">
+            <summary>
+            Subtitle is a second title placed under the main title, by default. 
+            It has exactly the same configuration options with the main title.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PluginsBuilder.Legend(System.Action{RazorKit.ChartJs.Builders.LegendBuilder})">
+            <summary>
+            The chart legend displays data about the datasets that are appearing on the chart.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PluginsBuilder.Tooltip(System.Action{RazorKit.ChartJs.Builders.TooltipBuilder})">
+            <summary>
+            Tooltip Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PluginsBuilder.Colors(System.Action{RazorKit.ChartJs.Builders.ColorsBuilder})">
+            <summary>
+            Colors Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PluginsBuilder.Decimation(System.Action{RazorKit.ChartJs.Builders.DecimationBuilder})">
+            <summary>
+            Decimation Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.PluginsBuilder.Filler(System.Action{RazorKit.ChartJs.Builders.FillerBuilder})">
+            <summary>
+            Filler Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.TitleBuilder">
+            <summary>
+            Title Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Align(RazorKit.TitleAlign)">
+            <summary>
+            Alignment of the title. default 'center'
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Color(System.String)">
+            <summary>
+            Color of text.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Display(System.Boolean)">
+            <summary>
+            Is the title shown? default 'false'
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.FullSize(System.Boolean)">
+            <summary>
+            Marks that this box should take the full width/height of the canvas. 
+            If false, the box is sized and placed above/beside the chart area.
+            default 'false'.
+            </summary>
+            <param name="fullSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Position(RazorKit.TitlePosition)">
+            <summary>
+            Position of title. default 'top'
+            </summary>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Font(System.Action{RazorKit.ChartJs.Builders.FontBuilder})">
+            <summary>
+            Font configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Padding(System.Int32)">
+            <summary>
+            Padding around the title.
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Padding(System.Action{RazorKit.ChartJs.Builders.PaddingBuilder})">
+            <summary>
+            Padding Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Text(System.String)">
+            <summary>
+            The string title.
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TitleBuilder.Text(System.String[])">
+            <summary>
+            The string title(s).
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.CallbacksBuilder">
+            <summary>
+            Callbacks Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.BeforeTitle(System.String)">
+            <summary>
+            Returns the text to render before the title.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.Title(System.String)">
+            <summary>
+            Returns text to render as the title of the tooltip.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.AfterTitle(System.String)">
+            <summary>
+            Returns text to render after the title.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.BeforeBody(System.String)">
+            <summary>
+            Returns text to render before the body section.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.BeforeLabel(System.String)">
+            <summary>
+            Returns text to render before an individual label. This will be called for each item in the tooltip.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.Label(System.String)">
+            <summary>
+            Returns text to render for an individual item in the tooltip.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.LabelColor(System.String)">
+            <summary>
+            Returns the colors to render for the tooltip item.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.LabelTextColor(System.String)">
+            <summary>
+            Returns the colors for the text of the label for the tooltip item.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.LabelPointStyle(System.String)">
+            <summary>
+            Returns the point style to use instead of color boxes if usePointStyle is true (object with values pointStyle and rotation).
+            Default implementation uses the point style from the dataset points.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.AfterLabel(System.String)">
+            <summary>
+            Returns text to render after an individual label.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.AfterBody(System.String)">
+            <summary>
+            Returns text to render after the body section.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.BeforeFooter(System.String)">
+            <summary>
+            Returns text to render before the footer section.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.Footer(System.String)">
+            <summary>
+            Returns text to render as the footer of the tooltip.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.CallbacksBuilder.AfterFooter(System.String)">
+            <summary>
+            Text to render after the footer section.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.TooltipBuilder">
+            <summary>
+            Tooltip Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Enabled(System.Boolean)">
+            <summary>
+            Are on-canvas tooltips enabled? default true
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.External(System.String)">
+            <summary>
+            External function name.
+            </summary>
+            <param name="external"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Mode(System.String)">
+            <summary>
+            Sets which elements appear in the tooltip. 'Custom mode'
+            </summary>
+            <param name="mode">function name</param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Intersect(System.Boolean)">
+            <summary>
+            If true, the tooltip mode applies only when the mouse position intersects with an element. 
+            If false, the mode will be applied at all times.
+            </summary>
+            <param name="intersect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Position(RazorKit.TooltipPosition)">
+            <summary>
+            The mode for positioning the tooltip. default 'average'
+            </summary>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Position(System.String)">
+            <summary>
+            The mode for positioning the tooltip. 'Custom position'
+            </summary>
+            <param name="position">function name</param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Callbacks(System.Action{RazorKit.ChartJs.Builders.CallbacksBuilder})">
+            <summary>
+            Configure callbacks.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.ItemSort(System.String)">
+            <summary>
+            Sort tooltip items.
+            </summary>
+            <param name="itemSort">function name</param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Filter(System.String)">
+            <summary>
+            Filter tooltip items.
+            </summary>
+            <param name="filter">function name</param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BackgroundColor(System.String)">
+            <summary>
+            Background color of the tooltip.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.TitleColor(System.String)">
+            <summary>
+            Color of title text. default '#fff'
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.TitleFont(System.Action{RazorKit.ChartJs.Builders.FontBuilder})">
+            <summary>
+            Configure title font. default {weight: 'bold'}
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.TitleAlign(RazorKit.TextAlign)">
+            <summary>
+            Horizontal alignment of the title text lines. default 'left'
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.TitleSpacing(System.Int32)">
+            <summary>
+            Spacing to add to top and bottom of each title line. default 2
+            </summary>
+            <param name="spacing"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.TitleMarginBottom(System.Int32)">
+            <summary>
+            Margin to add on bottom of title section. default 6
+            </summary>
+            <param name="marginBottom"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BodyColor(System.String)">
+            <summary>
+            Color of body text. defautl '#fff'
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BodyFont(System.Action{RazorKit.ChartJs.Builders.FontBuilder})">
+            <summary>
+            Configure body font. default {weight: 'bold'}
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BodyAlign(RazorKit.TextAlign)">
+            <summary>
+            Horizontal alignment of the body text lines. default 'left'
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BodySpacing(System.Int32)">
+            <summary>
+            Spacing to add to top and bottom of each tooltip item. default 2
+            </summary>
+            <param name="spacing"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.FooterColor(System.String)">
+            <summary>
+            Color of footer text. default '#fff'
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.FooterFont(System.Action{RazorKit.ChartJs.Builders.FontBuilder})">
+            <summary>
+            Configure footer font. default {weight: 'bold'}
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.FooterAlign(RazorKit.TextAlign)">
+            <summary>
+            Horizontal alignment of the footer text lines. default 'left'
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.FooterSpacing(System.Int32)">
+            <summary>
+            Spacing to add to top and bottom of each footer line. default 2
+            </summary>
+            <param name="spacing"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.FooterMarginTop(System.Int32)">
+            <summary>
+            Margin to add before drawing the footer. default 6
+            </summary>
+            <param name="margin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Padding(System.Int32)">
+            <summary>
+            Padding inside the tooltip. default 6
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Padding(System.Action{RazorKit.ChartJs.Builders.PaddingBuilder})">
+            <summary>
+            Padding Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.CaretPadding(System.Int32)">
+            <summary>
+            Extra distance to move the end of the tooltip arrow away from the tooltip point. default 2
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.CaretSize(System.Int32)">
+            <summary>
+            Size, in px, of the tooltip arrow. default 5
+            </summary>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.CornerRadius(System.Int32)">
+            <summary>
+            Radius of tooltip corner curves. default 6
+            </summary>
+            <param name="radius"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.MultiKeyBackground(System.String)">
+            <summary>
+            Color to draw behind the colored boxes when multiple items are in the tooltip. default '#fff'
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.DisplayColors(System.Boolean)">
+            <summary>
+            If true, color boxes are shown in the tooltip. default true
+            </summary>
+            <param name="displayColors"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BoxWidth(System.Int32)">
+            <summary>
+            Width of the color box if displayColors is true.
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BoxHeight(System.Int32)">
+            <summary>
+            Height of the color box if displayColors is true.
+            </summary>
+            <param name="height"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BoxPadding(System.Int32)">
+            <summary>
+            Padding between the color box and the text. default 1
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.UsePointStyle(System.Boolean)">
+            <summary>
+            Use the corresponding point style (from dataset options) instead of color boxes, ex: star, triangle etc.
+            (size is based on the minimum value between boxWidth and boxHeight). default false
+            </summary>
+            <param name="usePointStyle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BorderColor(System.String)">
+            <summary>
+            Color of the border.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.BorderWidth(System.Int32)">
+            <summary>
+            Size of the border. default 0
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.Rtl(System.Boolean)">
+            <summary>
+            true for rendering the tooltip from right to left.
+            </summary>
+            <param name="rtl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.TextDirection(System.String)">
+            <summary>
+            This will force the text direction 'rtl' or 'ltr' on the canvas for rendering the tooltips, 
+            regardless of the css specified on the canvas.
+            </summary>
+            <param name="direction"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.XAlign(System.String)">
+            <summary>
+            Position of the tooltip caret in the X direction.
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TooltipBuilder.YAlign(System.String)">
+            <summary>
+            Position of the tooltip caret in the Y direction.
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.GridBuilder">
+            <summary>
+            Grid Configuration
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.Circular(System.Boolean)">
+            <summary>
+            If true, gridlines are circular (on radar and polar area charts only). Default false
+            </summary>
+            <param name="circular"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.Color(System.String[])">
+            <summary>
+            The color of the grid lines. If specified as an array, the first color applies to the first grid line,
+            the second to the second grid line, and so on. If there are less colors than lines, the pattern will repeat.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.Display(System.Boolean)">
+            <summary>
+            If false, do not display grid lines for this axis. Default true
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.DrawOnChartArea(System.Boolean)">
+            <summary>
+            If true, draw lines on the chart area inside the axis lines. 
+            This is useful when there are multiple axes and you need to control which grid lines are drawn.
+            Default true
+            </summary>
+            <param name="drawOnChartArea"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.DrawTicks(System.Boolean)">
+            <summary>
+            If true, draw lines beside the ticks in the axis area beside the chart. Default true
+            </summary>
+            <param name="drawTicks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.LineWidth(System.Int32)">
+            <summary>
+            Stroke width of grid lines. Default 1
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.Offset(System.Boolean)">
+            <summary>
+            If true, grid lines will be shifted to be between labels. This is set to true for a bar chart by default.
+            Default false
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.TickBorderDash(System.Int32[])">
+            <summary>
+            Length and spacing of the tick mark line. If not set, defaults to the grid line borderDash value.
+            Default []
+            </summary>
+            <param name="borderDash"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.TickBorderDashOffset(System.Int32)">
+            <summary>
+            Offset for the line dash of the tick mark. If unset, defaults to the grid line 'borderDashOffset' value.
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.TickColor(System.String)">
+            <summary>
+            Color of the tick line. If unset, defaults to the grid line color.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.TickLength(System.Int32)">
+            <summary>
+            Length in pixels that the grid lines will draw into the axis area. Default 8
+            </summary>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.TickWidth(System.Int32)">
+            <summary>
+            Width of the tick mark in pixels. If unset, defaults to the grid line width.
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.GridBuilder.Z(System.Int32)">
+            <summary>
+            z-index of the gridline layer. Values less than equal are drawn under datasets, grater than 0 on top.
+            Default -1
+            </summary>
+            <param name="z"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ScaleBorderBuilder">
+            <summary>
+            ScaleBorder Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBorderBuilder.Display(System.Boolean)">
+            <summary>
+            If true, draw a border at the edge between the axis and the chart area.
+            Default true
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBorderBuilder.Color(System.String)">
+            <summary>
+            The color of the border line.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBorderBuilder.Width(System.Int32)">
+            <summary>
+            The width of the border line. Default 1
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBorderBuilder.Dash(System.Int32[])">
+            <summary>
+            Length and spacing of dashes on grid lines. Default []
+            </summary>
+            <param name="dash"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBorderBuilder.DashOffset(System.Double)">
+            <summary>
+            Offset for line dashes. Default 0.0
+            </summary>
+            <param name="dashOffset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBorderBuilder.Z(System.Int32)">
+            <summary>
+            z-index of the border layer. Values less than equal 0 are drawn under datasets, grater than 0 on top.
+            Default 0
+            </summary>
+            <param name="z"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ScaleBuilder">
+            <summary>
+            Scale Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.ScaleId(System.String)">
+            <summary>
+            Adding a new scale with scaleId. For example: "x", "y", or "myScale"
+            </summary>
+            <param name="scaleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Type(System.String)">
+            <summary>
+            Type of scale being employed. Custom scales can be created and registered with a string key. 
+            This allows changing the type of an axis for a chart.
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.AlignToPixels(System.Boolean)">
+            <summary>
+            Align pixel values to device pixels. Default false
+            </summary>
+            <param name="alignToPixels"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.BackgroundColor(System.String)">
+            <summary>
+            Background color of the scale area.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Border(System.Action{RazorKit.ChartJs.Builders.ScaleBorderBuilder})">
+            <summary>
+            Border configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Display(System.Boolean)">
+            <summary>
+            Controls the axis global visibility (visible when true, hidden when false).
+            Default true
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Display(System.String)">
+            <summary>
+            When display: 'auto', the axis is visible only if at least one associated dataset is visible.
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Grid(System.Action{RazorKit.ChartJs.Builders.GridBuilder})">
+            <summary>
+            Grid line configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Min(System.Int32)">
+            <summary>
+            User defined minimum number for the scale, overrides minimum value from data.
+            </summary>
+            <param name="min"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Max(System.Int32)">
+            <summary>
+            User defined maximum number for the scale, overrides maximum value from data.
+            </summary>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Reverse(System.Boolean)">
+            <summary>
+            Reverse the scale. Default false
+            </summary>
+            <param name="reverse"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Stacked(System.Boolean)">
+            <summary>
+            Should the data be stacked.
+            </summary>
+            <param name="stacked"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Stacked(System.String)">
+            <summary>
+            For some charts, you might want to stack positive and negative values together. 
+            That can be achieved by specifying stacked: 'single'.
+            </summary>
+            <param name="stacked"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.SuggestedMax(System.Int32)">
+            <summary>
+            Adjustment used when calculating the maximum data value.
+            </summary>
+            <param name="suggestedMax"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.SuggestedMin(System.Int32)">
+            <summary>
+            Adjustment used when calculating the minimum data value.
+            </summary>
+            <param name="suggestedMin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Ticks(System.Action{RazorKit.ChartJs.Builders.TicksBuilder})">
+            <summary>
+            Tick configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Weight(System.Int32)">
+            <summary>
+            The weight used to sort the axis. Higher weights are further away from the chart area.
+            Default 0
+            </summary>
+            <param name="weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Callbacks(System.Action{RazorKit.ChartJs.Builders.ScaleCallbackBuilder})">
+            <summary>
+            There are a number of config callbacks that can be used to change parameters in the scale at different points in the update process. 
+            The options are supplied at the top level of the axis options.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.BeginAtZero(System.Boolean)">
+            <summary>
+            if true, scale will include 0 if it is not already included.
+            </summary>
+            <param name="beginAtZero"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Grace(System.String)">
+            <summary>
+            Percentage (string ending with %) for added room in the scale range above and below data.
+            </summary>
+            <param name="grace"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Grace(System.Int32)">
+            <summary>
+            Amount (number) for added room in the scale range above and below data.
+            </summary>
+            <param name="grace"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Bounds(RazorKit.Bounds)">
+            <summary>
+            Determines the scale bounds. Default 'ticks'
+            </summary>
+            <param name="bounds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Clip(System.Boolean)">
+            <summary>
+            If true, clip the dataset drawing against the size of the scale instead of chart area.
+            Default true
+            </summary>
+            <param name="clip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Position(RazorKit.AxisPosition)">
+            <summary>
+            Position of the axis.
+            </summary>
+            <param name="position"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Stack(System.String)">
+            <summary>
+            Stack group. Axes at the same position with same stack are stacked.
+            </summary>
+            <param name="stack"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.StackWeight(System.Int32)">
+            <summary>
+            Weight of the scale in stack group. Used to determine the amount of allocated space for the scale within the group.
+            Default 1
+            </summary>
+            <param name="weight"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Axis(System.String)">
+            <summary>
+            Which type of axis this is. Possible values are: 'x', 'y'. 
+            If not set, this is inferred from the first character of the ID which should be 'x' or 'y'.
+            </summary>
+            <param name="axis"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Offset(System.Boolean)">
+            <summary>
+            If true, extra space is added to the both edges and the axis is scaled to fit into the chart area.
+            This is set to true for a bar chart by default, for others false.
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleBuilder.Title(System.Action{RazorKit.ChartJs.Builders.ScaleTitleBuilder})">
+            <summary>
+            Scale title configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ScaleCallbackBuilder">
+            <summary>
+            Scale Callback Configuration
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.BeforeUpdate(System.String)">
+            <summary>
+            Callback called before the update process starts.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.AfterUpdate(System.String)">
+            <summary>
+            Callback that runs at the end of the update process.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.BeforeSetDimensions(System.String)">
+            <summary>
+            Callback that runs before dimensions are set.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.AfterSetDimensions(System.String)">
+            <summary>
+            Callback that runs after dimensions are set.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.BeforeDataLimits(System.String)">
+            <summary>
+            Callback that runs before data limits are determined.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.AfterDataLimits(System.String)">
+            <summary>
+            Callback that runs after data limits are determined.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.BeforeBuildTicks(System.String)">
+            <summary>
+            Callback that runs before ticks are created.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.AfterBuildTicks(System.String)">
+            <summary>
+            Callback that runs after ticks are created. Useful for filtering ticks.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.BeforeTickToLabelConversion(System.String)">
+            <summary>
+            Callback that runs before ticks are converted into strings.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.AfterTickToLabelConversion(System.String)">
+            <summary>
+            Callback that runs after ticks are converted into strings.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.BeforeCalculateLabelRotation(System.String)">
+            <summary>
+            Callback that runs before tick rotation is determined.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.AfterCalculateLabelRotation(System.String)">
+            <summary>
+            Callback that runs after tick rotation is determined.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.BeforeFit(System.String)">
+            <summary>
+            Callback that runs before the scale fits to the canvas.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleCallbackBuilder.AfterFit(System.String)">
+            <summary>
+            Callback that runs after the scale fits to the canvas.
+            </summary>
+            <param name="functionName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.ScaleTitleBuilder">
+            <summary>
+            ScaleTitle Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleTitleBuilder.Display(System.Boolean)">
+            <summary>
+            If true, display the axis title. Default false
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleTitleBuilder.Align(RazorKit.TitleAlign)">
+            <summary>
+            Alignment of the axis title. Possible options are 'start', 'center' and 'end'.
+            Default 'center'
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleTitleBuilder.Text(System.String)">
+            <summary>
+            The text for the title. (i.e. "# of People" or "Response Choices").
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleTitleBuilder.Text(System.String[])">
+            <summary>
+            The text for the title(s).
+            </summary>
+            <param name="text"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleTitleBuilder.Color(System.String)">
+            <summary>
+            Color of label.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleTitleBuilder.Font(System.Action{RazorKit.ChartJs.Builders.FontBuilder})">
+            <summary>
+            Font Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleTitleBuilder.Padding(System.Int32)">
+            <summary>
+            Padding to apply around scale labels. Only top, bottom and y are implemented.
+            Default 4
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.ScaleTitleBuilder.Padding(System.Action{RazorKit.ChartJs.Builders.PaddingBuilder})">
+            <summary>
+            Padding Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.ChartJs.Builders.TicksBuilder">
+            <summary>
+            Ticks Builder
+            </summary>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.BackdropColor(System.String)">
+            <summary>
+            Color of label backdrops.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.BackdropPadding(System.Int32)">
+            <summary>
+            Padding of label backdrop. Default 2
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.BackdropPadding(System.Action{RazorKit.ChartJs.Builders.PaddingBuilder})">
+            <summary>
+            Padding Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Callback(System.String)">
+            <summary>
+            Returns the string representation of the tick value as it should be displayed on the chart.
+            </summary>
+            <param name="callback">function name</param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Display(System.Boolean)">
+            <summary>
+            If true, show tick labels. Default true
+            </summary>
+            <param name="display"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Color(System.String)">
+            <summary>
+            Color of ticks.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Font(System.Action{RazorKit.ChartJs.Builders.FontBuilder})">
+            <summary>
+            Font Configuration.
+            </summary>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Major(System.Boolean)">
+            <summary>
+            If true, major ticks are generated. 
+            A major tick will affect autoskipping and major will be defined on ticks in the scriptable options context.
+            Default false
+            </summary>
+            <param name="enabled"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Padding(System.Int32)">
+            <summary>
+            Sets the offset of the tick labels from the axis. Default 3 for all axes 0 for cartesian axes.
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.ShowLabelBackdrop(System.Boolean)">
+            <summary>
+            If true, draw a background behind the tick labels.
+            Default is true for radial scale, false otherwise.
+            </summary>
+            <param name="show"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.TextStrokeColor(System.String)">
+            <summary>
+            The color of the stroke around the text.
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.TextStrokeWidth(System.Int32)">
+            <summary>
+            Stroke width around the text. Default 0
+            </summary>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Z(System.Int32)">
+            <summary>
+            z-index of tick layer. Useful when ticks are drawn on chart area. 
+            Values less than equal 0 are drawn under datasets, grater than 0 on top
+            </summary>
+            <param name="z"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Align(RazorKit.TicksAlign)">
+            <summary>
+            The tick alignment along the axis. 'inner' alignment means align 'start' for first tick and 'end' for the last tick of horizontal axis.
+            Default 'center'
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.CrossAlign(RazorKit.TicksCrossAlign)">
+            <summary>
+            The tick alignment perpendicular to the axis. Default 'near'
+            </summary>
+            <param name="align"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.SampleSize(System.Int32)">
+            <summary>
+            The number of ticks to examine when deciding how many labels will fit. 
+            Setting a smaller value will be faster, but may be less accurate when there is large variability in label length.
+            Default ticks.length
+            </summary>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.AutoSkip(System.Boolean)">
+            <summary>
+            If true, automatically calculates how many labels can be shown and hides labels accordingly. 
+            Labels will be rotated up to maxRotation before skipping any. Turn autoSkip off to show all labels no matter what.
+            Default true
+            </summary>
+            <param name="autoSkip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.AutoSkipPadding(System.Int32)">
+            <summary>
+            Padding between the ticks on the horizontal axis when autoSkip is enabled. Default 3
+            </summary>
+            <param name="padding"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.IncludeBounds(System.Boolean)">
+            <summary>
+            Should the defined min and max values be presented as ticks even if they are not "nice". Default true
+            </summary>
+            <param name="includeBounds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.LabelOffset(System.Int32)">
+            <summary>
+            Distance in pixels to offset the label from the centre point of the tick (in the x-direction for the x-axis, and the y-direction for the y-axis). 
+            Note: this can cause labels at the edges to be cropped by the edge of the canvas. Default 0
+            </summary>
+            <param name="offset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.MaxRotation(System.Int32)">
+            <summary>
+            Maximum rotation for tick labels when rotating to condense labels. Note: Rotation doesn't occur until necessary. Note: Only applicable to horizontal scales.
+            Default 50
+            </summary>
+            <param name="maxRotation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.MinRotation(System.Int32)">
+            <summary>
+            Minimum rotation for tick labels. Note: Only applicable to horizontal scales. Default 0
+            </summary>
+            <param name="minRotation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.Mirror(System.Boolean)">
+            <summary>
+            Flips tick labels around axis, displaying the labels inside the chart instead of outside. Note: Only applicable to vertical scales.
+            Default false
+            </summary>
+            <param name="mirror"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.ChartJs.Builders.TicksBuilder.MaxTicksLimit(System.Int32)">
+            <summary>
+            Maximum number of ticks and gridlines to show. Default 11
+            </summary>
+            <param name="maxTicksLimit"></param>
+            <returns></returns>
+        </member>
+        <member name="T:RazorKit.JoinStyle">
+            <summary>
+            There are three possible values for this property: "round", "bevel", and "miter". 
+            The default is "miter".
+            </summary>
+        </member>
+        <member name="F:RazorKit.JoinStyle.Miter">
+            <summary>
+            Connected segments are joined by extending their outside edges to connect at a single point, with the effect of filling an additional lozenge-shaped area. 
+            This setting is effected by the miterLimit property.
+            </summary>
+        </member>
+        <member name="F:RazorKit.JoinStyle.Round">
+            <summary>
+            Rounds off the corners of a shape by filling an additional sector of disc centered at the common endpoint of connected segments. 
+            The radius for these rounded corners is equal to the line width.
+            </summary>
+        </member>
+        <member name="F:RazorKit.JoinStyle.Bevel">
+            <summary>
+            Fills an additional triangular area between the common endpoint of connected segments,
+            and the separate outside rectangular corners of each segment.
+            </summary>
+        </member>
+        <member name="T:RazorKit.AnimationEasing">
+            <summary>
+            Easing function to use.
+            </summary>
+        </member>
+        <member name="T:RazorKit.TitleAlign">
+            <summary>
+            Alignment of Title, Subtitle
+            </summary>
+        </member>
+        <member name="T:RazorKit.LegendAlign">
+            <summary>
+            Alignment of Legent
+            </summary>
+        </member>
+        <member name="T:RazorKit.TextAlign">
+            <summary>
+            Alignment of the title.
+            </summary>
+        </member>
+        <member name="T:RazorKit.TitlePosition">
+            <summary>
+            Position of the title.
+            </summary>
+        </member>
+        <member name="T:RazorKit.FontWeight">
+            <summary>
+            Weight
+            </summary>
+        </member>
+        <member name="T:RazorKit.LegendPosition">
+            <summary>
+            Position of the legend.
+            </summary>
+        </member>
+        <member name="T:RazorKit.InteractionMode">
+            <summary>
+            Mode
+            </summary>
+        </member>
+        <member name="T:RazorKit.TooltipPosition">
+            <summary>
+            Position
+            </summary>
+        </member>
+        <member name="T:RazorKit.Axis">
+            <summary>
+            Axis
+            </summary>
+        </member>
+        <member name="T:RazorKit.Bounds">
+            <summary>
+            The bounds property controls the scale boundary strategy (bypassed by min/max options).
+            </summary>
+        </member>
+        <member name="F:RazorKit.Bounds.Ticks">
+            <summary>
+            : makes sure ticks are fully visible, data outside are truncated
+            </summary>
+        </member>
+        <member name="F:RazorKit.Bounds.Data">
+            <summary>
+            : makes sure data are fully visible, labels outside are removed
+            </summary>
+        </member>
+        <member name="T:RazorKit.Algorithm">
+            <summary>
+            Decimation algorithm to use for data.
+            </summary>
+        </member>
+        <member name="F:RazorKit.Algorithm.Lttb">
+            <summary>
+            Lttb decimation reduces the number of data points significantly. 
+            This is most useful for showing trends in data using only a few data points.
+            </summary>
+        </member>
+        <member name="F:RazorKit.Algorithm.MinMax">
+            <summary>
+            Min/max decimation will preserve peaks in your data but could require up to 4 points for each pixel. 
+            This type of decimation would work well for a very noisy signal where you need to see data peaks.
+            </summary>
+        </member>
+        <member name="T:RazorKit.CapStyle">
+            <summary>
+            Line cap style.
+            </summary>
+        </member>
+        <member name="F:RazorKit.CapStyle.Butt">
+            <summary>
+            The ends of lines are squared off at the endpoints.
+            </summary>
+        </member>
+        <member name="F:RazorKit.CapStyle.Round">
+            <summary>
+            The ends of lines are rounded.
+            </summary>
+        </member>
+        <member name="F:RazorKit.CapStyle.Square">
+            <summary>
+            The ends of lines are squared off by adding a box with an equal width and half the height of the line's thickness.
+            </summary>
+        </member>
+        <member name="T:RazorKit.BorderAlign">
+            <summary>
+            Arc stroke alignment.
+            </summary>
+        </member>
+        <member name="F:RazorKit.BorderAlign.Center">
+            <summary>
+            Center
+            </summary>
+        </member>
+        <member name="F:RazorKit.BorderAlign.Inner">
+            <summary>
+            Inner
+            </summary>
+        </member>
+        <member name="T:RazorKit.IndexAxis">
+            <summary>
+            The base axis of the dataset. 'x' for vertical bars and 'y' for horizontal bars.
+            </summary>
+        </member>
+        <member name="F:RazorKit.IndexAxis.X">
+            <summary>
+            x axis
+            </summary>
+        </member>
+        <member name="F:RazorKit.IndexAxis.Y">
+            <summary>
+            y axis
+            </summary>
+        </member>
+        <member name="T:RazorKit.DrawTime">
+            <summary>
+            Filler draw time.
+            </summary>
+        </member>
+        <member name="F:RazorKit.DrawTime.BeforeDraw">
+            <summary>
+            Before draw
+            </summary>
+        </member>
+        <member name="F:RazorKit.DrawTime.BeforeDatasetDraw">
+            <summary>
+            Before dataset draw
+            </summary>
+        </member>
+        <member name="F:RazorKit.DrawTime.BeforeDatasetsDraw">
+            <summary>
+            Before Datasets draw
+            </summary>
+        </member>
+        <member name="T:RazorKit.TicksAlign">
+            <summary>
+            The tick alignment along the axis.
+            </summary>
+        </member>
+        <member name="T:RazorKit.TicksCrossAlign">
+            <summary>
+            The tick alignment perpendicular to the axis.
+            </summary>
+        </member>
+        <member name="T:RazorKit.InterpolationMode">
+            <summary>
+            Interpolation Mode
+            </summary>
+        </member>
+        <member name="F:RazorKit.InterpolationMode.Default">
+            <summary>
+            It uses a custom weighted cubic interpolation, which produces pleasant curves for all types of datasets.
+            </summary>
+        </member>
+        <member name="F:RazorKit.InterpolationMode.Monotone">
+            <summary>
+            It is more suited to y = f(x) datasets: it preserves monotonicity (or piecewise monotonicity) of the dataset being interpolated, 
+            and ensures local extremums (if any) stay at input data points.
+            </summary>
+        </member>
+        <member name="T:RazorKit.RKHelperExtensions">
+            <summary>
+            RazorKit Html helper extension.
+            </summary>
+        </member>
+        <member name="M:RazorKit.RKHelperExtensions.Chart(System.Web.Mvc.HtmlHelper,System.String)">
+            <summary>
+            Chart Configuration.
+            </summary>
+            <param name="htmlHelper"></param>
+            <param name="canvasId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.RKHelperExtensions.Chart(System.Web.Mvc.HtmlHelper,System.String,System.Boolean)">
+            <summary>
+            Chart Configuration.
+            </summary>
+            <param name="htmlHelper"></param>
+            <param name="canvasId"></param>
+            <param name="useCanvas"></param>
+            <returns></returns>
+        </member>
+        <member name="M:RazorKit.RKHelperExtensions.Render(RazorKit.ChartJs.Builders.ChartBuilder)">
+            <summary>
+            Get Html string of chart.
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
