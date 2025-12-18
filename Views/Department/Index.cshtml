@@ -1,16 +1,20 @@
 ﻿@model EmployeeApp.Models.DeptMaster
 @{
     ViewBag.Title = "Manage Departments";
-    // Cast ViewBag list back to a usable type
     var listData = ViewBag.DeptList as List<EmployeeApp.Models.DeptMaster>;
     bool isEditMode = Model != null && Model.DeptID > 0;
     int sno = 0;
 }
-
+<style>
+    /* Force black text on the yellow highlight row, overriding Dark Mode defaults */
+    .table-warning, .table-warning > td, .table-warning > td > span {
+        color: #000 !important;
+    }
+</style>
 <div class="container-fluid mt-4">
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="card shadow-sm border-@(isEditMode ? "warning" : "primary")">
                 <div class="card-header @(isEditMode ? "bg-warning text-dark" : "bg-primary text-white")">
                     <h5 class="mb-0">
@@ -38,18 +42,29 @@
                                 @(isEditMode ? "Update Department" : "+ Add Department")
                             </button>
 
-                            @if (isEditMode)
+                            @if (Model.DeptID > 0)
                             {
-                                <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel Edit</a>
+                                @* We explicitly pass 'null' to clear the ID from the URL *@
+                                <a href="@Url.Action("Index", "Department", new { id = (int?)null })"
+                                   class="btn btn-secondary">
+                                    Cancel Edit
+                                </a>
                             }
                         </div>
                     }
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
+
+        <div class="col-md-3"></div>
 
         <div class="col-md-6">
+            @if (TempData["AlertMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["AlertMessage"]
+                </div>
+            }
             <div class="card shadow-sm">
                 <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Existing Departments</h5>
@@ -63,14 +78,13 @@
                                 <th class="text-center" style="width: 100px;">Order</th>
                                 <th class="text-center" style="width: 40%;">Department Name</th>
                                 <th class="text-center">Actions</th>
-
                             </tr>
                         </thead>
                         <tbody>
                             @if (listData == null || listData.Count == 0)
                             {
                                 <tr>
-                                    <td colspan="3" class="text-center text-muted py-3">
+                                    <td colspan="4" class="text-center text-muted py-3">
                                         No departments found. Add one on the left!
                                     </td>
                                 </tr>
@@ -80,16 +94,24 @@
                                 foreach (var item in listData)
                                 {
                                     sno++;
-                                    <tr class="@(Model.DeptID == item.DeptID ? "table-warning" : "")">
-                                        <td class="text-center align-middle fw-bold text-muted">@sno</td>
+                                    <tr class="@(Model.DeptID == item.DeptID ? "table-warning text-dark" : "")">
+
+                                        <td class="text-center align-middle fw-bold">@sno</td>
+
                                         <td class="text-center fw-bold align-middle">
-                                            <span class="text-dark">@item.DisplayOrder</span>
+                                            <span>@item.DisplayOrder</span>
                                         </td>
 
                                         <td class="align-middle text-center">@item.DeptName</td>
 
                                         <td class="text-center align-middle">
                                             @Html.ActionLink("Edit", "Index", new { id = item.DeptID }, new { @class = "btn btn-sm btn-primary" })
+
+                                            <a href="@Url.Action("Delete", "Department", new { id = item.DeptID })"
+                                               class="btn btn-danger btn-sm"
+                                               onclick="return confirm('Are you sure you want to delete this Department?');">
+                                                Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 }
@@ -102,3 +124,18 @@
 
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Check if the alert exists
+            var alertBox = $(".alert");
+            if (alertBox.length > 0) {
+                // Wait 10 seconds (10000ms), then fade it out
+                setTimeout(function () {
+                    alertBox.fadeOut("slow");
+                }, 5000);
+            }
+        });
+    </script>
+}

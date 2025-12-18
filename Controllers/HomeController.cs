@@ -1,30 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using EmployeeApp.Models;
+using System.Collections.Generic;
 
 namespace EmployeeApp.Controllers
 {
     public class HomeController : Controller
     {
+        private EmployeeEntities db = new EmployeeEntities();
+
         public ActionResult Index()
         {
-            return View();
-        }
+            // 1. Fetch and Group Data
+            var groupedData = db.Employees.Include("DeptMaster")
+                .GroupBy(e => e.DeptMaster.DeptName)
+                .ToList() // Bring to memory to handle null keys safely
+                .Select(g => new 
+                { 
+                    Name = string.IsNullOrEmpty(g.Key) ? "Unassigned" : g.Key, 
+                    Count = g.Count() 
+                })
+                .ToList();
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            // 2. Map to ViewModel
+            var model = new DashboardViewModel
+            {
+                DepartmentLabels = groupedData.Select(x => x.Name).ToList(),
+                EmployeeCounts = groupedData.Select(x => x.Count).ToList()
+            };
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(model);
         }
     }
 }

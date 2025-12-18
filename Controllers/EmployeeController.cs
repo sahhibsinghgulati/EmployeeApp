@@ -152,7 +152,8 @@ namespace EmployeeAppMVC.Controllers
 
         // POST: Update Employee
         [HttpPost]
-        public ActionResult Edit(Employee formEmp, HttpPostedFileBase ImageUpload)
+        // Update the signature to accept the new 'deletePhoto' parameter
+        public ActionResult Edit(Employee formEmp, HttpPostedFileBase ImageUpload, string deletePhoto)
         {
             // 1. Fetch the EXISTING record from DB
             var dbEmp = db.Employees.Find(formEmp.EmpId);
@@ -171,9 +172,34 @@ namespace EmployeeAppMVC.Controllers
                 dbEmp.Aadhaar = formEmp.Aadhaar;
                 dbEmp.JoiningDate = formEmp.JoiningDate;
 
-                // 3. Handle Image Update
-                if (ImageUpload != null && ImageUpload.ContentLength > 0)
+                // 3. Handle Image Logic (Updated)
+
+                // Case A: User clicked "Delete/Reset Photo"
+                if (deletePhoto == "true")
                 {
+                    // Only delete if the current image is NOT the default image
+                    if (!string.IsNullOrEmpty(dbEmp.ImagePath) && !dbEmp.ImagePath.Contains("no-image.png"))
+                    {
+                        string absolutePath = Server.MapPath(dbEmp.ImagePath);
+                        if (System.IO.File.Exists(absolutePath))
+                        {
+                            System.IO.File.Delete(absolutePath);
+                        }
+                    }
+                    // Reset the path in the database to null
+                    dbEmp.ImagePath = null;
+                }
+                // Case B: User uploaded a NEW photo
+                else if (ImageUpload != null && ImageUpload.ContentLength > 0)
+                {
+                    // (Optional but Good Practice): Delete the OLD photo before saving the new one
+                    if (!string.IsNullOrEmpty(dbEmp.ImagePath) && !dbEmp.ImagePath.Contains("no-image.png"))
+                    {
+                        string oldPath = Server.MapPath(dbEmp.ImagePath);
+                        if (System.IO.File.Exists(oldPath)) { System.IO.File.Delete(oldPath); }
+                    }
+
+                    // Save the new photo (your existing logic)
                     string fileExtension = Path.GetExtension(ImageUpload.FileName);
                     string timeStamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                     string fileName = $"{formEmp.EmpId}_{timeStamp}{fileExtension}";
@@ -184,14 +210,16 @@ namespace EmployeeAppMVC.Controllers
                     string savePath = Path.Combine(folderPath, fileName);
                     ImageUpload.SaveAs(savePath);
 
-                    // Update Path
                     dbEmp.ImagePath = "~/EmployeeImages/" + fileName;
                 }
+                // Case C: User did nothing. The existing dbEmp.ImagePath is kept as is.
 
                 // 4. Save Changes
                 db.SaveChanges();
-                ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName", dbEmp.DeptID);
                 ViewBag.SuccessMessage = "Employee details updated successfully!";
+                // Reload Dropdown
+                ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName", dbEmp.DeptID);
+
                 return View("Create", dbEmp);
             }
 
