@@ -1,13 +1,12 @@
 ﻿@model EmployeeApp.Models.DashboardViewModel
-@using RazorKit
-
+@using System.Linq
 @{
     ViewBag.Title = "Dashboard";
+    // Calculate total explicitly using Razor
+    var totalEmployees = Model.EmployeeCounts.Sum();
 }
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<div class="jumbotron text-center">
+<div class="jumbotron text-center" style="font-weight: bold;">
     <h1>HR Dashboard</h1>
 </div>
 
@@ -15,54 +14,127 @@
     <div class="row">
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Employees per Department (Bar)</div>
+                <div class="panel-heading  mb-4 text-center" style="font-weight: bold;"></div>
                 <div class="panel-body">
-                    @(Html.Chart("barChartCanvas")
-                        .Data(d => d
-                            .Labels(Model.DepartmentLabels.ToArray()) // Convert List to Array
-                            .Datasets(ds => ds
-                                .Bar()
-                                .Label("Employees")
-                                .Data(Model.EmployeeCounts.ToArray()) // Convert List to Array
-                                .BackgroundColor("rgba(54, 162, 235, 0.6)")
-                                .BorderColor("rgba(54, 162, 235, 1)")
-                                .BorderWidth(1)
-                            )
-                        )
-                        .Options(o => o
-                            .Responsive(true)
-                            .Scales(s => s.Y(y => y.BeginAtZero(true)))
-                        )
-                        .Render()
-                    )
+                    <h4 class="text-center" style="margin-bottom: 15px; font-weight: bold;">
+                        Total Employees: @totalEmployees
+                    </h4>
+                    <canvas id="barChartCanvas"></canvas>
                 </div>
             </div>
         </div>
 
         <div class="col-md-6">
             <div class="panel panel-default">
-                <div class="panel-heading">Employees per Department (Pie)</div>
+                <div class="panel-heading  mb-4 text-center" style="font-weight: bold;"></div>
                 <div class="panel-body">
-                    @(Html.Chart("pieChartCanvas")
-                        .Data(d => d
-                            .Labels(Model.DepartmentLabels.ToArray())
-                            .Datasets(ds => ds
-                                .Pie()
-                                .Data(Model.EmployeeCounts.ToArray())
-                                .BackgroundColor(
-                                    "#FF6384", "#36A2EB", "#FFCE56",
-                                    "#4BC0C0", "#9966FF", "#FF9F40"
-                                )
-                            )
-                        )
-                        .Options(o => o
-                            .Responsive(true)
-                            .Plugins(p => p.Legend(l => l.Position(RazorKit.ChartJs.Position.Bottom)))
-                        )
-                        .Render()
-                    )
+                    <h4 class="text-center" style="margin-bottom: 15px; font-weight: bold;">
+                        Total Employees: @totalEmployees
+                    </h4>
+                    <canvas id="pieChartCanvas"></canvas>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+<script>
+    // === GLOBAL SETUP ===
+    // 1. Register the plugin globally so it works on all charts
+    Chart.register(ChartDataLabels);
+
+    // 2. Set Global Font to Bold
+    Chart.defaults.font.weight = 'bold';
+    // Optional: make the global font slightly larger for readability
+    Chart.defaults.font.size = 14;
+
+    // === DATA SETUP ===
+    var deptLabels = @Html.Raw(Json.Encode(Model.DepartmentLabels));
+    var empCounts = @Html.Raw(Json.Encode(Model.EmployeeCounts));
+
+    var grandTotal = empCounts.reduce((a, b) => a + b, 0);
+
+    // Shared Colors
+    const backgroundColorsArr = [
+        'rgba(255, 99, 132, 0.6)', 'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)', 'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)', 'rgba(255, 159, 64, 0.6)'
+    ];
+    const borderColorsArr = [
+        'rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'
+    ];
+
+    // === BAR CHART ===
+    const ctxBar = document.getElementById('barChartCanvas');
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: deptLabels,
+            datasets: [{
+                label: 'Employees',
+                data: empCounts,
+                backgroundColor: backgroundColorsArr,
+                borderColor: borderColorsArr,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: { y: { beginAtZero: true } },
+            plugins: {
+                datalabels: {
+                    align: 'middle',     // Align it slightly above the bar
+                    color: '#fff',    // Black text color
+                    font: {
+                        weight: 'bold'
+                    }
+                }
+            }
+        }
+    });
+
+    // === PIE CHART ===
+    const ctxPie = document.getElementById('pieChartCanvas');
+    new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: deptLabels,
+            datasets: [{
+                label: 'Employees',
+                data: empCounts,
+                backgroundColor: backgroundColorsArr,
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            let percentage = Math.round((context.raw / total) * 100);
+                            return context.label + ': ' + percentage + '%';
+                        }
+                    }
+                },
+                datalabels: {
+                    color: '#fff', // White text looks best on colored pie slices
+                    font: {
+                        weight: 'bold',
+                        size: 16
+                    },
+                    formatter: function(value, context) {
+                        return value; // Just return the number (e.g., "10")
+                    }
+                }
+            }
+        }
+    });
+</script>

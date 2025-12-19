@@ -69,7 +69,7 @@ namespace EmployeeAppMVC.Controllers
                         Session["Role"] = user.UserRole != null ? user.UserRole.RoleName : "User";
                         Session["UserID"] = user.UserID; // Useful for tracking who created what
 
-                        return RedirectToAction("Index", "Employee");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
 
