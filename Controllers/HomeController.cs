@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using EmployeeApp.Models;
-using System.Collections.Generic;
 
 namespace EmployeeApp.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private EmployeeEntities db = new EmployeeEntities();
