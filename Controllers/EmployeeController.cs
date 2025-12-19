@@ -15,8 +15,6 @@ namespace EmployeeAppMVC.Controllers
     {
         EmployeeEntities db = new EmployeeEntities();
 
-        // GET: Employee List
-        // GET: Employee List
         public ActionResult Index(string searchName, string searchDept, string searchMobile)
         {
             // 1. Populate Department Dropdown for the Search Bar
@@ -55,6 +53,10 @@ namespace EmployeeAppMVC.Controllers
         // GET: Create
         public ActionResult Create()
         {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index", "Employee");
+            }
             ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName");
             return View(new Employee());
         }
@@ -142,6 +144,10 @@ namespace EmployeeAppMVC.Controllers
         // GET: Edit Employee
         public ActionResult Edit(int id)
         {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index", "Employee");
+            }
             // 1. Find employee by ID
             var emp = db.Employees.Find(id);
             if (emp == null) return HttpNotFound();
