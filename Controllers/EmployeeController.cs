@@ -142,11 +142,24 @@ namespace EmployeeAppMVC.Controllers
         // GET: Edit Employee
         public ActionResult Edit(int id)
         {
-            
-            // Find employee by ID
+            // 1. Find employee by ID
             var emp = db.Employees.Find(id);
             if (emp == null) return HttpNotFound();
+
+            // 2. Load Department Dropdown (Existing logic)
             ViewBag.DeptList = new SelectList(db.DeptMasters.OrderBy(x => x.DisplayOrder), "DeptID", "DeptName", emp.DeptID);
+
+            // 3. NEW: Fetch Documents for this Employee
+            // We filter by EmpId and order by newest first
+            var docs = db.vw_EmployeeDocs
+                         .Where(x => x.EmpId == id)
+                         .OrderByDescending(d => d.CreatedOn)
+                         .ToList();
+
+            // Pass the list to the View via ViewBag
+            ViewBag.EmployeeDocuments = docs;
+
+            // Return the "Create" view with the employee model
             return View("Create", emp);
         }
 

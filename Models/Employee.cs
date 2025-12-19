@@ -14,6 +14,12 @@ namespace EmployeeApp.Models
     
     public partial class Employee
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Employee()
+        {
+            this.EmployeeDocs = new HashSet<EmployeeDoc>();
+        }
+    
         public int EmpId { get; set; }
         public string Name { get; set; }
         public string fatherName { get; set; }
@@ -28,5 +34,7 @@ namespace EmployeeApp.Models
         public Nullable<int> DeptID { get; set; }
     
         public virtual DeptMaster DeptMaster { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeDoc> EmployeeDocs { get; set; }
     }
 }

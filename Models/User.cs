@@ -14,6 +14,12 @@ namespace EmployeeApp.Models
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.EmployeeDocs = new HashSet<EmployeeDoc>();
+        }
+    
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
@@ -22,5 +28,7 @@ namespace EmployeeApp.Models
         public virtual UserRole UserRole { get; set; }
         public virtual User Users1 { get; set; }
         public virtual User User1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeDoc> EmployeeDocs { get; set; }
     }
 }
