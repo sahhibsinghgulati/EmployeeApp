@@ -81,5 +81,32 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeDocs">
+      <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeDoc">
+        <MappingFragment StoreEntitySet="EmployeeDocs">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DocPath" ColumnName="DocPath" />
+          <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
+          <ScalarProperty Name="DocName" ColumnName="DocName" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="DocID" ColumnName="DocID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_EmployeeDocs">
+      <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_EmployeeDocs">
+        <MappingFragment StoreEntitySet="vw_EmployeeDocs">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DocPath" ColumnName="DocPath" />
+          <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
+          <ScalarProperty Name="DocName" ColumnName="DocName" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="DocID" ColumnName="DocID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

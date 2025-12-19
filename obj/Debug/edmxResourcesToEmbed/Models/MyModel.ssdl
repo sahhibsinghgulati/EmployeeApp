@@ -10,6 +10,18 @@
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreatedOn" Type="datetime" />
   </EntityType>
+  <EntityType Name="EmployeeDocs">
+    <Key>
+      <PropertyRef Name="DocID" />
+    </Key>
+    <Property Name="DocID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpId" Type="int" />
+    <Property Name="DocName" Type="nvarchar" MaxLength="100" />
+    <Property Name="DocDesc" Type="nvarchar" MaxLength="255" />
+    <Property Name="DocPath" Type="nvarchar(max)" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
   <EntityType Name="Employees">
     <Key>
       <PropertyRef Name="EmpId" />
@@ -19,13 +31,13 @@
     <Property Name="fatherName" Type="nvarchar" MaxLength="100" />
     <Property Name="Gender" Type="nvarchar" MaxLength="20" />
     <Property Name="DOB" Type="date" />
+    <Property Name="DeptID" Type="int" />
     <Property Name="Address" Type="nvarchar" MaxLength="250" />
     <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
     <Property Name="Email" Type="nvarchar" MaxLength="150" />
     <Property Name="Aadhaar" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="JoiningDate" Type="date" />
     <Property Name="ImagePath" Type="nvarchar" MaxLength="300" />
-    <Property Name="DeptID" Type="int" />
   </EntityType>
   <EntityType Name="UserRole">
     <Key>
@@ -42,6 +54,25 @@
     <Property Name="Username" Type="nvarchar" MaxLength="50" />
     <Property Name="Password" Type="nvarchar" MaxLength="50" />
     <Property Name="UserRoleID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeAppDB.dbo.vw_EmployeeDocs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_EmployeeDocs">
+    <Key>
+      <PropertyRef Name="DocID" />
+      <PropertyRef Name="EmpId" />
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="DocName" />
+      <PropertyRef Name="DocPath" />
+    </Key>
+    <Property Name="DocID" Type="int" Nullable="false" />
+    <Property Name="EmpId" Type="int" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DocName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DocDesc" Type="nvarchar" MaxLength="255" />
+    <Property Name="DocPath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -82,6 +113,30 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
     <Property Name="UserRoleID" Type="int" Nullable="false" />
     <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <Association Name="FK_EmployeeDocs_Employee">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="EmployeeDocs" Type="Self.EmployeeDocs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="EmployeeDocs">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeDocs_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="EmployeeDocs" Type="Self.EmployeeDocs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="EmployeeDocs">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Employees_DeptMaster">
     <End Role="DeptMaster" Type="Self.DeptMaster" Multiplicity="0..1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
@@ -120,9 +175,22 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
   </Association>
   <EntityContainer Name="EmployeeAppDBModelStoreContainer">
     <EntitySet Name="DeptMaster" EntityType="Self.DeptMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeDocs" EntityType="Self.EmployeeDocs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_EmployeeDocs" EntityType="Self.vw_EmployeeDocs" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_EmployeeDocs].[DocID] AS [DocID], 
+    [vw_EmployeeDocs].[EmpId] AS [EmpId], 
+    [vw_EmployeeDocs].[EmployeeName] AS [EmployeeName], 
+    [vw_EmployeeDocs].[DocName] AS [DocName], 
+    [vw_EmployeeDocs].[DocDesc] AS [DocDesc], 
+    [vw_EmployeeDocs].[DocPath] AS [DocPath], 
+    [vw_EmployeeDocs].[CreatedBy] AS [CreatedBy], 
+    [vw_EmployeeDocs].[CreatedOn] AS [CreatedOn]
+    FROM [dbo].[vw_EmployeeDocs] AS [vw_EmployeeDocs]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="vw_Employees" EntityType="Self.vw_Employees" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [vw_Employees].[EmpId] AS [EmpId], 
@@ -152,6 +220,14 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
     [vw_UserRole].[RoleName] AS [RoleName]
     FROM [dbo].[vw_UserRole] AS [vw_UserRole]</DefiningQuery>
     </EntitySet>
+    <AssociationSet Name="FK_EmployeeDocs_Employee" Association="Self.FK_EmployeeDocs_Employee">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="EmployeeDocs" EntitySet="EmployeeDocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeDocs_Users" Association="Self.FK_EmployeeDocs_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="EmployeeDocs" EntitySet="EmployeeDocs" />
+    </AssociationSet>
     <AssociationSet Name="FK_Employees_DeptMaster" Association="Self.FK_Employees_DeptMaster">
       <End Role="DeptMaster" EntitySet="DeptMaster" />
       <End Role="Employees" EntitySet="Employees" />

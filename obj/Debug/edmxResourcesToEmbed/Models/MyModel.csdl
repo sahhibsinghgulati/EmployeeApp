@@ -19,6 +19,16 @@
       <End Role="User" EntitySet="Users" />
       <End Role="User1" EntitySet="Users" />
     </AssociationSet>
+    <EntitySet Name="EmployeeDocs" EntityType="EmployeeAppDBModel.EmployeeDoc" />
+    <EntitySet Name="vw_EmployeeDocs" EntityType="EmployeeAppDBModel.vw_EmployeeDocs" />
+    <AssociationSet Name="FK_EmployeeDocs_Employee" Association="EmployeeAppDBModel.FK_EmployeeDocs_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="EmployeeDoc" EntitySet="EmployeeDocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeDocs_Users" Association="EmployeeAppDBModel.FK_EmployeeDocs_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="EmployeeDoc" EntitySet="EmployeeDocs" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="DeptMaster">
     <Key>
@@ -48,6 +58,7 @@
     <Property Name="ImagePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <Property Name="DeptID" Type="Int32" />
     <NavigationProperty Name="DeptMaster" Relationship="EmployeeAppDBModel.FK_Employees_DeptMaster" FromRole="Employee" ToRole="DeptMaster" />
+    <NavigationProperty Name="EmployeeDocs" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Employee" FromRole="Employee" ToRole="EmployeeDoc" />
   </EntityType>
   <EntityType Name="UserRole">
     <Key>
@@ -68,6 +79,7 @@
     <NavigationProperty Name="UserRole" Relationship="EmployeeAppDBModel.FK_Users_UserRole" FromRole="User" ToRole="UserRole" />
     <NavigationProperty Name="Users1" Relationship="EmployeeAppDBModel.FK_Users_Users" FromRole="User" ToRole="User1" />
     <NavigationProperty Name="User1" Relationship="EmployeeAppDBModel.FK_Users_Users" FromRole="User1" ToRole="User" />
+    <NavigationProperty Name="EmployeeDocs" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Users" FromRole="User" ToRole="EmployeeDoc" />
   </EntityType>
   <EntityType Name="vw_Employees">
     <Key>
@@ -137,6 +149,61 @@
       </Principal>
       <Dependent Role="User1">
         <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EmployeeDoc">
+    <Key>
+      <PropertyRef Name="DocID" />
+    </Key>
+    <Property Name="DocID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpId" Type="Int32" />
+    <Property Name="DocName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DocDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DocPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Employee" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Employee" FromRole="EmployeeDoc" ToRole="Employee" />
+    <NavigationProperty Name="User" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Users" FromRole="EmployeeDoc" ToRole="User" />
+  </EntityType>
+  <EntityType Name="vw_EmployeeDocs">
+    <Key>
+      <PropertyRef Name="DocID" />
+      <PropertyRef Name="EmpId" />
+      <PropertyRef Name="EmployeeName" />
+      <PropertyRef Name="DocName" />
+      <PropertyRef Name="DocPath" />
+    </Key>
+    <Property Name="DocID" Type="Int32" Nullable="false" />
+    <Property Name="EmpId" Type="Int32" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DocName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DocDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DocPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <Association Name="FK_EmployeeDocs_Employee">
+    <End Type="EmployeeAppDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="EmployeeAppDBModel.EmployeeDoc" Role="EmployeeDoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="EmployeeDoc">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeDocs_Users">
+    <End Type="EmployeeAppDBModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="EmployeeAppDBModel.EmployeeDoc" Role="EmployeeDoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="EmployeeDoc">
+        <PropertyRef Name="CreatedBy" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

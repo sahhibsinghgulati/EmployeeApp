@@ -31,5 +31,7 @@ namespace EmployeeApp.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<vw_Employees> vw_Employees { get; set; }
         public virtual DbSet<vw_UserRole> vw_UserRole { get; set; }
+        public virtual DbSet<EmployeeDoc> EmployeeDocs { get; set; }
+        public virtual DbSet<vw_EmployeeDocs> vw_EmployeeDocs { get; set; }
     }
 }
