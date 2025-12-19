@@ -15,6 +15,10 @@ namespace EmployeeApp.Controllers
         // GET: Manage Documents Page
         public ActionResult Index(int? id)
         {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index", "Employee");
+            }
             // 1. SORT BY EMPID: Order the list by EmpId instead of Name
             // We maintain the selection using the 'id' parameter in the SelectList constructor
             var empList = db.Employees.OrderBy(e => e.EmpId).ToList();
@@ -96,6 +100,10 @@ namespace EmployeeApp.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index", "Employee");
+            }
             try
             {
                 // Find the document record
@@ -131,6 +139,10 @@ namespace EmployeeApp.Controllers
         // OPTIONAL: Download Feature
         public ActionResult Download(string filePath)
         {
+            if (Session["Role"] == null || Session["Role"].ToString() != "Admin")
+            {
+                return RedirectToAction("Index", "Employee");
+            }
             if (!string.IsNullOrEmpty(filePath))
             {
                 string absolutePath = Server.MapPath(filePath);
