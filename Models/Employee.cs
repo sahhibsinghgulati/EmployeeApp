@@ -18,6 +18,7 @@ namespace EmployeeApp.Models
         public Employee()
         {
             this.EmployeeDocs = new HashSet<EmployeeDoc>();
+            this.EmployeeRemarks = new HashSet<EmployeeRemark>();
         }
     
         public int EmpId { get; set; }
@@ -25,16 +26,18 @@ namespace EmployeeApp.Models
         public string fatherName { get; set; }
         public string Gender { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
+        public Nullable<int> DeptID { get; set; }
         public string Address { get; set; }
         public string Mobile { get; set; }
         public string Email { get; set; }
         public string Aadhaar { get; set; }
         public Nullable<System.DateTime> JoiningDate { get; set; }
         public string ImagePath { get; set; }
-        public Nullable<int> DeptID { get; set; }
     
         public virtual DeptMaster DeptMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeDoc> EmployeeDocs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeRemark> EmployeeRemarks { get; set; }
     }
 }

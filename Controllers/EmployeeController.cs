@@ -162,6 +162,11 @@ namespace EmployeeAppMVC.Controllers
                          .OrderByDescending(d => d.CreatedOn)
                          .ToList();
 
+            ViewBag.EmployeeRemarks = db.vw_EmployeeRemark
+                                .Where(r => r.EmpId == id)
+                                .OrderByDescending(r => r.CreatedOn)
+                                .ToList();
+
             // Pass the list to the View via ViewBag
             ViewBag.EmployeeDocuments = docs;
 
