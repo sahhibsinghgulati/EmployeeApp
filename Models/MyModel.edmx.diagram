@@ -4,20 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79934264aae449fb9b50940f721aaa3c" Name="Diagram1" ZoomLevel="76">
-        <EntityTypeShape EntityType="EmployeeAppDBModel.DeptMaster" Width="1.5" PointX="7.125" PointY="1.25" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.Employee" Width="1.5" PointX="9.5" PointY="1" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.UserRole" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.User" Width="1.5" PointX="2.75" PointY="1" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.vw_Employees" Width="1.5" PointX="5.125" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.vw_UserRole" Width="1.5" PointX="11.375" PointY="1.5" />
+      <Diagram DiagramId="79934264aae449fb9b50940f721aaa3c" Name="Diagram1" ZoomLevel="55">
+        <EntityTypeShape EntityType="EmployeeAppDBModel.DeptMaster" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.EmployeeDoc" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.EmployeeRemark" Width="1.5" PointX="5.25" PointY="7.75" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.Employee" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.UserRole" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.User" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.vw_EmployeeDocs" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.vw_EmployeeRemark" Width="1.5" PointX="7.75" PointY="4.75" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.vw_Employees" Width="1.5" PointX="7.75" PointY="8.75" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.vw_UserRole" Width="1.5" PointX="9.75" PointY="0.75" />
         <AssociationConnector Association="EmployeeAppDBModel.FK_Employees_DeptMaster" />
-        <AssociationConnector Association="EmployeeAppDBModel.FK_Users_UserRole" />
-        <AssociationConnector Association="EmployeeAppDBModel.FK_Users_Users" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.EmployeeDoc" Width="1.5" PointX="11.375" PointY="4" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.vw_EmployeeDocs" Width="1.5" PointX="7.25" PointY="3.75" />
         <AssociationConnector Association="EmployeeAppDBModel.FK_EmployeeDocs_Employee" />
         <AssociationConnector Association="EmployeeAppDBModel.FK_EmployeeDocs_Users" />
+        <AssociationConnector Association="EmployeeAppDBModel.FK_EmployeeRemark_Employees" />
+        <AssociationConnector Association="EmployeeAppDBModel.FK_Users_UserRole" />
+        <AssociationConnector Association="EmployeeAppDBModel.FK_Users_Users" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -25,10 +25,10 @@ namespace EmployeeApp.Models
         public string Password { get; set; }
         public Nullable<int> UserRoleID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeDoc> EmployeeDocs { get; set; }
         public virtual UserRole UserRole { get; set; }
         public virtual User Users1 { get; set; }
         public virtual User User1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeDoc> EmployeeDocs { get; set; }
     }
 }

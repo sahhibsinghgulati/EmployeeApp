@@ -26,12 +26,14 @@ namespace EmployeeApp.Models
         }
     
         public virtual DbSet<DeptMaster> DeptMasters { get; set; }
+        public virtual DbSet<EmployeeDoc> EmployeeDocs { get; set; }
+        public virtual DbSet<EmployeeRemark> EmployeeRemarks { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<vw_EmployeeDocs> vw_EmployeeDocs { get; set; }
+        public virtual DbSet<vw_EmployeeRemark> vw_EmployeeRemark { get; set; }
         public virtual DbSet<vw_Employees> vw_Employees { get; set; }
         public virtual DbSet<vw_UserRole> vw_UserRole { get; set; }
-        public virtual DbSet<EmployeeDoc> EmployeeDocs { get; set; }
-        public virtual DbSet<vw_EmployeeDocs> vw_EmployeeDocs { get; set; }
     }
 }

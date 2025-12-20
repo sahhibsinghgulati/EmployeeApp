@@ -12,16 +12,41 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeDocs">
+      <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeDoc">
+        <MappingFragment StoreEntitySet="EmployeeDocs">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DocPath" ColumnName="DocPath" />
+          <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
+          <ScalarProperty Name="DocName" ColumnName="DocName" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="DocID" ColumnName="DocID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeRemarks">
+      <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeRemark">
+        <MappingFragment StoreEntitySet="EmployeeRemark">
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="RemID" ColumnName="RemID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Employees">
       <EntityTypeMapping TypeName="EmployeeAppDBModel.Employee">
         <MappingFragment StoreEntitySet="Employees">
-          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
           <ScalarProperty Name="Aadhaar" ColumnName="Aadhaar" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Mobile" ColumnName="Mobile" />
           <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
           <ScalarProperty Name="DOB" ColumnName="DOB" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="fatherName" ColumnName="fatherName" />
@@ -45,6 +70,35 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_EmployeeDocs">
+      <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_EmployeeDocs">
+        <MappingFragment StoreEntitySet="vw_EmployeeDocs">
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DocPath" ColumnName="DocPath" />
+          <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
+          <ScalarProperty Name="DocName" ColumnName="DocName" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="DocID" ColumnName="DocID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vw_EmployeeRemark">
+      <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_EmployeeRemark">
+        <MappingFragment StoreEntitySet="vw_EmployeeRemark">
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+          <ScalarProperty Name="RemID" ColumnName="RemID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -78,33 +132,6 @@
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="EmployeeDocs">
-      <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeDoc">
-        <MappingFragment StoreEntitySet="EmployeeDocs">
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="DocPath" ColumnName="DocPath" />
-          <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
-          <ScalarProperty Name="DocName" ColumnName="DocName" />
-          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-          <ScalarProperty Name="DocID" ColumnName="DocID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="vw_EmployeeDocs">
-      <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_EmployeeDocs">
-        <MappingFragment StoreEntitySet="vw_EmployeeDocs">
-          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="DocPath" ColumnName="DocPath" />
-          <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
-          <ScalarProperty Name="DocName" ColumnName="DocName" />
-          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-          <ScalarProperty Name="DocID" ColumnName="DocID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

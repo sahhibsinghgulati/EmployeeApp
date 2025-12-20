@@ -22,6 +22,17 @@
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreatedOn" Type="datetime" />
   </EntityType>
+  <EntityType Name="EmployeeRemark">
+    <Key>
+      <PropertyRef Name="RemID" />
+    </Key>
+    <Property Name="EmpId" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="Remark" Type="nvarchar(max)" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
+    <Property Name="FilePath" Type="nvarchar(max)" />
+    <Property Name="RemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
   <EntityType Name="Employees">
     <Key>
       <PropertyRef Name="EmpId" />
@@ -73,6 +84,23 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_EmployeeDocs' does not have a
     <Property Name="DocPath" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreatedBy" Type="int" />
     <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeAppDB.dbo.vw_EmployeeRemark' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_EmployeeRemark">
+    <Key>
+      <PropertyRef Name="RemID" />
+      <PropertyRef Name="EmployeeName" />
+    </Key>
+    <Property Name="RemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EmpId" Type="int" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DeptID" Type="int" />
+    <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remark" Type="nvarchar(max)" />
+    <Property Name="FilePath" Type="nchar" MaxLength="10" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -137,6 +165,18 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_EmployeeRemark_Employees">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="EmployeeRemark" Type="Self.EmployeeRemark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="EmployeeRemark">
+        <PropertyRef Name="EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Employees_DeptMaster">
     <End Role="DeptMaster" Type="Self.DeptMaster" Multiplicity="0..1" />
     <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
@@ -176,6 +216,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
   <EntityContainer Name="EmployeeAppDBModelStoreContainer">
     <EntitySet Name="DeptMaster" EntityType="Self.DeptMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmployeeDocs" EntityType="Self.EmployeeDocs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeRemark" EntityType="Self.EmployeeRemark" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -190,6 +231,19 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
     [vw_EmployeeDocs].[CreatedBy] AS [CreatedBy], 
     [vw_EmployeeDocs].[CreatedOn] AS [CreatedOn]
     FROM [dbo].[vw_EmployeeDocs] AS [vw_EmployeeDocs]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_EmployeeRemark" EntityType="Self.vw_EmployeeRemark" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_EmployeeRemark].[RemID] AS [RemID], 
+    [vw_EmployeeRemark].[EmpId] AS [EmpId], 
+    [vw_EmployeeRemark].[EmployeeName] AS [EmployeeName], 
+    [vw_EmployeeRemark].[DeptID] AS [DeptID], 
+    [vw_EmployeeRemark].[DeptName] AS [DeptName], 
+    [vw_EmployeeRemark].[Remark] AS [Remark], 
+    [vw_EmployeeRemark].[FilePath] AS [FilePath], 
+    [vw_EmployeeRemark].[CreatedOn] AS [CreatedOn], 
+    [vw_EmployeeRemark].[Type] AS [Type]
+    FROM [dbo].[vw_EmployeeRemark] AS [vw_EmployeeRemark]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="vw_Employees" EntityType="Self.vw_Employees" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -227,6 +281,10 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
     <AssociationSet Name="FK_EmployeeDocs_Users" Association="Self.FK_EmployeeDocs_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="EmployeeDocs" EntitySet="EmployeeDocs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeRemark_Employees" Association="Self.FK_EmployeeRemark_Employees">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="EmployeeRemark" EntitySet="EmployeeRemark" />
     </AssociationSet>
     <AssociationSet Name="FK_Employees_DeptMaster" Association="Self.FK_Employees_DeptMaster">
       <End Role="DeptMaster" EntitySet="DeptMaster" />

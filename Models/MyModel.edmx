@@ -27,6 +27,17 @@
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
         </EntityType>
+        <EntityType Name="EmployeeRemark">
+          <Key>
+            <PropertyRef Name="RemID" />
+          </Key>
+          <Property Name="EmpId" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="FilePath" Type="nvarchar(max)" />
+          <Property Name="RemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="EmpId" />
@@ -78,6 +89,23 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_EmployeeDocs' does not have a
           <Property Name="DocPath" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeAppDB.dbo.vw_EmployeeRemark' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_EmployeeRemark">
+          <Key>
+            <PropertyRef Name="RemID" />
+            <PropertyRef Name="EmployeeName" />
+          </Key>
+          <Property Name="RemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="int" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DeptID" Type="int" />
+          <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="FilePath" Type="nchar" MaxLength="10" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -142,6 +170,18 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EmployeeRemark_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="EmployeeRemark" Type="Self.EmployeeRemark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmpId" />
+            </Principal>
+            <Dependent Role="EmployeeRemark">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Employees_DeptMaster">
           <End Role="DeptMaster" Type="Self.DeptMaster" Multiplicity="0..1" />
           <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
@@ -181,6 +221,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
         <EntityContainer Name="EmployeeAppDBModelStoreContainer">
           <EntitySet Name="DeptMaster" EntityType="Self.DeptMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeDocs" EntityType="Self.EmployeeDocs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeRemark" EntityType="Self.EmployeeRemark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -195,6 +236,19 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
     [vw_EmployeeDocs].[CreatedBy] AS [CreatedBy], 
     [vw_EmployeeDocs].[CreatedOn] AS [CreatedOn]
     FROM [dbo].[vw_EmployeeDocs] AS [vw_EmployeeDocs]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_EmployeeRemark" EntityType="Self.vw_EmployeeRemark" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_EmployeeRemark].[RemID] AS [RemID], 
+    [vw_EmployeeRemark].[EmpId] AS [EmpId], 
+    [vw_EmployeeRemark].[EmployeeName] AS [EmployeeName], 
+    [vw_EmployeeRemark].[DeptID] AS [DeptID], 
+    [vw_EmployeeRemark].[DeptName] AS [DeptName], 
+    [vw_EmployeeRemark].[Remark] AS [Remark], 
+    [vw_EmployeeRemark].[FilePath] AS [FilePath], 
+    [vw_EmployeeRemark].[CreatedOn] AS [CreatedOn], 
+    [vw_EmployeeRemark].[Type] AS [Type]
+    FROM [dbo].[vw_EmployeeRemark] AS [vw_EmployeeRemark]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_Employees" EntityType="Self.vw_Employees" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -233,6 +287,10 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             <End Role="Users" EntitySet="Users" />
             <End Role="EmployeeDocs" EntitySet="EmployeeDocs" />
           </AssociationSet>
+          <AssociationSet Name="FK_EmployeeRemark_Employees" Association="Self.FK_EmployeeRemark_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeeRemark" EntitySet="EmployeeRemark" />
+          </AssociationSet>
           <AssociationSet Name="FK_Employees_DeptMaster" Association="Self.FK_Employees_DeptMaster">
             <End Role="DeptMaster" EntitySet="DeptMaster" />
             <End Role="Employees" EntitySet="Employees" />
@@ -252,14 +310,30 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
       <Schema Namespace="EmployeeAppDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="EmployeeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="DeptMasters" EntityType="EmployeeAppDBModel.DeptMaster" />
+          <EntitySet Name="EmployeeDocs" EntityType="EmployeeAppDBModel.EmployeeDoc" />
+          <EntitySet Name="EmployeeRemarks" EntityType="EmployeeAppDBModel.EmployeeRemark" />
           <EntitySet Name="Employees" EntityType="EmployeeAppDBModel.Employee" />
           <EntitySet Name="UserRoles" EntityType="EmployeeAppDBModel.UserRole" />
           <EntitySet Name="Users" EntityType="EmployeeAppDBModel.User" />
+          <EntitySet Name="vw_EmployeeDocs" EntityType="EmployeeAppDBModel.vw_EmployeeDocs" />
+          <EntitySet Name="vw_EmployeeRemark" EntityType="EmployeeAppDBModel.vw_EmployeeRemark" />
           <EntitySet Name="vw_Employees" EntityType="EmployeeAppDBModel.vw_Employees" />
           <EntitySet Name="vw_UserRole" EntityType="EmployeeAppDBModel.vw_UserRole" />
           <AssociationSet Name="FK_Employees_DeptMaster" Association="EmployeeAppDBModel.FK_Employees_DeptMaster">
             <End Role="DeptMaster" EntitySet="DeptMasters" />
             <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeDocs_Employee" Association="EmployeeAppDBModel.FK_EmployeeDocs_Employee">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeDoc" EntitySet="EmployeeDocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeDocs_Users" Association="EmployeeAppDBModel.FK_EmployeeDocs_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="EmployeeDoc" EntitySet="EmployeeDocs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeRemark_Employees" Association="EmployeeAppDBModel.FK_EmployeeRemark_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="EmployeeRemark" EntitySet="EmployeeRemarks" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_UserRole" Association="EmployeeAppDBModel.FK_Users_UserRole">
             <End Role="UserRole" EntitySet="UserRoles" />
@@ -268,16 +342,6 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <AssociationSet Name="FK_Users_Users" Association="EmployeeAppDBModel.FK_Users_Users">
             <End Role="User" EntitySet="Users" />
             <End Role="User1" EntitySet="Users" />
-          </AssociationSet>
-          <EntitySet Name="EmployeeDocs" EntityType="EmployeeAppDBModel.EmployeeDoc" />
-          <EntitySet Name="vw_EmployeeDocs" EntityType="EmployeeAppDBModel.vw_EmployeeDocs" />
-          <AssociationSet Name="FK_EmployeeDocs_Employee" Association="EmployeeAppDBModel.FK_EmployeeDocs_Employee">
-            <End Role="Employee" EntitySet="Employees" />
-            <End Role="EmployeeDoc" EntitySet="EmployeeDocs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EmployeeDocs_Users" Association="EmployeeAppDBModel.FK_EmployeeDocs_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="EmployeeDoc" EntitySet="EmployeeDocs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="DeptMaster">
@@ -291,6 +355,32 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Employees" Relationship="EmployeeAppDBModel.FK_Employees_DeptMaster" FromRole="DeptMaster" ToRole="Employee" />
         </EntityType>
+        <EntityType Name="EmployeeDoc">
+          <Key>
+            <PropertyRef Name="DocID" />
+          </Key>
+          <Property Name="DocID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="Int32" />
+          <Property Name="DocName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DocDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DocPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Employee" FromRole="EmployeeDoc" ToRole="Employee" />
+          <NavigationProperty Name="User" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Users" FromRole="EmployeeDoc" ToRole="User" />
+        </EntityType>
+        <EntityType Name="EmployeeRemark">
+          <Key>
+            <PropertyRef Name="RemID" />
+          </Key>
+          <Property Name="RemID" Type="Int32" Nullable="false" />
+          <Property Name="EmpId" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Employee" Relationship="EmployeeAppDBModel.FK_EmployeeRemark_Employees" FromRole="EmployeeRemark" ToRole="Employee" />
+        </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="EmpId" />
@@ -300,15 +390,16 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <Property Name="fatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="DeptID" Type="Int32" />
           <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Aadhaar" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="JoiningDate" Type="DateTime" Precision="0" />
           <Property Name="ImagePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="DeptID" Type="Int32" />
           <NavigationProperty Name="DeptMaster" Relationship="EmployeeAppDBModel.FK_Employees_DeptMaster" FromRole="Employee" ToRole="DeptMaster" />
           <NavigationProperty Name="EmployeeDocs" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Employee" FromRole="Employee" ToRole="EmployeeDoc" />
+          <NavigationProperty Name="EmployeeRemarks" Relationship="EmployeeAppDBModel.FK_EmployeeRemark_Employees" FromRole="Employee" ToRole="EmployeeRemark" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -326,10 +417,42 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserRoleID" Type="Int32" />
+          <NavigationProperty Name="EmployeeDocs" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Users" FromRole="User" ToRole="EmployeeDoc" />
           <NavigationProperty Name="UserRole" Relationship="EmployeeAppDBModel.FK_Users_UserRole" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="Users1" Relationship="EmployeeAppDBModel.FK_Users_Users" FromRole="User" ToRole="User1" />
           <NavigationProperty Name="User1" Relationship="EmployeeAppDBModel.FK_Users_Users" FromRole="User1" ToRole="User" />
-          <NavigationProperty Name="EmployeeDocs" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Users" FromRole="User" ToRole="EmployeeDoc" />
+        </EntityType>
+        <EntityType Name="vw_EmployeeDocs">
+          <Key>
+            <PropertyRef Name="DocID" />
+            <PropertyRef Name="EmpId" />
+            <PropertyRef Name="EmployeeName" />
+            <PropertyRef Name="DocName" />
+            <PropertyRef Name="DocPath" />
+          </Key>
+          <Property Name="DocID" Type="Int32" Nullable="false" />
+          <Property Name="EmpId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DocName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DocDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DocPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="vw_EmployeeRemark">
+          <Key>
+            <PropertyRef Name="RemID" />
+            <PropertyRef Name="EmployeeName" />
+          </Key>
+          <Property Name="RemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="Int32" />
+          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DeptID" Type="Int32" />
+          <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vw_Employees">
           <Key>
@@ -378,61 +501,6 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Users_UserRole">
-          <End Type="EmployeeAppDBModel.UserRole" Role="UserRole" Multiplicity="0..1" />
-          <End Type="EmployeeAppDBModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserRole">
-              <PropertyRef Name="UserRoleID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="UserRoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Users_Users">
-          <End Type="EmployeeAppDBModel.User" Role="User" Multiplicity="1" />
-          <End Type="EmployeeAppDBModel.User" Role="User1" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="User1">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="EmployeeDoc">
-          <Key>
-            <PropertyRef Name="DocID" />
-          </Key>
-          <Property Name="DocID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmpId" Type="Int32" />
-          <Property Name="DocName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DocDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DocPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Employee" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Employee" FromRole="EmployeeDoc" ToRole="Employee" />
-          <NavigationProperty Name="User" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Users" FromRole="EmployeeDoc" ToRole="User" />
-        </EntityType>
-        <EntityType Name="vw_EmployeeDocs">
-          <Key>
-            <PropertyRef Name="DocID" />
-            <PropertyRef Name="EmpId" />
-            <PropertyRef Name="EmployeeName" />
-            <PropertyRef Name="DocName" />
-            <PropertyRef Name="DocPath" />
-          </Key>
-          <Property Name="DocID" Type="Int32" Nullable="false" />
-          <Property Name="EmpId" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DocName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="DocDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="DocPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
-        </EntityType>
         <Association Name="FK_EmployeeDocs_Employee">
           <End Type="EmployeeAppDBModel.Employee" Role="Employee" Multiplicity="0..1" />
           <End Type="EmployeeAppDBModel.EmployeeDoc" Role="EmployeeDoc" Multiplicity="*" />
@@ -457,7 +525,43 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_EmployeeRemark_Employees">
+          <End Type="EmployeeAppDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="EmployeeAppDBModel.EmployeeRemark" Role="EmployeeRemark" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpId" />
+            </Principal>
+            <Dependent Role="EmployeeRemark">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserRole">
+          <End Type="EmployeeAppDBModel.UserRole" Role="UserRole" Multiplicity="0..1" />
+          <End Type="EmployeeAppDBModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="UserRoleID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserRoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Users">
+          <End Type="EmployeeAppDBModel.User" Role="User" Multiplicity="1" />
+          <End Type="EmployeeAppDBModel.User" Role="User1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="User1">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -474,16 +578,41 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeDocs">
+            <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeDoc">
+              <MappingFragment StoreEntitySet="EmployeeDocs">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DocPath" ColumnName="DocPath" />
+                <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
+                <ScalarProperty Name="DocName" ColumnName="DocName" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="DocID" ColumnName="DocID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeRemarks">
+            <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeRemark">
+              <MappingFragment StoreEntitySet="EmployeeRemark">
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="RemID" ColumnName="RemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="EmployeeAppDBModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
                 <ScalarProperty Name="Aadhaar" ColumnName="Aadhaar" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Mobile" ColumnName="Mobile" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="fatherName" ColumnName="fatherName" />
@@ -507,6 +636,35 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_EmployeeDocs">
+            <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_EmployeeDocs">
+              <MappingFragment StoreEntitySet="vw_EmployeeDocs">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="DocPath" ColumnName="DocPath" />
+                <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
+                <ScalarProperty Name="DocName" ColumnName="DocName" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="DocID" ColumnName="DocID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_EmployeeRemark">
+            <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_EmployeeRemark">
+              <MappingFragment StoreEntitySet="vw_EmployeeRemark">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="DeptID" ColumnName="DeptID" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="RemID" ColumnName="RemID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -540,33 +698,6 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EmployeeDocs">
-            <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeDoc">
-              <MappingFragment StoreEntitySet="EmployeeDocs">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DocPath" ColumnName="DocPath" />
-                <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
-                <ScalarProperty Name="DocName" ColumnName="DocName" />
-                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-                <ScalarProperty Name="DocID" ColumnName="DocID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vw_EmployeeDocs">
-            <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_EmployeeDocs">
-              <MappingFragment StoreEntitySet="vw_EmployeeDocs">
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-                <ScalarProperty Name="DocPath" ColumnName="DocPath" />
-                <ScalarProperty Name="DocDesc" ColumnName="DocDesc" />
-                <ScalarProperty Name="DocName" ColumnName="DocName" />
-                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
-                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
-                <ScalarProperty Name="DocID" ColumnName="DocID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
