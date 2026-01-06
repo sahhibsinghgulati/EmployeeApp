@@ -20,6 +20,7 @@ namespace EmployeeApp.Models
         public string Remark { get; set; }
         public string Type { get; set; }
         public string FilePath { get; set; }
+        public Nullable<decimal> Amount { get; set; }
     
         public virtual Employee Employee { get; set; }
     }

@@ -31,12 +31,13 @@
           <Key>
             <PropertyRef Name="RemID" />
           </Key>
+          <Property Name="RemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmpId" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="Remark" Type="nvarchar(max)" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="FilePath" Type="nvarchar(max)" />
-          <Property Name="RemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -54,6 +55,7 @@
           <Property Name="Aadhaar" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="JoiningDate" Type="date" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="300" />
+          <Property Name="TallyGuid" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -97,7 +99,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_EmployeeRemark' does not have
             <PropertyRef Name="RemID" />
             <PropertyRef Name="EmployeeName" />
           </Key>
-          <Property Name="RemID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RemID" Type="int" Nullable="false" />
           <Property Name="EmpId" Type="int" />
           <Property Name="EmployeeName" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="DeptID" Type="int" />
@@ -373,12 +375,13 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <Key>
             <PropertyRef Name="RemID" />
           </Key>
-          <Property Name="RemID" Type="Int32" Nullable="false" />
+          <Property Name="RemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmpId" Type="Int32" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="Employee" Relationship="EmployeeAppDBModel.FK_EmployeeRemark_Employees" FromRole="EmployeeRemark" ToRole="Employee" />
         </EntityType>
         <EntityType Name="Employee">
@@ -397,6 +400,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <Property Name="Aadhaar" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="JoiningDate" Type="DateTime" Precision="0" />
           <Property Name="ImagePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="TallyGuid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DeptMaster" Relationship="EmployeeAppDBModel.FK_Employees_DeptMaster" FromRole="Employee" ToRole="DeptMaster" />
           <NavigationProperty Name="EmployeeDocs" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Employee" FromRole="Employee" ToRole="EmployeeDoc" />
           <NavigationProperty Name="EmployeeRemarks" Relationship="EmployeeAppDBModel.FK_EmployeeRemark_Employees" FromRole="Employee" ToRole="EmployeeRemark" />
@@ -444,7 +448,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             <PropertyRef Name="RemID" />
             <PropertyRef Name="EmployeeName" />
           </Key>
-          <Property Name="RemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RemID" Type="Int32" Nullable="false" />
           <Property Name="EmpId" Type="Int32" />
           <Property Name="EmployeeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="DeptID" Type="Int32" />
@@ -594,6 +598,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <EntitySetMapping Name="EmployeeRemarks">
             <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeRemark">
               <MappingFragment StoreEntitySet="EmployeeRemark">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="FilePath" ColumnName="FilePath" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -606,6 +611,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="EmployeeAppDBModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="TallyGuid" ColumnName="TallyGuid" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
                 <ScalarProperty Name="Aadhaar" ColumnName="Aadhaar" />

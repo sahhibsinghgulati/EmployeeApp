@@ -1,0 +1,2458 @@
+[02-Jan-26 12:08:19 PM] Starting JSON Transaction for: hnhnhnh
+[02-Jan-26 12:25:43 PM] Starting JSON Transaction for: hnhnhnh
+[02-Jan-26 12:31:15 PM] Starting JSON Transaction for: hnhnhnh
+[02-Jan-26 12:31:48 PM] Starting JSON Transaction for: hnhnhnh
+[02-Jan-26 12:33:00 PM] Starting JSON Transaction for: hnhnhnh
+[02-Jan-26 12:35:16 PM] Starting JSON Transaction for: hnhnhnh
+[02-Jan-26 12:36:12 PM] Starting JSON Transaction for: xcxzc
+[02-Jan-26 12:42:18 PM] Starting JSON Transaction for: test
+[02-Jan-26 1:05:14 PM] Starting JSON Transaction for: test
+[02-Jan-26 1:06:06 PM] Starting JSON Transaction for: test
+[02-Jan-26 1:18:09 PM] Starting JSON Transaction for: Test
+[02-Jan-26 2:02:52 PM] Sending JSON to Tally...
+[02-Jan-26 2:04:37 PM] Sending JSON to Tally...
+[02-Jan-26 2:06:52 PM] Sending JSON to Tally...
+[02-Jan-26 3:27:55 PM] Syncing Ledgers...
+[02-Jan-26 3:28:24 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:28:45 PM] Ledger Sync (sahhib): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }
+}
+[02-Jan-26 3:28:52 PM] Sending JSON to Tally...
+[02-Jan-26 3:30:06 PM] Syncing Ledgers...
+[02-Jan-26 3:30:25 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:30:47 PM] Ledger Sync (sahhib): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }
+}
+[02-Jan-26 3:30:47 PM] Sending JSON to Tally...
+[02-Jan-26 3:33:31 PM] Syncing Ledgers...
+[02-Jan-26 3:40:41 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:40:44 PM] Ledger Sync (sahhib): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }
+}
+[02-Jan-26 3:40:44 PM] Sending JSON to Tally...
+[02-Jan-26 3:41:18 PM] Syncing Ledgers...
+[02-Jan-26 3:41:57 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:41:58 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "21", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "7", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "7", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 3:41:58 PM] Sending JSON to Tally...
+[02-Jan-26 3:42:06 PM] Syncing Ledgers...
+[02-Jan-26 3:42:35 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "22", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "8", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "8", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 3:42:35 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "22", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "8", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "8", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 3:42:35 PM] Sending JSON to Tally...
+[02-Jan-26 3:43:16 PM] Syncing Ledgers...
+[02-Jan-26 3:45:55 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:46:04 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:46:04 PM] Sending JSON to Tally...
+[02-Jan-26 3:48:23 PM] Syncing Ledgers...
+[02-Jan-26 3:48:47 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:48:57 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }
+}
+[02-Jan-26 3:49:02 PM] Sending JSON to Tally...
+[02-Jan-26 3:49:28 PM] Syncing Ledgers...
+[02-Jan-26 3:50:35 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }
+}
+[02-Jan-26 3:50:37 PM] Ledger Sync (Fines & Penalties): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:50:37 PM] Sending JSON to Tally...
+[02-Jan-26 3:50:38 PM] Syncing Ledgers...
+[02-Jan-26 3:50:39 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }
+}
+[02-Jan-26 3:50:39 PM] Ledger Sync (Fines & Penalties): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:50:39 PM] Sending JSON to Tally...
+[02-Jan-26 3:50:55 PM] Syncing Ledgers...
+[02-Jan-26 3:51:45 PM] Ledger Sync (jmjmjm): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }
+}
+[02-Jan-26 3:51:45 PM] Ledger Sync (Fines & Penalties): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:51:45 PM] Sending JSON to Tally...
+[02-Jan-26 3:51:53 PM] Syncing Ledgers...
+[02-Jan-26 3:52:01 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }
+}
+[02-Jan-26 3:55:35 PM] Ledger Sync (jmjmjm): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }
+}
+[02-Jan-26 3:55:35 PM] Sending JSON to Tally...
+[02-Jan-26 4:07:35 PM] Syncing Ledgers...
+[02-Jan-26 4:07:41 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "29", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "15", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "15", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:07:52 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "29", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "15", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "15", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:07:52 PM] Sending JSON to Tally...
+[02-Jan-26 4:10:03 PM] Syncing Ledgers...
+[02-Jan-26 4:11:44 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "30", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "16", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "16", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:11:45 PM] Ledger Sync (jmjmjm): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "30", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "16", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "16", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:11:45 PM] Sending JSON to Tally...
+[02-Jan-26 4:12:20 PM] Syncing Ledgers...
+[02-Jan-26 4:12:35 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "31", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "17", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "17", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:12:36 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "31", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "17", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "17", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:12:36 PM] Sending JSON to Tally...
+[02-Jan-26 4:12:43 PM] Syncing Ledgers...
+[02-Jan-26 4:12:50 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "32", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "18", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "18", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:16:48 PM] Syncing Ledgers...
+[02-Jan-26 4:18:31 PM] Syncing Ledgers...
+[02-Jan-26 4:20:05 PM] Ledger Sync (Salary Expense): {
+    "status": "0", 
+    "error_list": [
+        "Could not find Report 'Master'!"
+    ]
+}
+[02-Jan-26 4:20:06 PM] Ledger Sync (asd): {
+    "status": "0", 
+    "error_list": [
+        "Could not find Report 'Ledgers'!"
+    ]
+}
+[02-Jan-26 4:20:06 PM] Sending JSON to Tally...
+[02-Jan-26 4:20:31 PM] Syncing Ledgers...
+[02-Jan-26 4:21:37 PM] Ledger Sync (asd): {
+    "status": "0", 
+    "error_list": [
+        "Could not find Report 'Ledgers'!"
+    ]
+}
+[02-Jan-26 4:21:38 PM] Ledger Sync (Fines & Penalties): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "33", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "19", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "19", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:21:38 PM] Sending JSON to Tally...
+[02-Jan-26 4:21:49 PM] Syncing Ledgers...
+[02-Jan-26 4:22:02 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "34", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "20", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "20", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:22:02 PM] Ledger Sync (asd): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "34", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "20", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "20", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:22:02 PM] Sending JSON to Tally...
+[02-Jan-26 4:26:32 PM] Syncing Ledgers...
+[02-Jan-26 4:34:34 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "35", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "21", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "21", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:40:26 PM] Ledger Sync (asd): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "35", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "21", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "21", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:40:26 PM] Sending JSON to Tally...
+[02-Jan-26 4:40:34 PM] Syncing Ledgers...
+[02-Jan-26 4:43:01 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 1, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "36", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "22", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "22", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:43:02 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 1
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "36", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "22", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "22", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:43:02 PM] Sending JSON to Tally...
+[02-Jan-26 4:43:11 PM] Syncing Ledgers...
+[02-Jan-26 4:43:29 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "38", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "23", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "23", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:43:45 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "39", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "4", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "23", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "23", 
+        "voucher": "8"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:43:50 PM] Sending JSON to Tally...
+[02-Jan-26 4:47:09 PM] Syncing Ledgers...
+[02-Jan-26 4:47:14 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "43", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "5", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "24", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "24", 
+        "voucher": "10"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:47:19 PM] Ledger Sync (xcvxcvxc): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "44", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "5", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "24", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "24", 
+        "voucher": "10"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:47:23 PM] Sending JSON to Tally...
+[02-Jan-26 4:48:56 PM] Syncing Ledgers...
+[02-Jan-26 4:49:06 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "48", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "6", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "25", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "25", 
+        "voucher": "12"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:49:06 PM] Ledger Sync (jmjmjm): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "49", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "2", 
+        "currency": "6", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "25", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "25", 
+        "voucher": "12"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[02-Jan-26 4:49:06 PM] Sending JSON to Tally...
+[06-Jan-26 2:19:18 PM] Syncing Ledgers...
+[06-Jan-26 2:19:19 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "1", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "0", 
+        "currency": "0", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "0", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "0", 
+        "voucher": "0"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:19:19 PM] Ledger Sync (Fines & Penalties): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "2", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "0", 
+        "currency": "0", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "0", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "0", 
+        "voucher": "0"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:19:19 PM] Sending JSON to Tally...
+[06-Jan-26 2:20:47 PM] Syncing Ledgers...
+[06-Jan-26 2:20:47 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "6", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "0", 
+        "currency": "1", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "1", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "1", 
+        "voucher": "2"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:20:47 PM] Ledger Sync (sahhib): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "7", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "0", 
+        "currency": "1", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "1", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "1", 
+        "voucher": "2"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:20:47 PM] Sending JSON to Tally...
+[06-Jan-26 2:22:10 PM] Syncing Ledgers...
+[06-Jan-26 2:22:10 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "11", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "0", 
+        "currency": "2", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "2", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "2", 
+        "voucher": "4"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:22:10 PM] Ledger Sync (Testabc): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 1, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "12", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "0", 
+        "currency": "2", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "2", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "2", 
+        "voucher": "4"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:22:10 PM] Sending JSON to Tally...
+[06-Jan-26 2:36:28 PM] Syncing Ledgers...
+[06-Jan-26 2:36:28 PM] Ledger Sync (Salary Expense): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "38", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "6", 
+        "currency": "9", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "9", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "9", 
+        "voucher": "18"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:36:28 PM] Ledger Sync (Testabc): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 1, 
+            "altered": 0, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "39", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "6", 
+        "currency": "9", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "9", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "9", 
+        "voucher": "18"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:36:28 PM] Sending JSON to Tally...
+[06-Jan-26 2:36:45 PM] Renaming Ledger from 'Testabc' to 'Test'...
+[06-Jan-26 2:45:04 PM] Syncing Ledgers...
+[06-Jan-26 2:45:04 PM] Ledger Sync (Test): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "44", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "6", 
+        "currency": "10", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "10", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "10", 
+        "voucher": "20"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:45:04 PM] Ledger Sync (Fines & Penalties): {
+    "status": "1", 
+    "data": {
+        "import_result": {
+            "created": 0, 
+            "altered": 1, 
+            "deleted": 0, 
+            "lastvchid": 0, 
+            "lastmid": 0, 
+            "combined": 0, 
+            "ignored": 0, 
+            "errors": 0, 
+            "cancelled": 0, 
+            "exceptions": 0
+        }
+    }, 
+    "cmp_info": {
+        "company": "0", 
+        "group": "0", 
+        "ledger": "45", 
+        "costcategory": "0", 
+        "costcentre": "0", 
+        "godown": "0", 
+        "stockgroup": "0", 
+        "stockcategory": "0", 
+        "stockitem": "0", 
+        "vouchertype": "6", 
+        "currency": "10", 
+        "unit": "0", 
+        "budget": "0", 
+        "clientrule": "0", 
+        "serverrule": "0", 
+        "state": "0", 
+        "tdsrate": "0", 
+        "taxclassification": "0", 
+        "stcategory": "0", 
+        "deducteetype": "0", 
+        "attendancetype": "0", 
+        "fbtcategory": "0", 
+        "fbtassesseetype": "0", 
+        "tariffclassification": "0", 
+        "excisedutyclassification": "0", 
+        "serialnumber": "0", 
+        "adjustmentclassification": "0", 
+        "incometaxslab": "0", 
+        "incometaxclassification": "0", 
+        "lbtclassification": "0", 
+        "taxunit": "10", 
+        "returnmaster": "0", 
+        "gstclassification": "0", 
+        "vouchernumberseries": "10", 
+        "voucher": "20"
+    }, 
+    "cmpinfoex": {
+        "idinfo": {
+            "lastcreatedvchid": "0"
+        }
+    }, 
+    "mstaltidinfo": {
+        "expsumid": "0"
+    }
+}
+[06-Jan-26 2:45:04 PM] Sending JSON to Tally...

@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EmployeeApp.Models;
+using System;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.Xml;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using EmployeeApp.Models;
 
 namespace EmployeeApp.Controllers
 {
@@ -43,51 +44,76 @@ namespace EmployeeApp.Controllers
             return View(rems);
         }
 
-        //POST: Upload Document
+        // POST: Upload Document
         [HttpPost]
-        public ActionResult Upload(int EmpId, string Type, string Remark, HttpPostedFileBase fileUpload)
+        public ActionResult Upload(int EmpId, string Type, string Remark, decimal? Amount, HttpPostedFileBase fileUpload)
         {
             try
             {
+                // 1. File Upload (Standard)
                 string filePath = null;
-
                 if (fileUpload != null && fileUpload.ContentLength > 0)
                 {
                     string folderPath = Server.MapPath("~/EmployeeDocs/");
+                    if (!Directory.Exists(folderPath)) Directory.CreateDirectory(folderPath);
                     string extension = Path.GetExtension(fileUpload.FileName);
-                    string timeStamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-                    string fileName = $"{EmpId}_RemarkDoc_{timeStamp}{extension}";
-
+                    string fileName = $"{EmpId}_RemarkDoc_{DateTime.Now:yyyyMMddHHmmss}{extension}";
                     string fullPath = Path.Combine(folderPath, fileName);
                     fileUpload.SaveAs(fullPath);
-
                     filePath = "~/EmployeeDocs/" + fileName;
                 }
+
+                // 2. Save to Database
                 EmployeeRemark newRem = new EmployeeRemark
                 {
                     EmpId = EmpId,
-                    Type = Type,               
+                    Type = Type,
                     Remark = Remark,
-                    FilePath = filePath,      
-                    CreatedOn = DateTime.Now
+                    FilePath = filePath,
+                    CreatedOn = DateTime.Now,
+                    Amount = Amount
                 };
-
                 db.EmployeeRemarks.Add(newRem);
                 db.SaveChanges();
 
-                TempData["Message"] = "Remark saved successfully!";
+                // 3. TALLY INTEGRATION (JSON MODE)
+                string tallyMsg = "";
+
+                if (Amount.HasValue && (Type.Contains("Fine") || Type.Contains("Credit")))
+                {
+                    var emp = db.Employees.Find(EmpId);
+                    if (emp != null)
+                    {
+                        TallyService tally = new TallyService();
+
+                        // Post Voucher (Returns JSON String)
+                        string response = tally.PostVoucherToTally(emp.Name, Type, Amount.Value);
+
+                        // --- JSON SUCCESS CHECK ---
+                        // We check for "created": 1 or "created":1 (handling spaces)
+                        if (!string.IsNullOrEmpty(response) &&
+                           (response.ToLower().Contains("\"created\": 1") || response.ToLower().Contains("\"created\":1")))
+                        {
+                            tallyMsg = " & Tally Updated.";
+                        }
+                        else
+                        {
+                            // If failed, response will likely contain errors or exceptions
+                            tallyMsg = " (Tally Failed - Check Logs).";
+                        }
+                    }
+                }
+
+                TempData["Message"] = "Remark saved successfully!" + tallyMsg;
             }
             catch (Exception ex)
             {
                 TempData["Error"] = "Upload failed: " + ex.Message;
             }
-            if (EmpId == 0)
-            {
-                throw new Exception("EmpId is ZERO — hidden field missing");
-            }
+
+            if (EmpId == 0) return RedirectToAction("Index");
             return RedirectToAction("Index");
         }
-
 
         public ActionResult Delete(int id)
             {

@@ -33,6 +33,7 @@ namespace EmployeeApp.Models
         public string Aadhaar { get; set; }
         public Nullable<System.DateTime> JoiningDate { get; set; }
         public string ImagePath { get; set; }
+        public string TallyGuid { get; set; }
     
         public virtual DeptMaster DeptMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

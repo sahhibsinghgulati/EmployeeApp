@@ -5,10 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="79934264aae449fb9b50940f721aaa3c" Name="Diagram1" ZoomLevel="55">
-        <EntityTypeShape EntityType="EmployeeAppDBModel.DeptMaster" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.DeptMaster" Width="1.5" PointX="0.75" PointY="8.125" />
         <EntityTypeShape EntityType="EmployeeAppDBModel.EmployeeDoc" Width="1.5" PointX="5.25" PointY="1" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.EmployeeRemark" Width="1.5" PointX="5.25" PointY="7.75" />
-        <EntityTypeShape EntityType="EmployeeAppDBModel.Employee" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.EmployeeRemark" Width="1.5" PointX="5.25" PointY="8" />
+        <EntityTypeShape EntityType="EmployeeAppDBModel.Employee" Width="1.5" PointX="3" PointY="7.125" />
         <EntityTypeShape EntityType="EmployeeAppDBModel.UserRole" Width="1.5" PointX="0.75" PointY="1.5" />
         <EntityTypeShape EntityType="EmployeeAppDBModel.User" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="EmployeeAppDBModel.vw_EmployeeDocs" Width="1.5" PointX="7.75" PointY="0.75" />

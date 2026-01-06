@@ -57,9 +57,23 @@
                                         Negative
                                     </label>
                                 </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Type" id="typeFine" value="Fine" onclick="toggleAmount(true)" />
+                                    <label class="form-check-label text-danger fw-bold" for="typeFine">Fine / Deduction</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="Type" id="typeCredit" value="Salary Credit" onclick="toggleAmount(true)" />
+                                    <label class="form-check-label text-success fw-bold" for="typeCredit">Salary Credit / Bonus</label>
+                                </div>
                             </div>
                         </div>
-
+                        <div class="form-group mb-3" id="divAmount" style="display:none;">
+                            <label>Amount (For Tally Ledger)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <input type="number" name="Amount" class="form-control" placeholder="0.00" step="0.01" />
+                            </div>
+                        </div>
                         <div class="form-group mb-3">
                             <label>Remark</label>
                             <textarea name="Remark" class="form-control" rows="3" placeholder="Enter Remark"></textarea>
@@ -67,7 +81,7 @@
 
                         <div class="form-group mb-3">
                             <label>Upload Supporting Documents</label>
-                            <input type="file" name="fileUpload" class="form-control"/>
+                            <input type="file" name="fileUpload" class="form-control" />
                         </div>
 
                         <button type="submit" class="btn btn-success">Upload Document</button>
@@ -146,7 +160,8 @@
 </div>
 
 @section Scripts {
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
             // Check if the alert exists
             var alertBox = $(".alert");
             if (alertBox.length > 0) {
@@ -155,5 +170,17 @@
                     alertBox.fadeOut("slow");
                 }, 5000);
             }
-        });</script>
+        });
+        function toggleAmount(show) {
+            var div = document.getElementById('divAmount');
+            if (show) {
+                $(div).slideDown();
+                div.querySelector('input').setAttribute('required', 'required');
+            } else {
+                $(div).slideUp();
+                div.querySelector('input').removeAttribute('required');
+                div.querySelector('input').value = ""; // clear value
+            }
+        }
+    </script>
 }
