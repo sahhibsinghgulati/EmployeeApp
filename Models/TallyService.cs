@@ -1,4 +1,5 @@
 ﻿using Antlr.Runtime.Misc;
+using EmployeeApp.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +13,8 @@ public class TallyService
 {
     private string _tallyUrl = "http://localhost:9000";
 
-    public string PostVoucherToTally(string empName, string type, decimal amount)
+    // CHANGE 1: Update parameter from 'string empName' to 'Employee emp'
+    public string PostVoucherToTally(Employee emp, string type, decimal amount, string remark)
     {
         try
         {
@@ -23,33 +25,37 @@ public class TallyService
             string debitGroup = "";
             string creditGroup = "";
 
-            string safeEmpName = empName.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            // CHANGE 2: Extract the name from the Employee object
+            string safeEmpName = emp.Name.Replace("\\", "\\\\").Replace("\"", "\\\"");
             string safeType = type.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            string safeRemark = (remark ?? "").Replace("\\", "\\\\").Replace("\"", "\\\"");
 
             if (type.Contains("Fine"))
             {
                 // FINE: Employee (Dr) pays Company (Cr)
                 debitLedger = safeEmpName;
-                debitGroup = "Sundry Creditors"; // FIXED: Assigned Group
+                debitGroup = "Employees";
 
                 creditLedger = "Fines & Penalties";
-                creditGroup = "Indirect Incomes"; // FIXED: Assigned Group
+                creditGroup = "Indirect Incomes";
             }
             else
             {
                 // SALARY: Company (Dr) pays Employee (Cr)
                 debitLedger = "Salary Expense";
-                debitGroup = "Indirect Expenses"; // FIXED: Assigned Group
+                debitGroup = "Indirect Expenses";
 
                 creditLedger = safeEmpName;
-                creditGroup = "Sundry Creditors"; // FIXED: Assigned Group
+                creditGroup = "Employees";
             }
 
             // 2. SYNC MASTERS (The New Step)
-            // We use 'Alter' to Create-or-Update. This ensures they exist before we post the voucher.
-            Log("Syncing Ledgers...");
-            SyncLedger(debitLedger, debitGroup);
-            SyncLedger(creditLedger, creditGroup);
+            //Log("Syncing Ledgers...");
+
+            //// CHANGE 3: Pass the 'emp' object to SyncLedger ONLY if the ledger is the employee
+            //// This ensures Address/PAN/GSTIN are sent for the person, but null is sent for "Fines" or "Salary Expense"
+            SyncLedger(debitLedger, debitGroup, (debitLedger == safeEmpName) ? emp : null);
+            SyncLedger(creditLedger, creditGroup, (creditLedger == safeEmpName) ? emp : null);
 
             // 2. AMOUNTS (Balanced)
             string absAmount = Math.Abs(amount).ToString("0.00");
@@ -62,7 +68,7 @@ public class TallyService
                 static_variables = new[]
                 {
                 new { name = "svVchImportFormat", value = "jsonex" },
-                new { name = "svCurrentCompany", value = "Employees" } // Ensure this matches your Tally Company Name exactly
+                new { name = "svCurrentCompany", value = "Employees" }
             },
                 tallymessage = new[]
                 {
@@ -77,11 +83,11 @@ public class TallyService
                         objview = "Accounting Voucher View"
                     },
 
-                    // 2. VOUCHER FIELDS (Directly here, NO "voucher" wrapper)
+                    // 2. VOUCHER FIELDS
                     date = DateTime.Now.ToString("yyyyMMdd"),
                     effectivedate = DateTime.Now.ToString("yyyyMMdd"),
                     vouchertypename = voucherTypeName,
-                    narration = "Auto-entry: " + safeType,
+                    narration = !string.IsNullOrEmpty(safeRemark) ? safeRemark : ("Auto-entry: " + safeType),
                     
                     // 3. LEDGER ENTRIES
                     ledgerentries = new object[]
@@ -105,9 +111,6 @@ public class TallyService
 
             string jsonBody = new JavaScriptSerializer().Serialize(voucherPayload);
 
-            // Note: We don't need the ".replace" hack anymore because "ledgerentries" 
-            // is a valid C# name (unlike "ledgerentries.list").
-
             Log("Sending JSON to Tally...");
 
             var headers = new Dictionary<string, string>
@@ -128,47 +131,138 @@ public class TallyService
         }
     }
 
-    private void SyncLedger(string ledgerName, string groupName)
+    public void SyncLedger(string name, string group, Employee emp = null)
     {
         try
         {
-            string safeName = ledgerName.Replace("\\", "\\\\").Replace("\"", "\\\"");
-            string safeGroup = groupName.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            if (string.IsNullOrEmpty(name)) return;
 
-            // Set your specific Tally Company Name here
+            // 1. EXTRACT DATA FROM EMPLOYEE OBJECT
+            string mailingName = null;
+            //string address = null;
+            string[] addressLines = null;
+            string state = null;
+            string country = null;
+            string pan = null;
+            string gstin = null;
+            string gstType = null;
+
+            if (emp != null)
+            {
+                mailingName = emp.Name;
+                //address = emp.Address;
+                if (!string.IsNullOrEmpty(emp.Address))
+                    addressLines = emp.Address.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+                //if (!string.IsNullOrEmpty(emp.State)) state = emp.State;
+                //if (!string.IsNullOrEmpty(emp.Country)) country = emp.Country;
+                //if (!string.IsNullOrEmpty(emp.PanNumber)) pan = emp.PanNumber;
+                //if (!string.IsNullOrEmpty(emp.GstNumber)) gstin = emp.GstNumber;
+
+                //// Auto-detect GST Type
+                //gstType = !string.IsNullOrEmpty(gstin) ? "Regular" : "Unregistered";
+            }
+
+            // 2. PREPARE SAFE STRINGS
+            string safeName = name.Replace("\\", "\\\\").Replace("\"", "\\\"");
+            string safeGroup = group.Replace("\\", "\\\\").Replace("\"", "\\\"");
             string companyName = "Employees";
 
+            // 3. BUILD DYNAMIC DICTIONARY
+            var ledgerObject = new Dictionary<string, object>();
+
+            // Mandatory
+            ledgerObject["name"] = safeName;
+            ledgerObject["parent"] = safeGroup;
+            ledgerObject["isbillwiseon"] = false;
+
+            //// Conditional: Only add if value exists
+            //if (!string.IsNullOrEmpty(mailingName)) ledgerObject["mailingname"] = mailingName;
+
+            //if (!string.IsNullOrEmpty(address))
+            //{
+            //    // Tally needs address as an array of lines
+            //    ledgerObject["address"] = address.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            //}
+
+            //if (!string.IsNullOrEmpty(state)) ledgerObject["statename"] = state;
+            //if (!string.IsNullOrEmpty(country)) ledgerObject["countryofresidence"] = country;
+
+            //if (!string.IsNullOrEmpty(pan)) ledgerObject["incometaxnumber"] = pan;
+            //if (!string.IsNullOrEmpty(gstType)) ledgerObject["gstregistrationtype"] = gstType;
+            //if (!string.IsNullOrEmpty(gstin)) ledgerObject["partygstin"] = gstin;
+
+            // 4. WRAP IN TALLY MESSAGE
+            //var payload = new
+            //{
+            //    static_variables = new[]
+            //    {
+            //        new { name = "svMstImportFormat", value = "jsonex" },
+            //        new { name = "svCurrentCompany", value = companyName }
+            //    },
+            //    tallymessage = new[]
+            //    {
+            //        new
+            //        {
+            //            // 1. METADATA
+            //            metadata = new
+            //            {
+            //                type = "Ledger",
+            //                action = "Alter", // CHANGED: Lowercase "create" enforces Group check
+            //                name = safeName
+            //            },
+
+            //            // 2. DATA
+            //            name = safeName,
+            //            parent = safeGroup, // This will now be read correctly
+
+            //            // Defaults
+            //            isbillwiseon = false,
+            //            iscostcentreson = false,
+            //            openingbalance = 0.00
+            //        }
+            //    }
+            //};
             var payload = new
             {
                 static_variables = new[]
-                {
-                    new { name = "svMstImportFormat", value = "jsonex" },
-                    new { name = "svCurrentCompany", value = companyName }
-                },
+            {
+                new { name = "svMstImportFormat", value = "jsonex" },
+                new { name = "svCurrentCompany", value = companyName }
+            },
                 tallymessage = new[]
+            {
+                new
                 {
-                    new
+                    // 1. METADATA
+                    metadata = new
                     {
-                        // 1. METADATA
-                        metadata = new
-                        {
-                            type = "Ledger",
-                            action = "Alter", // CHANGED: Lowercase "create" enforces Group check
-                            name = safeName
-                        },
-                        
-                        // 2. DATA
-                        name = safeName,
-                        parent = safeGroup, // This will now be read correctly
-                        
-                        // Defaults
-                        isbillwiseon = false,
-                        iscostcentreson = false,
-                        openingbalance = 0.00
-                    }
-                }
-            };
+                        type = "Ledger",
+                        action = "Alter",
+                        name = safeName
+                    },
 
+                    // 2. DATA (Siblings to Metadata)
+                    name = safeName,
+                    parent = safeGroup,
+                    
+                    // Optional Fields (Mapped from variables above)
+                    mailingname = mailingName,
+                    ledgeraddress = addressLines,
+                    ledstatename = state,
+                    countryofresidence = country,
+                    incometaxnumber = pan,
+                    partygstin = gstin,
+                    gstregistrationtype = gstType,
+
+                    // Defaults
+                    isbillwiseon = false,
+                    iscostcentreson = false,
+                    openingbalance = 0.00
+                }
+            }
+            };
+            // 5. SEND
             string jsonBody = new JavaScriptSerializer().Serialize(payload);
 
             var headers = new Dictionary<string, string>
@@ -181,16 +275,77 @@ public class TallyService
             };
 
             string result = SendJsonToTally(jsonBody, headers);
-
-            // Log the result. Note: If you see "Name already exists", that is GOOD. 
-            // It means the ledger is ready for the voucher.
-            Log("Ledger Sync (" + safeName + "): " + result);
+            // Log("Ledger Sync (" + safeName + "): " + result);
         }
         catch (Exception ex)
         {
-            Log("Ledger Sync Failed: " + ex.Message);
+            // Log("Ledger Sync Failed: " + ex.Message);
         }
     }
+
+    //private void SyncLedger(string ledgerName, string groupName)
+    //{
+    //    try
+    //    {
+    //        string safeName = ledgerName.Replace("\\", "\\\\").Replace("\"", "\\\"");
+    //        string safeGroup = groupName.Replace("\\", "\\\\").Replace("\"", "\\\"");
+
+    //        // Set your specific Tally Company Name here
+    //        string companyName = "Employees";
+
+    //        var payload = new
+    //        {
+    //            static_variables = new[]
+    //            {
+    //                new { name = "svMstImportFormat", value = "jsonex" },
+    //                new { name = "svCurrentCompany", value = companyName }
+    //            },
+    //            tallymessage = new[]
+    //            {
+    //                new
+    //                {
+    //                    // 1. METADATA
+    //                    metadata = new
+    //                    {
+    //                        type = "Ledger",
+    //                        action = "Alter", // CHANGED: Lowercase "create" enforces Group check
+    //                        name = safeName
+    //                    },
+
+    //                    // 2. DATA
+    //                    name = safeName,
+    //                    parent = safeGroup, // This will now be read correctly
+
+    //                    // Defaults
+    //                    isbillwiseon = false,
+    //                    iscostcentreson = false,
+    //                    openingbalance = 0.00
+    //                }
+    //            }
+    //        };
+
+    //        string jsonBody = new JavaScriptSerializer().Serialize(payload);
+
+    //        var headers = new Dictionary<string, string>
+    //        {
+    //            { "Tallyrequest", "Import" },
+    //            { "type", "Data" },
+    //            { "Id", "All Masters" },
+    //            { "Version", "1" },
+    //            { "detailed-response", "Yes" }
+    //        };
+
+    //        string result = SendJsonToTally(jsonBody, headers);
+
+    //        // Log the result. Note: If you see "Name already exists", that is GOOD. 
+    //        // It means the ledger is ready for the voucher.
+    //        Log("Ledger Sync (" + safeName + "): " + result);
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        Log("Ledger Sync Failed: " + ex.Message);
+    //    }
+    //}
 
     // ---------------------------------------------------------
     // RENAME LEDGER (Call this when Employee Name is edited)
@@ -205,7 +360,7 @@ public class TallyService
 
             string safeOldName = oldName.Replace("\\", "\\\\").Replace("\"", "\\\"");
             string safeNewName = newName.Replace("\\", "\\\\").Replace("\"", "\\\"");
-            string companyName = "Employees"; // Your Tally Company Name
+            string companyName = "Employees";
 
             var payload = new
             {
@@ -257,7 +412,7 @@ public class TallyService
         }
     }
 
-    private string SendJsonToTally(string jsonPayload, Dictionary<string, string> headers)
+    public string SendJsonToTally(string jsonPayload, Dictionary<string, string> headers)
     {
         try
         {

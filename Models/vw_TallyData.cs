@@ -12,17 +12,13 @@ namespace EmployeeApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EmployeeRemark
+    public partial class vw_TallyData
     {
-        public int RemID { get; set; }
-        public Nullable<int> EmpId { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
-        public string Remark { get; set; }
-        public string Type { get; set; }
-        public string FilePath { get; set; }
-        public Nullable<decimal> Amount { get; set; }
-        public Nullable<bool> IsRemarkSynced { get; set; }
-    
-        public virtual Employee Employee { get; set; }
+        public int TallyID { get; set; }
+        public int EmpId { get; set; }
+        public string Name { get; set; }
+        public Nullable<bool> TallyMapped { get; set; }
+        public string LedgerName { get; set; }
+        public Nullable<System.DateTime> LastSyncOn { get; set; }
     }
 }

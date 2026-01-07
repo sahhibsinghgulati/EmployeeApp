@@ -38,6 +38,7 @@
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
           <Property Name="FilePath" Type="nvarchar(max)" />
           <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsRemarkSynced" Type="bit" />
         </EntityType>
         <EntityType Name="Employees">
           <Key>
@@ -55,7 +56,16 @@
           <Property Name="Aadhaar" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="JoiningDate" Type="date" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="300" />
-          <Property Name="TallyGuid" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TallyData">
+          <Key>
+            <PropertyRef Name="TallyID" />
+          </Key>
+          <Property Name="TallyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpId" Type="int" />
+          <Property Name="TallyMapped" Type="bit" />
+          <Property Name="LedgerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastSyncOn" Type="datetime" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -105,9 +115,11 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_EmployeeRemark' does not have
           <Property Name="DeptID" Type="int" />
           <Property Name="DeptName" Type="nvarchar" MaxLength="50" />
           <Property Name="Remark" Type="nvarchar(max)" />
-          <Property Name="FilePath" Type="nchar" MaxLength="10" />
+          <Property Name="FilePath" Type="nvarchar(max)" />
           <Property Name="CreatedOn" Type="datetime" />
           <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsRemarkSynced" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -133,6 +145,21 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_Employees' does not have a pr
           <Property Name="DisplayOrder" Type="int" />
           <Property Name="CreatedBy" Type="int" />
           <Property Name="CreatedOn" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'EmployeeAppDB.dbo.vw_TallyData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_TallyData">
+          <Key>
+            <PropertyRef Name="TallyID" />
+            <PropertyRef Name="EmpId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="TallyID" Type="int" Nullable="false" />
+          <Property Name="EmpId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="TallyMapped" Type="bit" />
+          <Property Name="LedgerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastSyncOn" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -196,6 +223,18 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TallyData_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="TallyData" Type="Self.TallyData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmpId" />
+            </Principal>
+            <Dependent Role="TallyData">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_UserRole">
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -225,6 +264,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <EntitySet Name="EmployeeDocs" EntityType="Self.EmployeeDocs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EmployeeRemark" EntityType="Self.EmployeeRemark" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TallyData" EntityType="Self.TallyData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vw_EmployeeDocs" EntityType="Self.vw_EmployeeDocs" store:Type="Views" store:Schema="dbo">
@@ -249,7 +289,9 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
     [vw_EmployeeRemark].[Remark] AS [Remark], 
     [vw_EmployeeRemark].[FilePath] AS [FilePath], 
     [vw_EmployeeRemark].[CreatedOn] AS [CreatedOn], 
-    [vw_EmployeeRemark].[Type] AS [Type]
+    [vw_EmployeeRemark].[Type] AS [Type], 
+    [vw_EmployeeRemark].[Amount] AS [Amount], 
+    [vw_EmployeeRemark].[IsRemarkSynced] AS [IsRemarkSynced]
     FROM [dbo].[vw_EmployeeRemark] AS [vw_EmployeeRemark]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_Employees" EntityType="Self.vw_Employees" store:Type="Views" store:Schema="dbo">
@@ -271,6 +313,16 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
     [vw_Employees].[CreatedBy] AS [CreatedBy], 
     [vw_Employees].[CreatedOn] AS [CreatedOn]
     FROM [dbo].[vw_Employees] AS [vw_Employees]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_TallyData" EntityType="Self.vw_TallyData" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_TallyData].[TallyID] AS [TallyID], 
+    [vw_TallyData].[EmpId] AS [EmpId], 
+    [vw_TallyData].[Name] AS [Name], 
+    [vw_TallyData].[TallyMapped] AS [TallyMapped], 
+    [vw_TallyData].[LedgerName] AS [LedgerName], 
+    [vw_TallyData].[LastSyncOn] AS [LastSyncOn]
+    FROM [dbo].[vw_TallyData] AS [vw_TallyData]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_UserRole" EntityType="Self.vw_UserRole" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -297,6 +349,10 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             <End Role="DeptMaster" EntitySet="DeptMaster" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_TallyData_Employees" Association="Self.FK_TallyData_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="TallyData" EntitySet="TallyData" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_UserRole" Association="Self.FK_Users_UserRole">
             <End Role="UserRole" EntitySet="UserRole" />
             <End Role="Users" EntitySet="Users" />
@@ -315,6 +371,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <EntitySet Name="EmployeeDocs" EntityType="EmployeeAppDBModel.EmployeeDoc" />
           <EntitySet Name="EmployeeRemarks" EntityType="EmployeeAppDBModel.EmployeeRemark" />
           <EntitySet Name="Employees" EntityType="EmployeeAppDBModel.Employee" />
+          <EntitySet Name="TallyDatas" EntityType="EmployeeAppDBModel.TallyData" />
           <EntitySet Name="UserRoles" EntityType="EmployeeAppDBModel.UserRole" />
           <EntitySet Name="Users" EntityType="EmployeeAppDBModel.User" />
           <EntitySet Name="vw_EmployeeDocs" EntityType="EmployeeAppDBModel.vw_EmployeeDocs" />
@@ -337,6 +394,10 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             <End Role="Employee" EntitySet="Employees" />
             <End Role="EmployeeRemark" EntitySet="EmployeeRemarks" />
           </AssociationSet>
+          <AssociationSet Name="FK_TallyData_Employees" Association="EmployeeAppDBModel.FK_TallyData_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="TallyData" EntitySet="TallyDatas" />
+          </AssociationSet>
           <AssociationSet Name="FK_Users_UserRole" Association="EmployeeAppDBModel.FK_Users_UserRole">
             <End Role="UserRole" EntitySet="UserRoles" />
             <End Role="User" EntitySet="Users" />
@@ -345,6 +406,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             <End Role="User" EntitySet="Users" />
             <End Role="User1" EntitySet="Users" />
           </AssociationSet>
+          <EntitySet Name="vw_TallyData" EntityType="EmployeeAppDBModel.vw_TallyData" />
         </EntityContainer>
         <EntityType Name="DeptMaster">
           <Key>
@@ -383,6 +445,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
           <NavigationProperty Name="Employee" Relationship="EmployeeAppDBModel.FK_EmployeeRemark_Employees" FromRole="EmployeeRemark" ToRole="Employee" />
+          <Property Name="IsRemarkSynced" Type="Boolean" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -400,10 +463,21 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <Property Name="Aadhaar" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="JoiningDate" Type="DateTime" Precision="0" />
           <Property Name="ImagePath" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="TallyGuid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="DeptMaster" Relationship="EmployeeAppDBModel.FK_Employees_DeptMaster" FromRole="Employee" ToRole="DeptMaster" />
           <NavigationProperty Name="EmployeeDocs" Relationship="EmployeeAppDBModel.FK_EmployeeDocs_Employee" FromRole="Employee" ToRole="EmployeeDoc" />
           <NavigationProperty Name="EmployeeRemarks" Relationship="EmployeeAppDBModel.FK_EmployeeRemark_Employees" FromRole="Employee" ToRole="EmployeeRemark" />
+          <NavigationProperty Name="TallyDatas" Relationship="EmployeeAppDBModel.FK_TallyData_Employees" FromRole="Employee" ToRole="TallyData" />
+        </EntityType>
+        <EntityType Name="TallyData">
+          <Key>
+            <PropertyRef Name="TallyID" />
+          </Key>
+          <Property Name="TallyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpId" Type="Int32" />
+          <Property Name="TallyMapped" Type="Boolean" />
+          <Property Name="LedgerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastSyncOn" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Employee" Relationship="EmployeeAppDBModel.FK_TallyData_Employees" FromRole="TallyData" ToRole="Employee" />
         </EntityType>
         <EntityType Name="UserRole">
           <Key>
@@ -454,9 +528,11 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <Property Name="DeptID" Type="Int32" />
           <Property Name="DeptName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="FilePath" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreatedOn" Type="DateTime" Precision="3" />
           <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsRemarkSynced" Type="Boolean" />
         </EntityType>
         <EntityType Name="vw_Employees">
           <Key>
@@ -541,6 +617,18 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TallyData_Employees">
+          <End Type="EmployeeAppDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="EmployeeAppDBModel.TallyData" Role="TallyData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmpId" />
+            </Principal>
+            <Dependent Role="TallyData">
+              <PropertyRef Name="EmpId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Users_UserRole">
           <End Type="EmployeeAppDBModel.UserRole" Role="UserRole" Multiplicity="0..1" />
           <End Type="EmployeeAppDBModel.User" Role="User" Multiplicity="*" />
@@ -565,6 +653,19 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="vw_TallyData">
+          <Key>
+            <PropertyRef Name="TallyID" />
+            <PropertyRef Name="EmpId" />
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="TallyID" Type="Int32" Nullable="false" />
+          <Property Name="EmpId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TallyMapped" Type="Boolean" />
+          <Property Name="LedgerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastSyncOn" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -598,6 +699,7 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <EntitySetMapping Name="EmployeeRemarks">
             <EntityTypeMapping TypeName="EmployeeAppDBModel.EmployeeRemark">
               <MappingFragment StoreEntitySet="EmployeeRemark">
+                <ScalarProperty Name="IsRemarkSynced" ColumnName="IsRemarkSynced" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="FilePath" ColumnName="FilePath" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
@@ -611,7 +713,6 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="EmployeeAppDBModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
-                <ScalarProperty Name="TallyGuid" ColumnName="TallyGuid" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
                 <ScalarProperty Name="Aadhaar" ColumnName="Aadhaar" />
@@ -624,6 +725,17 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
                 <ScalarProperty Name="fatherName" ColumnName="fatherName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TallyDatas">
+            <EntityTypeMapping TypeName="EmployeeAppDBModel.TallyData">
+              <MappingFragment StoreEntitySet="TallyData">
+                <ScalarProperty Name="LastSyncOn" ColumnName="LastSyncOn" />
+                <ScalarProperty Name="LedgerName" ColumnName="LedgerName" />
+                <ScalarProperty Name="TallyMapped" ColumnName="TallyMapped" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="TallyID" ColumnName="TallyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -662,6 +774,8 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
           <EntitySetMapping Name="vw_EmployeeRemark">
             <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_EmployeeRemark">
               <MappingFragment StoreEntitySet="vw_EmployeeRemark">
+                <ScalarProperty Name="IsRemarkSynced" ColumnName="IsRemarkSynced" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="FilePath" ColumnName="FilePath" />
@@ -704,6 +818,18 @@ warning 6002: The table/view 'EmployeeAppDB.dbo.vw_UserRole' does not have a pri
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_TallyData">
+            <EntityTypeMapping TypeName="EmployeeAppDBModel.vw_TallyData">
+              <MappingFragment StoreEntitySet="vw_TallyData">
+                <ScalarProperty Name="LastSyncOn" ColumnName="LastSyncOn" />
+                <ScalarProperty Name="LedgerName" ColumnName="LedgerName" />
+                <ScalarProperty Name="TallyMapped" ColumnName="TallyMapped" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="TallyID" ColumnName="TallyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

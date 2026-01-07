@@ -1,0 +1,181 @@
+﻿@model EmployeeApp.Models.TallyDashboardViewModel
+@{
+    ViewBag.Title = "Tally Control Center";
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<div class="container-fluid">
+    @if (TempData["Message"] != null)
+    {<div class="alert alert-success">@TempData["Message"]</div>}
+    @if (TempData["Error"] != null)
+    {<div class="alert alert-danger">@TempData["Error"]</div>}
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center" style="font-weight: bold;">Employee Master Status</div>
+                <div class="panel-body">
+
+                    <div class="form-group mb-3">
+                        <label>Select Employee</label>
+                        @Html.DropDownList("EmpId", (SelectList)ViewBag.EmpList, "-- All Employees --", new
+                        {
+                            @class = "form-control",
+                            onchange = "window.location.href='" + Url.Action("Index", "TallySync") + "?id=' + this.value"
+                        })
+                    </div>
+
+                    <hr />
+
+                    @if (Model.SelectedEmpId.HasValue && Model.TallyStatus != null)
+                    {
+                        <div class="list-group">
+                            <div class="list-group-item d-flex justify-content-between align-items-center">
+                                Tally Mapped
+                                @if (Model.TallyStatus.IsMapped)
+                                {
+                                    <span class="badge bg-success pull-right" style="background-color:green; color:white">YES</span>
+                                }
+                                else
+                                {
+                                        if (Model.TallyStatus.IsMapped)
+                                        {
+                                            <span class="badge bg-success pull-right" style="background-color:green; color:white">YES</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-danger pull-right" style="background-color:red; color:white">NO</span>
+
+                                        }
+                                }
+                            </div>
+
+                            <div class="list-group-item">
+                                <h5 class="list-group-item-heading">Ledger Name</h5>
+                                <p class="list-group-item-text">
+                                    Current: <strong>@Model.TallyStatus.LedgerNameInTally</strong>
+                                    @if (Model.TallyStatus.IsMapped)
+                                    {
+                                        if (Model.TallyStatus.NameMismatch)
+                                        {
+                                            <div class="alert alert-warning" style="margin-top: 10px; padding: 10px;">
+                                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                                <strong>Mismatch!</strong> Expected: "@Model.SelectedEmpName"
+
+                                                <div style="margin-top: 8px;">
+                                                    @using (Html.BeginForm("RenameLedger", "TallySync", FormMethod.Post))
+                                                    {
+                                                        @Html.Hidden("empId", Model.SelectedEmpId)
+                                                        <button type="submit" class="btn btn-warning btn-sm btn-block" style="width:100%; font-weight:bold;">
+                                                            Fix / Rename in Tally
+                                                        </button>
+                                                    }
+                                                </div>
+                                            </div>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        <div style="margin-top: 10px; width: 100%;">
+                                            @using (Html.BeginForm("CreateLedger", "TallySync", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="empId" value="@Model.SelectedEmpId" />
+                                                <button type="submit" class="btn btn-primary btn-sm btn-block" style="width:100%">
+                                                    <i class="bi bi-plus-circle-fill"></i> Create Ledger
+                                                </button>
+                                            }
+                                        </div>
+                                    }
+                                </p>
+                            </div>
+
+                            <div class="list-group-item">
+                                <h5 class="list-group-item-heading">Last Master Sync</h5>
+                                <p class="list-group-item-text">
+                                    @(Model.TallyStatus.LastSyncOn?.ToString("dd-MMM-yyyy HH:mm") ?? "Never")
+                                </p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-muted text-center" style="padding:20px;">
+                            Select an employee to view Tally Mapping details.
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading mb-2">
+                    <span style="font-weight: bold; font-size: 16px;">Pending Transactions (Unsynced)</span>
+
+                    @using (Html.BeginForm("SyncAll", "TallySync", FormMethod.Post, new { @class = "pull-right", style = "display:inline;" }))
+                    {
+                        <input type="hidden" name="empId" value="@Model.SelectedEmpId" />
+                        <button type="submit" class="btn btn-warning btn-sm" onclick="return confirm('Sync ALL displayed entries? This cannot be undone.')">
+                            <i class="bi bi-arrow-repeat"></i> Sync All
+                        </button>
+                    }
+                </div>
+
+                <div class="panel-body">
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Employee</th>
+                                <th>Type</th>
+                                <th>Remark</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th style="width: 100px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.UnsyncedRemarks != null && Model.UnsyncedRemarks.Any())
+                            {
+                                foreach (var item in Model.UnsyncedRemarks)
+                                {
+                                    <tr>
+                                        <td>@item.EmployeeName</td>
+                                        <td>
+                                            @if (item.Type.Contains("Fine"))
+                                            {<span class="text-danger">@item.Type</span> }
+                                        else
+                                        { <span class="text-success">@item.Type</span>}
+                                        </td>
+                                        <td>@item.Remark</td>
+                                        <td><strong>@item.Amount</strong></td>
+                                        <td>@item.CreatedOn.Value.ToString("dd-MMM")</td>
+                                        <td class="text-center">
+                                            @using (Html.BeginForm("SyncRow", "TallySync", FormMethod.Post))
+                                            {
+                                                <input type="hidden" name="remId" value="@item.RemID" />
+                                                <button type="submit" class="btn btn-primary btn-xs" title="Push to Tally">
+                                                    Sync <i class="bi bi-cloud-upload"></i>
+                                                </button>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center text-success">
+                                        <i class="bi bi-check-circle-fill"></i> All records are synced!
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

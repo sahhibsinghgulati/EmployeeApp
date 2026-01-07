@@ -187,27 +187,27 @@ namespace EmployeeAppMVC.Controllers
                 string newName = formEmp.Name; // The new name from the Form
 
                 // Check if name has actually changed (ignoring case)
-                if (!string.Equals(oldName, newName, StringComparison.OrdinalIgnoreCase))
-                {
-                    try
-                    {
-                        TallyService tally = new TallyService();
-                        string response = tally.RenameLedger(oldName, newName);
+                //if (!string.Equals(oldName, newName, StringComparison.OrdinalIgnoreCase))
+                //{
+                //    try
+                //    {
+                //        TallyService tally = new TallyService();
+                //        string response = tally.RenameLedger(oldName, newName);
 
-                        // OPTIONAL: Fallback
-                        // If the response contains an Error (e.g., "Old Name not found"), 
-                        // it means the ledger never existed. You might want to CREATE it instead.
-                        // if (response.Contains("Errors")) 
-                        // {
-                        //      tally.PostVoucherToTally(newName, "Salary Payment", 0); // Just to trigger SyncLedger
-                        // }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Log error safely so it doesn't crash the Employee Update
-                        System.Diagnostics.Debug.WriteLine("Tally Sync Failed: " + ex.Message);
-                    }
-                }
+                //        // OPTIONAL: Fallback
+                //        // If the response contains an Error (e.g., "Old Name not found"), 
+                //        // it means the ledger never existed. You might want to CREATE it instead.
+                //        // if (response.Contains("Errors")) 
+                //        // {
+                //        //      tally.PostVoucherToTally(newName, "Salary Payment", 0); // Just to trigger SyncLedger
+                //        // }
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        // Log error safely so it doesn't crash the Employee Update
+                //        System.Diagnostics.Debug.WriteLine("Tally Sync Failed: " + ex.Message);
+                //    }
+                //}
                 dbEmp.Name = formEmp.Name;
                 dbEmp.fatherName = formEmp.fatherName;
                 dbEmp.Gender = formEmp.Gender;

@@ -150,6 +150,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RemarkController.cs" />
+    <Compile Include="Controllers\TallySyncController.cs" />
     <Compile Include="EmployeeDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -158,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\TallyDashboardViewModel.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\DeptMaster.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
@@ -186,6 +188,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TallyData.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TallyService.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
@@ -200,6 +205,9 @@
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_Employees.cs">
+      <DependentUpon>MyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\vw_TallyData.cs">
       <DependentUpon>MyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\vw_UserRole.cs">
@@ -309,6 +317,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Remark\Index.cshtml" />
+    <Content Include="Views\TallySync\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

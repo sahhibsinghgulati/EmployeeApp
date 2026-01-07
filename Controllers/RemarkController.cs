@@ -79,30 +79,30 @@ namespace EmployeeApp.Controllers
                 // 3. TALLY INTEGRATION (JSON MODE)
                 string tallyMsg = "";
 
-                if (Amount.HasValue && (Type.Contains("Fine") || Type.Contains("Credit")))
-                {
-                    var emp = db.Employees.Find(EmpId);
-                    if (emp != null)
-                    {
-                        TallyService tally = new TallyService();
+                //if (Amount.HasValue && (Type.Contains("Fine") || Type.Contains("Credit")))
+                //{
+                //    var emp = db.Employees.Find(EmpId);
+                //    if (emp != null)
+                //    {
+                //        TallyService tally = new TallyService();
 
-                        // Post Voucher (Returns JSON String)
-                        string response = tally.PostVoucherToTally(emp.Name, Type, Amount.Value);
+                //        // Post Voucher (Returns JSON String)
+                //        string response = tally.PostVoucherToTally(emp, Type, Amount.Value);
 
-                        // --- JSON SUCCESS CHECK ---
-                        // We check for "created": 1 or "created":1 (handling spaces)
-                        if (!string.IsNullOrEmpty(response) &&
-                           (response.ToLower().Contains("\"created\": 1") || response.ToLower().Contains("\"created\":1")))
-                        {
-                            tallyMsg = " & Tally Updated.";
-                        }
-                        else
-                        {
-                            // If failed, response will likely contain errors or exceptions
-                            tallyMsg = " (Tally Failed - Check Logs).";
-                        }
-                    }
-                }
+                //        // --- JSON SUCCESS CHECK ---
+                //        // We check for "created": 1 or "created":1 (handling spaces)
+                //        if (!string.IsNullOrEmpty(response) &&
+                //           (response.ToLower().Contains("\"created\": 1") || response.ToLower().Contains("\"created\":1")))
+                //        {
+                //            tallyMsg = " & Tally Updated.";
+                //        }
+                //        else
+                //        {
+                //            // If failed, response will likely contain errors or exceptions
+                //            tallyMsg = " (Tally Failed - Check Logs).";
+                //        }
+                //    }
+                //}
 
                 TempData["Message"] = "Remark saved successfully!" + tallyMsg;
             }

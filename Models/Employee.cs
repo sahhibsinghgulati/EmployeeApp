@@ -19,6 +19,7 @@ namespace EmployeeApp.Models
         {
             this.EmployeeDocs = new HashSet<EmployeeDoc>();
             this.EmployeeRemarks = new HashSet<EmployeeRemark>();
+            this.TallyDatas = new HashSet<TallyData>();
         }
     
         public int EmpId { get; set; }
@@ -33,12 +34,13 @@ namespace EmployeeApp.Models
         public string Aadhaar { get; set; }
         public Nullable<System.DateTime> JoiningDate { get; set; }
         public string ImagePath { get; set; }
-        public string TallyGuid { get; set; }
     
         public virtual DeptMaster DeptMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeDoc> EmployeeDocs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeRemark> EmployeeRemarks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TallyData> TallyDatas { get; set; }
     }
 }
